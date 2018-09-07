@@ -56,17 +56,32 @@ function CensusDataService($http) {
         west_virginia = "54",
         wisconsin = "55",
         wyoming = "56", 
-        puerto_rico = "72"
+        puerto_rico = "72",
+        all="*"
     }
 
+    const vm = this;
 
-    return $http({
-        url: `api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=state:*&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
-        method: 'GET'
-    }).then((response) => {
-        console.log(response.data);
-        return response.data;
-    })
+    vm.getStatePopulation = () => {
+        return $http({
+            url: `api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+            method: 'GET'
+        }).then((response) => {
+            console.log(response.data);
+            return response.data;
+        });
+    };
+
+    vm.getCountyPopulationForState = (targetState) => {
+        return $http({
+            url: `api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+            method: 'GET'
+        }).then((response) => {
+            console.log(response.data);
+            return response.data;
+        });
+    };
+
 
 }
 
