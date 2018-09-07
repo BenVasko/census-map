@@ -129,7 +129,7 @@ function CensusDataService($http) {
 
     vm.getStatePopulation = () => {
         return $http({
-            url: `api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
             method: 'GET'
         }).then((response) => {
             console.log('called getStatePopulation');
@@ -140,7 +140,7 @@ function CensusDataService($http) {
 
     vm.getCountyPopulationForState = (targetState) => {
         return $http({
-            url: `api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
             method: 'GET'
         }).then((response) => {
             console.log(response.data);

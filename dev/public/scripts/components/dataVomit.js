@@ -7,7 +7,10 @@ const data = {
 
         vm.getData = () => {
             console.log("asked to get data");
-            vm.data = CensusDataService.getStatePopulation();
+            CensusDataService.getStatePopulation().then((response)=> {
+                vm.datas = response;
+            });
+            console.log(vm.datas);
         };
 
         vm.getData();
