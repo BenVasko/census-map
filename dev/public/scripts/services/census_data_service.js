@@ -2,7 +2,72 @@
 
 function CensusDataService($http) {
     const dataHeaders = {
-        totalPop: 'P0010001'
+    //population
+        totalPop: 'P0010001',
+        totalPopRace: 'P0030001',
+        totalPopAge: 'P0120001',
+    //race
+        white: 'P0030002',
+        black:'P0030003',
+        americanIndian: 'P0030004',
+        asian: 'P0030005',
+        hawaiian: 'P0030006',
+        other: 'P0030007',
+        multiple: 'P0030008',
+    //age, male
+        totalMalePop: 'P0120002',
+        maleUnder5:'P0120003',
+        male5_9:'P0120004',
+        male10_14:'P0120005',
+        male15_17:'P0120006',
+        male18_19:'P0120007',
+        male20:'P0120008',
+        male21:'P0120009',
+        male22_24:'P01200010',
+        male25_29:'P0120011',
+        male30_34:'P0120012',
+        male35_39:'P0120013',
+        male40_44:'P0120014',
+        male45_49:'P0120015',
+        male50_54:'P0120016',
+        male55_59:'P0120017',
+        male60_61:'P0120018',
+        male62_64:'P0120019',
+        male65_66:'P0120020',
+        male67_69:'P0120021',
+        male70_74:'P0120022',
+        male75_79:'P0120023',
+        male80_84:'P0120024',
+        male85_over:'P0120025',
+    //age, female 
+        femaleUnder5:'P0120027',
+        female5_9:'P0120028',
+        female10_14:'P0120029',
+        female15_17:'P0120030',
+        female18_19:'P0120031',
+        female20:'P0120032',
+        female21:'P0120033',
+        female22_24:'P01200034',
+        female25_29:'P0120035',
+        female30_34:'P0120036',
+        female35_39:'P0120037',
+        female40_44:'P0120038',
+        female45_49:'P0120039',
+        female50_54:'P0120040',
+        female55_59:'P0120041',
+        female60_61:'P0120042',
+        female62_64:'P0120043',
+        female65_66:'P0120044',
+        female67_69:'P0120045',
+        female70_74:'P0120046',
+        female75_79:'P0120047',
+        female80_84:'P0120048',
+        female85_over:'P0120049'
+
+
+
+
+
     };
     const state = {
         alabama: "01",
@@ -82,7 +147,49 @@ function CensusDataService($http) {
             return response.data;
         });
     };
+//_____________Getting populatations based on race by state__________________ 
+    vm.getStatePopRace = () => {
+        return $http({
+            url:`api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,,
+            method:'GET'
+        }).then((response) => {
+            console.log(response.data);
+            return response.data
+        })
+    }
+ 
 
+//_____________Getting populatations based on race by county__________________ 
+vm.getCountyPopRace = (targetState) => {
+    return $http({
+        url:`api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data)
+        return response.data
+    })
+}
+
+//_____________Getting age based on state__________________ 
+vm.getStatePopAge = () => {
+    return $http({
+        url:
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data);
+        return response.data
+    })
+}
+//_____________Getting age based on county__________________ 
+vm.getCountyPopAge = (targetState) => {
+    return $http({
+        url:
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data)
+        return response.data
+    })
+}
 
 }
 
