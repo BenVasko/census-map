@@ -14,6 +14,11 @@ const data = {
         };
 
         vm.getData();
+
+        // taz added
+        vm.notify = function(selection){
+            console.log(selection);
+        }
     }]
 };
 

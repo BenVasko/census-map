@@ -5,8 +5,7 @@ const censusComponent = {
     <button ng-click="$ctrl.red()">POPULATION</button>`,
     controller: ["CensusService", "$scope", function(CensusService, $scope) {
         const vm = this;
-        $scope.friend = "Sydney";
-        console.log($scope.friend);
+
         
         // vm.simplemaps_usmap_mapdata={
         //     main_settings: {
