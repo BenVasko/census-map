@@ -470,16 +470,13 @@ vm.getStatePopAge90 = () => {
 //_____________1990 Getting age based on county__________________ 
 vm.getCountyPopAge90 = (targetState) => {
     return $http({
-        url: `api.census.gov/data/1990/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},
-        ${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},
-        ${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00}, ${dataHeaders.male45_49_00},
-        ${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},
-        ${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00}
-        ${dataHeaders.male85_over_00}, ${dataHeaders.femaleUnder5_00}, ${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},
-        ${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},
-        ${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00}
-        ${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}
-        ${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},ANPSADPI&for=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url: `api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},
+        ${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},
+        ${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90}, ${dataHeaders.a18_90},
+        ${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},
+        ${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90}
+        ${dataHeaders.a55_59_90}, ${dataHeaders.a60_61_90}, ${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},
+        ${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         console.log(response.data)
