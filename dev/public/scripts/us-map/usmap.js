@@ -16,4 +16,4 @@ eval((function(x){var d="";var p=0;while(p<x.length){if(x.charAt(p)!="`")d+=x.ch
 
 setTimeout(function(){
     document.querySelector("#map_inner > div:nth-child(2)").remove();
-  }, 100);
+  }, 500);

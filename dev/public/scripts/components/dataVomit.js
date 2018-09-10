@@ -14,6 +14,11 @@ const data = {
         };
 
         vm.getData();
+
+        document.addEventListener("click", (e) => {
+            console.log(e.target);
+            // angular.element(e.target).addClass("red");
+        });
     }]
 };
 
