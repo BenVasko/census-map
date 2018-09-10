@@ -259,6 +259,7 @@ function CensusDataService($http) {
 //_____________2010 Getting populatations based on race by state__________________ 
     vm.getStatePopRace = () => {
         return $http({
+
             url:`api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},
             ${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},
             NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
@@ -286,6 +287,7 @@ vm.getCountyPopRace = (targetState) => {
 //_____________2010 Getting age based on state__________________ 
 vm.getStatePopAge = () => {
     return $http({
+
         url: `api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},
         ${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},
         ${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44}, ${dataHeaders.male45_49},
@@ -305,6 +307,7 @@ vm.getStatePopAge = () => {
 //_____________2010 Getting age based on county__________________ 
 vm.getCountyPopAge = (targetState) => {
     return $http({
+
         url: `api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},
         ${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},
         ${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44}, ${dataHeaders.male45_49},
