@@ -1,11 +1,11 @@
-<select>
-    <option>Population</option>
-    <option>Age</option>
-    <option>Income</option>
+<select ng-model="API" ng-change="$ctrl.getCensusData(API)">
+    <option value="1">State Population</option>
+    <option value="2">State Population: by Race</option>
+    <option value="3">State Population: by Age</option>
 </select>
 <h4></h4>
 <h1>Data:</h1>
 
-<section ng-repeat="item in $ctrl.datas">
+<section ng-repeat="item in $ctrl.datas track by $index">
     <p>{{item[0]}}  |  {{item[1]}}  |  {{item[2]}}</p>
 </section>

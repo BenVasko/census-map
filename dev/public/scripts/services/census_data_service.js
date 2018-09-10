@@ -150,7 +150,7 @@ function CensusDataService($http) {
 //_____________Getting populatations based on race by state__________________ 
     vm.getStatePopRace = () => {
         return $http({
-            url:`api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,,
+            url:`api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
             method:'GET'
         }).then((response) => {
             console.log(response.data);
@@ -173,7 +173,7 @@ vm.getCountyPopRace = (targetState) => {
 //_____________Getting age based on state__________________ 
 vm.getStatePopAge = () => {
     return $http({
-        url:
+        url: ``,
         method:'GET'
     }).then((response) => {
         console.log(response.data);
@@ -183,7 +183,7 @@ vm.getStatePopAge = () => {
 //_____________Getting age based on county__________________ 
 vm.getCountyPopAge = (targetState) => {
     return $http({
-        url:
+        url: ``,
         method:'GET'
     }).then((response) => {
         console.log(response.data)
