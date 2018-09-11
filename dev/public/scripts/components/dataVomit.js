@@ -13,6 +13,11 @@ const data = {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
+                vm.total = 0;
+                for(let i = 1; i < vm.datas.length; i++) {
+                    vm.total += parseInt(vm.datas[i][0]);
+                }
+                console.log(vm.total);
             });   
             console.log(vm.datas);
         };
@@ -48,22 +53,26 @@ const data = {
             console.log(vm.buttonVisible);
             if (angular.element(e.target).attr("class")){
                 vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-                console.log(vm.stateID); 
+                console.log(vm.stateID);
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
                 console.log(vm.stateID); 
             }
-                let state1 = document.createElement("script");
-                    state1.type = "text/javascript";
-                    state1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                    state1.innerHTML = null;
-                    document.getElementById("map-scripts").innerHTML = "";
-                    document.getElementById("map-scripts").appendChild(state1);
-                let state2 = document.createElement("script");
-                    state2.type = "text/javascript";
-                    state2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                    state2.innerHTML = null;
-                    document.getElementById("map-scripts").appendChild(state2);
+            let state1 = document.createElement("script");
+                state1.type = "text/javascript";
+                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                state1.innerHTML = null;
+                document.getElementById("map-scripts").innerHTML = "";
+                document.getElementById("map-scripts").appendChild(state1);
+            let state2 = document.createElement("script");
+                state2.type = "text/javascript";
+                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                state2.innerHTML = null;
+                document.getElementById("map-scripts").appendChild(state2);
+            vm.getDataForState(vm.stateID).then((response) => {
+                ColorService.getColorsByCounties(response);
+            });
+
         });
 
         vm.hideButton = () => {
@@ -83,6 +92,18 @@ const data = {
                 document.getElementById("map-scripts").appendChild(us2);
             vm.getData();
             vm.getCensusData();
+        }
+
+        vm.getDataForState = (stateID) => {
+            let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
+            console.log(stateName);
+            let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
+            console.log(censusStateID);
+            CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
+                vm.datas = response;
+                ColorService.getColorsForCounties(vm.datas);
+            });
+            console.log(vm.datas);
         }
     }]
 };

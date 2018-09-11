@@ -11,6 +11,6 @@
 <h1>Data:</h1>
 
 <section ng-repeat="item in $ctrl.datas track by $index">
-    <p>{{item[0]}}  |  {{item[1]}}  |  {{item[2]}}</p>
+    <p>{{item[0]}}  |  {{item[1]}}  |  {{item[2]}}  |  {{item[3]|| ""}}  |  %{{item[0]/$ctrl.total*100 || ""}}</p>
 </section>
 
