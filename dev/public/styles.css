@@ -1,3 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(#c4edf5, #d6e0e4);
+}
+
+h1 {
+    text-align: center;
+    margin: 5% auto;;
+}
+
+.map-parent {
+    width: 100%;
+}
+
+#map {
+    max-width: 100%;
+    height: auto;
+}
+
 #map_inner > div:nth-child(2) {
     visibility: hidden; /* attribution removal */
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    margin: 10% auto;
+}
+
+.drop-down {
+    margin: 0 auto;
+    width: 60%;
+    height: 50px;
+    background: #6ebbe7;
+    text-align: center;
+    color: black;
+    border: 5px solid black;
+    border-radius: 10px;
+    font-size: 24px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    background: black;
+    margin: 5% auto;
+    width: 80%;
+    height: 5px;
+    color: black;
+    border-radius: 20px;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #6ebbe7;
+    border: 5px solid black;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #6ebbe7;
+    border: 5px solid black;
+    cursor: pointer;
+}
+
+.legend {
+    margin: 0 auto;
+    width: 90%;
+    height: 40px;
+    text-align: center;
+    color: black;
+    border: 5px solid black;
+    border-radius: 15px;
+    font-size: 24px;
+}
+
+button {
+    color: white;
+    background: red;
+    width: 60px;
+    height: 40px;
 }

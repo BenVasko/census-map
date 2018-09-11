@@ -65,14 +65,16 @@ const ColorService = function(){
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
                     try {
                         document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                    } catch {
-                        try {
-                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                        } catch {
-                            setTimeout(function(){
-                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                            }, 500);
-                        }
+                    } 
+                    catch {
+                        // try {
+                        //     document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                        } 
+                        // catch {
+                        //     setTimeout(function(){
+                        //         document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                        //     }, 500);
+                        // }
                     }
                 }
             }
@@ -86,7 +88,7 @@ const ColorService = function(){
     }
 
 
-};
+// };
 
 
 
