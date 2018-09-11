@@ -71,11 +71,6 @@ const data = {
             // checking to see if you clicked on a state object
             if (angular.element(e.target).attr("class")){
                 vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-<<<<<<< HEAD
-                console.log(vm.stateID);
-=======
-            // checking to see if you clicked on label of state
->>>>>>> fc788b9c35a83f2d3ad730ee600b56a0e4d281c2
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
             }
