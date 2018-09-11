@@ -5,6 +5,8 @@ const data = {
     controller: ["CensusDataService","ColorService", function(CensusDataService, ColorService) {
         const vm = this;
         vm.datas;
+        vm.buttonVisible = false;
+        console.log(vm.buttonVisible);
 
         vm.getData = () => {
             console.log("asked to get data");
@@ -40,26 +42,48 @@ const data = {
             }
         };
 
-        document.addEventListener("click", (e) => {
-            console.log(e.target.innerHTML);
+        document.getElementById("map").addEventListener("click", (e) => {
+            document.getElementById("map-scripts").innerHTML = "";
+            vm.buttonVisible = true;
+            console.log(vm.buttonVisible);
             if (angular.element(e.target).attr("class")){
-                vm.stateID = (angular.element(e.target).attr("class").slice(-2)); 
+                vm.stateID = (angular.element(e.target).attr("class").slice(-2));
+                console.log(vm.stateID); 
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
+                console.log(vm.stateID); 
             }
-                let ak1 = document.createElement("script");
-                    ak1.type = "text/javascript";
-                    ak1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                    ak1.innerHTML = null;
+                let state1 = document.createElement("script");
+                    state1.type = "text/javascript";
+                    state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                    state1.innerHTML = null;
                     document.getElementById("map-scripts").innerHTML = "";
-                    document.getElementById("map-scripts").appendChild(ak1);
-                let ak2 = document.createElement("script");
-                    ak2.type = "text/javascript";
-                    ak2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                    ak2.innerHTML = null;
-                    document.getElementById("map-scripts").appendChild(ak2);
+                    document.getElementById("map-scripts").appendChild(state1);
+                let state2 = document.createElement("script");
+                    state2.type = "text/javascript";
+                    state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                    state2.innerHTML = null;
+                    document.getElementById("map-scripts").appendChild(state2);
         });
 
+        vm.hideButton = () => {
+            document.getElementById("map-scripts").innerHTML = "";
+            vm.stateID = "";
+            vm.buttonVisible = false;
+            console.log(vm.buttonVisible);
+            let us1 = document.createElement("script");
+                us1.type = "text/javascript";
+                us1.src = `scripts/us-map/mapdata.js`
+                us1.innerHTML = null;
+                document.getElementById("map-scripts").appendChild(us1);
+            let us2 = document.createElement("script");
+                us2.type = "text/javascript";
+                us2.src = `scripts/us-map/usmap.js`;
+                us2.innerHTML = null;
+                document.getElementById("map-scripts").appendChild(us2);
+            vm.getData();
+            vm.getCensusData();
+        }
     }]
 };
 

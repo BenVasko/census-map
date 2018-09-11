@@ -69,9 +69,9 @@ const ColorService = function(){
                         try {
                             document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
                         } catch {
-                                setTimeout(function(){
-                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                                }, 1500);
+                            setTimeout(function(){
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                            }, 500);
                         }
                     }
                 }
