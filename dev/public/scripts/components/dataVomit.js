@@ -5,8 +5,8 @@ const data = {
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
         const vm = this;
         vm.datas;
-        vm.buttonVisible = false;
-        console.log(vm.buttonVisible);
+        // selecting the back button
+        vm.button = angular.element(document.getElementsByTagName("button"));
 
         vm.getData = () => {
             console.log("asked to get data");
@@ -58,17 +58,17 @@ const data = {
                 console.log('selected 3')
             }
         };
-
+        // when you click on the map
         document.getElementById("map").addEventListener("click", (e) => {
             document.getElementById("map-scripts").innerHTML = "";
-            vm.buttonVisible = true;
-            console.log(vm.buttonVisible);
+            // remove class of "ng-hide" so button will display
+            vm.button.removeClass("ng-hide");
+            // checking to see if you clicked on a state object
             if (angular.element(e.target).attr("class")){
                 vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-                console.log(vm.stateID); 
+            // checking to see if you clicked on label of state
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
-                console.log(vm.stateID); 
             }
                 let state1 = document.createElement("script");
                     state1.type = "text/javascript";
@@ -85,17 +85,17 @@ const data = {
 
         vm.hideButton = () => {
             document.getElementById("map-scripts").innerHTML = "";
-            vm.stateID = "";
-            vm.buttonVisible = false;
-            console.log(vm.buttonVisible);
+            // add class of "ng-hide" again so button will be hidden
+            vm.button.addClass("ng-hide");
+
             let us1 = document.createElement("script");
                 us1.type = "text/javascript";
-                us1.src = `scripts/us-map/mapdata.js`
+                us1.src = `scripts/us-map/us-map-by-state/mapdata.js`
                 us1.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us1);
             let us2 = document.createElement("script");
                 us2.type = "text/javascript";
-                us2.src = `scripts/us-map/usmap.js`;
+                us2.src = `scripts/us-map/us-map-by-state/usmap.js`;
                 us2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us2);
             vm.getData();
