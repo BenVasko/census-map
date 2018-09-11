@@ -17,7 +17,7 @@ const AgeService = function(){
             (((parseInt(passedData[j][9])) + (parseInt(passedData[j][32]))) * 32) +
             (((parseInt(passedData[j][10])) + (parseInt(passedData[j][33]))) * 37) +
             (((parseInt(passedData[j][11])) + (parseInt(passedData[j][34]))) * 42) +
-            (((parseInt(passedData[j][13])) + (parseInt(passedData[j][35]))) * 47) +
+            (((parseInt(passedData[j][12])) + (parseInt(passedData[j][35]))) * 47) +
             (((parseInt(passedData[j][13])) + (parseInt(passedData[j][36]))) * 52) +
             (((parseInt(passedData[j][14])) + (parseInt(passedData[j][37]))) * 57) +
             (((parseInt(passedData[j][15])) + (parseInt(passedData[j][38]))) * 60.5) +
@@ -35,10 +35,8 @@ const AgeService = function(){
             for(let i = 0; i < 46; i++) {
                 totalPop += parseInt(passedData[j][i]);
             }
-            console.log(totalAgeofState + " " + totalPop);
-            console.log(((parseInt(passedData[j][22])) + (parseInt(passedData[j][45])) * 92.5));
             let avgAgeOfState = totalAgeofState/totalPop;
-            dataArray.push([avgAgeOfState, passedData[j][46]]);
+            dataArray.push([avgAgeOfState, passedData[j][47]]);
         }
         return dataArray;
     }

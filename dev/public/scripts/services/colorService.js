@@ -132,11 +132,11 @@ const ColorService = function(){
         }
     }
 
-// };
+};
 
 
 
 
 
 angular.module("App").
-service("ColorService", ColorService)
+service("ColorService", ColorService);

@@ -9,7 +9,6 @@ const data = {
         vm.button = angular.element(document.getElementsByTagName("button"));
 
         vm.getData = () => {
-            console.log("asked to get data");
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
@@ -17,9 +16,7 @@ const data = {
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
                 }
-                console.log(vm.total);
             });   
-            console.log(vm.datas);
         };
 
         vm.getData();
@@ -27,12 +24,11 @@ const data = {
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
                 vm.datas=response;
-                console.log(vm.datas);
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
-                console.log(vm.datas);
+                console.log("State by age: " + vm.datas);
                 ColorService.getColors(vm.datas);
             });
-        }
+        };
 
         // vm.getAgeData2010();
 
@@ -63,6 +59,7 @@ const data = {
                 console.log('selected 3')
             }
         };
+
         // when you click on the map
         document.getElementById("map").addEventListener("click", (e) => {
             document.getElementById("map-scripts").innerHTML = "";
@@ -120,7 +117,7 @@ const data = {
                 ColorService.getColorsForCounties(vm.datas);
             });
             console.log(vm.datas);
-        }
+        };
     }]
 };
 
