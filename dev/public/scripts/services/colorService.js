@@ -2,6 +2,7 @@
 const ColorService = function(){
     this.lightest = 90;
     this.darkest = 15;
+    simplemaps_usmap.load();
     
     this.getColors = function(myArray){
         // will hold arrays for all the data
@@ -73,7 +74,6 @@ const ColorService = function(){
                             }, 500);
                         }
                     }
-
                 }
             }
             // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
