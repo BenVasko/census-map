@@ -9,12 +9,14 @@ const data = {
         vm.button = angular.element(document.getElementsByTagName("button"));
 
         vm.getData = () => {
-            console.log("asked to get data");
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
+                vm.total = 0;
+                for(let i = 1; i < vm.datas.length; i++) {
+                    vm.total += parseInt(vm.datas[i][0]);
+                }
             });   
-            console.log(vm.datas);
         };
 
         vm.getData();
@@ -22,12 +24,11 @@ const data = {
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
                 vm.datas=response;
-                console.log(vm.datas);
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
-                console.log(vm.datas);
+                console.log("State by age: " + vm.datas);
                 ColorService.getColors(vm.datas);
             });
-        }
+        };
 
         // vm.getAgeData2010();
 
@@ -58,6 +59,7 @@ const data = {
                 console.log('selected 3')
             }
         };
+
         // when you click on the map
         document.getElementById("map").addEventListener("click", (e) => {
             document.getElementById("map-scripts").innerHTML = "";
@@ -66,21 +68,24 @@ const data = {
             // checking to see if you clicked on a state object
             if (angular.element(e.target).attr("class")){
                 vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-            // checking to see if you clicked on label of state
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
             }
-                let state1 = document.createElement("script");
-                    state1.type = "text/javascript";
-                    state1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                    state1.innerHTML = null;
-                    document.getElementById("map-scripts").innerHTML = "";
-                    document.getElementById("map-scripts").appendChild(state1);
-                let state2 = document.createElement("script");
-                    state2.type = "text/javascript";
-                    state2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                    state2.innerHTML = null;
-                    document.getElementById("map-scripts").appendChild(state2);
+            let state1 = document.createElement("script");
+                state1.type = "text/javascript";
+                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                state1.innerHTML = null;
+                document.getElementById("map-scripts").innerHTML = "";
+                document.getElementById("map-scripts").appendChild(state1);
+            let state2 = document.createElement("script");
+                state2.type = "text/javascript";
+                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                state2.innerHTML = null;
+                document.getElementById("map-scripts").appendChild(state2);
+            vm.getDataForState(vm.stateID).then((response) => {
+                ColorService.getColorsByCounties(response);
+            });
+
         });
 
         vm.hideButton = () => {
@@ -101,6 +106,18 @@ const data = {
             vm.getData();
             vm.getCensusData();
         }
+
+        vm.getDataForState = (stateID) => {
+            let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
+            console.log(stateName);
+            let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
+            console.log(censusStateID);
+            CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
+                vm.datas = response;
+                ColorService.getColorsForCounties(vm.datas);
+            });
+            console.log(vm.datas);
+        };
     }]
 };
 

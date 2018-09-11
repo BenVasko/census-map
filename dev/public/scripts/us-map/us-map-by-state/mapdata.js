@@ -2,7 +2,7 @@ var simplemaps_usmap_mapdata={
   main_settings: {
    //General settings
     width: "responsive", //'700' or 'responsive'
-    background_color: "#FFFFFF",
+    background_color: "#000000",
     background_transparent: "yes",
     border_color: "#ffffff",
     popups: "detect",
@@ -196,7 +196,8 @@ var simplemaps_usmap_mapdata={
       name: "Wyoming"
     },
     MT: {
-      name: "Montana"
+      name: "Montana",
+      description: "Marginally better than Wyoming"
     },
     CO: {
       name: "Colorado"
