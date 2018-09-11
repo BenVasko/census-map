@@ -2,7 +2,7 @@
 
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
-    controller: ["CensusDataService","ColorService", function(CensusDataService, ColorService) {
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
         const vm = this;
         vm.datas;
         vm.buttonVisible = false;
@@ -19,26 +19,43 @@ const data = {
 
         vm.getData();
 
+        vm.getAgeData2010 = () => {
+            CensusDataService.getStatePopAge().then((response)=>{
+                vm.datas=response;
+                console.log(vm.datas);
+                vm.datas=AgeService.calculateAvgAge(vm.datas);
+                console.log(vm.datas);
+                ColorService.getColors(vm.datas);
+            });
+        }
+
+        // vm.getAgeData2010();
+
+        // vm.datas = CensusDataService.getStatePopAge90();
+        // vm.datas = AgeService90.CalculateAvgAge(vm.datas);
+        // ColorService.getColors(vm.datas);
+
+        // vm.datas = CensusDataService.getStatePopAge00();
+        // vm.datas = AgeService.CalculateAvgAge(vm.datas);
+        // ColorService.getColors(vm.datas);
+
+
+    
+
         // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
             console.log(API);
             if (API == 1) {
-                CensusDataService.getStatePopulation().then((response)=> {
-                    vm.datas = response;
-                });
+                vm.getData();
                 console.log(vm.datas);
             }
             if (API == 2) {
-                CensusDataService.getStatePopRace().then((response)=> {
-                    console.log(response);
-                });
-                
+                vm.getAgeData2010();
+                console.log('selected 2')
             }
             if (API == 3) {
-                CensusDataService.getStatePopAge().then((response)=> {
-                    vm.datas = response;
-                });
-                console.dir(vm.datas);
+                vm.getAgeData2010();
+                console.log('selected 3')
             }
         };
 
