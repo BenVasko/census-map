@@ -62,7 +62,18 @@ const ColorService = function(){
             console.log(stateAdjustedByMinPop + ": " + stateColorPercentage);
             for(let state in simplemaps_usmap_mapdata.state_specific) {
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
-                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                    try {
+                        document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                    } catch {
+                        try {
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                        } catch {
+                            setTimeout(function(){
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                            }, 500);
+                        }
+                    }
+
                 }
             }
             // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
