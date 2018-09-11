@@ -15,7 +15,6 @@ simplemaps_statemap_mapdata={
     location_color: "#FF0067",
     location_opacity: 0.8,
     location_hover_opacity: 1,
-    location_url: "",
     location_size: 25,
     location_type: "square",
     location_border_color: "#FFFFFF",
@@ -31,9 +30,6 @@ simplemaps_statemap_mapdata={
     manual_zoom: "no",
     back_image: "no",
     arrow_box: "no",
-    navigation_size: "40",
-    navigation_color: "#f7f7f7",
-    navigation_border_color: "#636363",
     initial_back: "no",
     initial_zoom: -1,
     initial_zoom_solo: "no",
@@ -51,11 +47,9 @@ simplemaps_statemap_mapdata={
     div: "map",
     auto_load: "yes",
     rotate: "0",
-    url_new_tab: "yes",
     images_directory: "default",
     import_labels: "no",
     fade_time: 0.1,
-    link_text: "View Website"
   },
   state_specific: {
     "02230": {
