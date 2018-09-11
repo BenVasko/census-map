@@ -1,7 +1,7 @@
 
 const ColorService = function(){
     this.lightest = 90;
-    this.darkest = 15;
+    this.darkest = 20;
     simplemaps_usmap.load();
     
     this.getColors = function(myArray){
@@ -63,20 +63,140 @@ const ColorService = function(){
             console.log(stateAdjustedByMinPop + ": " + stateColorPercentage);
             for(let state in simplemaps_usmap_mapdata.state_specific) {
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
-                    try {
-                        document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                    } catch {
-                        try {
-                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+
+                    // <---- start new colors
+
+                    if (stateColorPercentage > 30) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(10, 100%, ${stateColorPercentage}%)`;
                         } catch {
-                            setTimeout(function(){
-                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
-                            }, 500);
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(10, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(10, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
                         }
+
                     }
+
+                    if (stateColorPercentage > 40) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(19, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(19, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(19, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+
+                    if (stateColorPercentage > 50) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(28, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(28, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(28, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+                    
+                    if (stateColorPercentage > 60) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(37, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(37, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(37, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+
+
+                    if (stateColorPercentage > 70) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(46, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(46, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(46, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+
+                    if (stateColorPercentage > 80) {
+                            try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(55, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(55, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(55, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+
+                    else {
+                        try {
+
+                            document.querySelector(`.sm_state_${state}`).style.fill = `hsl(1, 100%, ${stateColorPercentage}%)`;
+                        } catch {
+                            try {
+                                document.querySelector(`.sm_state_${state}`).style.fill = `hsl(1, 100%, ${stateColorPercentage}%)`;
+                            } catch {
+                                setTimeout(function(){
+                                    document.querySelector(`.sm_state_${state}`).style.fill = `hsl(1, 100%, ${stateColorPercentage}%)`;
+                                }, 500);
+                            }
+                        }
+
+                    }
+
+
+
+                    // <---- end new colors
+
+                    // try {
+
+                    //     document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                    // } catch {
+                    //     try {
+                    //         document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                    //     } catch {
+                    //         setTimeout(function(){
+                    //             document.querySelector(`.sm_state_${state}`).style.fill = `hsl(0,100%,${stateColorPercentage}%)`;
+                    //         }, 500);
+                    //     }
+                    // }
                 }
             }
-            // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
         }
 
 

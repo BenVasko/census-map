@@ -40,6 +40,48 @@ const data = {
                 });
                 console.dir(vm.datas);
             }
+            if (API == 4) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 5) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 6) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 7) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 8) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 9) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
+            if (API == 10) {
+                CensusDataService.getStatePopAge().then((response)=> {
+                    vm.datas = response;
+                });
+                console.dir(vm.datas);
+            }
         };
 
         document.getElementById("map").addEventListener("click", (e) => {
