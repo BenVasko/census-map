@@ -48,7 +48,7 @@ h1 {
 .slider {
     -webkit-appearance: none;
     background: black;
-    margin: 5% auto;
+    margin: 5% auto 10px auto;
     width: 80%;
     height: 5px;
     color: black;
@@ -91,4 +91,16 @@ button {
     background: red;
     width: 60px;
     height: 40px;
+}
+
+#sliderLabel {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+#sliderLabel div {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
 }
