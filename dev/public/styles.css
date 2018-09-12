@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+path {
+    stroke-width: 1px;
+}
+
 body {
     background: linear-gradient(#c4edf5, #d6e0e4);
 }
