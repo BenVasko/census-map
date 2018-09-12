@@ -6,7 +6,23 @@ const data = {
         const vm = this;
         vm.datas;
         // selecting the back button
-        vm.button = angular.element(document.getElementsByTagName("button"));
+        vm.button = angular.element(document.getElementById("back-button"));
+        vm.button.innerHTML = "reply";
+        // the function that will append script tags for state maps to index
+        vm.appendStateScripts = () => {
+            let state1 = document.createElement("script");
+                state1.type = "text/javascript";
+                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                state1.innerHTML = null;
+                document.getElementById("map-scripts").innerHTML = "";
+                document.getElementById("map-scripts").appendChild(state1);
+            let state2 = document.createElement("script");
+                state2.type = "text/javascript";
+                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                state2.innerHTML = null;
+                document.getElementById("map-scripts").appendChild(state2);
+            vm.getPopulationDataForState(vm.stateID);
+        }
 
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
@@ -77,6 +93,17 @@ const data = {
             }
         };
 
+        // selecting a state in mobile and tablet will show that map
+        vm.selectStateMap = (ID) => {
+            if (ID !== null) {
+                vm.stateID = ID
+                document.getElementById("map-scripts").innerHTML = "";
+                vm.button.removeClass("ng-hide");
+                vm.appendStateScripts();
+                ID = null;
+            }
+        }
+
         // when you click on the map
         document.getElementById("map").addEventListener("click", (e) => {
             document.getElementById("map-scripts").innerHTML = "";
@@ -85,22 +112,11 @@ const data = {
             // checking to see if you clicked on a state object
             if (angular.element(e.target).attr("class")){
                 vm.stateID = (angular.element(e.target).attr("class").slice(-2));
+                vm.appendStateScripts();
             } else if (e.target.innerHTML) {
                 vm.stateID = e.target.innerHTML;
+                vm.appendStateScripts();
             }
-            let state1 = document.createElement("script");
-                state1.type = "text/javascript";
-                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                state1.innerHTML = null;
-                document.getElementById("map-scripts").innerHTML = "";
-                document.getElementById("map-scripts").appendChild(state1);
-            let state2 = document.createElement("script");
-                state2.type = "text/javascript";
-                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                state2.innerHTML = null;
-                document.getElementById("map-scripts").appendChild(state2);
-
-            vm.getPopulationDataForState(vm.stateID);
         });
 
         vm.hideButton = () => {
