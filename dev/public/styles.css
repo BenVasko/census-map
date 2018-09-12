@@ -123,8 +123,7 @@ h1 {
     background: #fff;
 }
 
-
-button {
+#back-button {
     color: white;
     background: red;
     width: 60px;
