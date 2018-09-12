@@ -1,10 +1,12 @@
 "use strict";
 const AgeService = function(){
     const vm = this;
-    vm.calculateAvgAge = (passedData) => {
+    vm.calculateAvgAge = (passedData, usMode) => {
         let dataArray = [["Avg Age", "Geography"]];
-        console.log(passedData)
-        for(let j = 1; j < 53; j++){
+
+        for(let j = 1; j < passedData.length; j++){
+            let geography = null;
+
             let totalAgeofState = 
             (((parseInt(passedData[j][0])) + (parseInt(passedData[j][23]))) * 2.5) + 
             (((parseInt(passedData[j][1])) + (parseInt(passedData[j][24]))) * 7) + 
@@ -29,15 +31,17 @@ const AgeService = function(){
             (((parseInt(passedData[j][20])) + (parseInt(passedData[j][43]))) * 77) +
             (((parseInt(passedData[j][21])) + (parseInt(passedData[j][44]))) * 82) +
             (((parseInt(passedData[j][22])) + (parseInt(passedData[j][45]))) * 92.5);
-             
-
 
             let totalPop = 0;
             for(let i = 0; i < 46; i++) {
                 totalPop += parseInt(passedData[j][i]);
             }
             let avgAgeOfState = totalAgeofState/totalPop;
-            dataArray.push([avgAgeOfState, passedData[j][47]]);
+            if(usMode){
+                dataArray.push([avgAgeOfState, passedData[j][47]]);
+            } else {
+                dataArray.push([avgAgeOfState, passedData[j][47], passedData[j][48], passedData[j][49]]);
+            }
         }
         return dataArray;
     }

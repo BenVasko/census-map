@@ -4,12 +4,12 @@ var simplemaps_usmap_mapdata={
     width: "responsive", //'700' or 'responsive'
     background_color: "#000000",
     background_transparent: "yes",
-    border_color: "#ffffff",
+    border_color: "#06371f",
     popups: "detect",
     
     //State defaults
     state_description: "State Description",
-    state_color: "#88A4BC",
+    state_color: "#fff",
     state_hover_color: "#3B729F",
     state_url: "",
     border_size: 1.5,
@@ -32,7 +32,7 @@ var simplemaps_usmap_mapdata={
     all_locations_hidden: "no",
     
     //Label defaults
-    label_color: "#ffffff",
+    label_color: "#06371f",
     label_hover_color: "#ffffff",
     label_size: 22,
     label_font: "Arial",

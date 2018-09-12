@@ -2,6 +2,7 @@
 
 const AgeService90 = function(){
     const vm = this;
+
     vm.calculateAvgAge = (passedData) => {
         let dataArray = [["Avg Age", "Geography"]];
         console.log(passedData)
@@ -18,6 +19,7 @@ const AgeService90 = function(){
 
         return dataArray;
     }
+
 }
 
 
