@@ -1,7 +1,7 @@
 
 const ColorService = function(){
-    this.lightest = 90;
-    this.darkest = 20;
+    this.lightest = 90; // the L value (lightness) in HSL. 90 is near white.
+    this.darkest = 20; // the L value (lightness) in HSL. 20 is near black.
     
     this.getColors = function(myArray){
         // will hold arrays for all the data

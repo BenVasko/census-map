@@ -76,7 +76,7 @@ h1 {
 }
 
 .legend {
-    margin: 0 auto;
+    margin: 0 auto 5% auto;
     width: 90%;
     height: 40px;
     text-align: center;
@@ -84,7 +84,22 @@ h1 {
     border: 5px solid black;
     border-radius: 15px;
     font-size: 24px;
+    display: flex;
+    overflow: hidden;
+
 }
+
+.legend div {
+    height: 100%;
+    width: 100%;
+    border-right: 4px solid black;
+    background: blue;
+}
+
+.legend div:last-child {
+    border-right: none;
+}
+
 
 button {
     color: white;
