@@ -46,11 +46,12 @@ h1 {
 .slider {
     -webkit-appearance: none;
     background: black;
-    margin: 5% auto;
+    margin: 5% auto 10px auto;
     width: 80%;
     height: 5px;
     color: black;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb {
@@ -72,9 +73,14 @@ h1 {
     border: 5px solid black;
     cursor: pointer;
 }
-
-.legend {
+#legendLabel {
+    width: 80%;
+    text-align: center;
     margin: 0 auto;
+    letter-spacing: 5px;
+}
+.legend {
+    margin: 0 auto 5% auto;
     width: 90%;
     height: 40px;
     text-align: center;
@@ -82,11 +88,57 @@ h1 {
     border: 5px solid black;
     border-radius: 15px;
     font-size: 24px;
+    display: flex;
+    overflow: hidden;
+
 }
+
+.legend div {
+    height: 100%;
+    width: 100%;
+    border-right: 4px solid black;
+}
+.legend div:last-child {
+    border-right: none;
+}
+.legend div:nth-child(1) {
+    background: #0b6739;
+}
+.legend div:nth-child(2) {
+    background: #36a258;
+}
+.legend div:nth-child(3) {
+    background: #7ac57d;
+}
+.legend div:nth-child(4) {
+    background: #abdd94;
+}
+.legend div:nth-child(5) {
+    background: #d9efa6;
+}
+.legend div:nth-child(6) {
+    background: #fffecd;
+}
+.legend div:nth-child(7) {
+    background: #fff;
+}
+
 
 button {
     color: white;
     background: red;
     width: 60px;
     height: 40px;
+}
+
+#sliderLabel {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+#sliderLabel div {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
 }

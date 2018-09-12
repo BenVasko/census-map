@@ -4,6 +4,7 @@ const data = {
     templateUrl: `scripts/components/dataVomit.html`,
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
         const vm = this;
+        vm.legendTitle = "";
         vm.datas;
         vm.dataMode = 1;
         vm.stateID = null;
@@ -15,6 +16,7 @@ const data = {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
                 vm.total = 0;
+                vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
                 }
@@ -74,11 +76,13 @@ const data = {
             }
             if (vm.dataMode === 2) {
                 vm.getAgeData2010();
+                vm.legendTitle = "RACE DATA (BUT REALLY IT'S AGE DATA)";
                 console.log('selected 2')
             }
             if (vm.dataMode === 3) {
                 if(!vm.stateID) {
                     vm.getAgeData2010();
+                    vm.legendTitle = "AVERAGE AGE";
                     console.log('selected 3');
                 } else {
                     vm.getAgeDataForState(vm.stateID);

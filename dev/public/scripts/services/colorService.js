@@ -1,6 +1,6 @@
 const ColorService = function(){
-    this.lightest = 90;
-    this.darkest = 20;
+    this.lightest = 90; // the L value (lightness) in HSL. 90 is near white.
+    this.darkest = 20; // the L value (lightness) in HSL. 20 is near black.
     
     this.getColors = function(myArray){
         // will hold arrays for all the data
@@ -67,6 +67,7 @@ const ColorService = function(){
             
             for(let state in simplemaps_usmap_mapdata.state_specific) {
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
+
                     if (stateColorPercentage < 30) {
                         this.setDataForState(state, "#0b6739", arrayOfArrays[0][i]);
                     }
@@ -88,6 +89,7 @@ const ColorService = function(){
                     if (stateColorPercentage >= 80) {
                         this.setDataForState(state, "#ffffe5", arrayOfArrays[0][i]);
                     }
+
                 }
             }
             
@@ -142,7 +144,28 @@ const ColorService = function(){
             let statePercentage = stateAdjustedByMinPop / max;
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
             console.log(geographyKeys[i]);
-            this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+            //this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+            if (stateColorPercentage < 30) {
+                this.setDataForCounty(geographyKeys[i], "#0b6739", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 30) {
+                this.setDataForCounty(geographyKeys[i], "#36a258", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 40) {
+                this.setDataForCounty(geographyKeys[i], "#7ac57d", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 50) {
+                this.setDataForCounty(geographyKeys[i], "#abdd94", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 60) {
+                this.setDataForCounty(geographyKeys[i], "#d9efa6", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 70) {
+                this.setDataForCounty(geographyKeys[i], "#fffecd", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 80) {
+                this.setDataForCounty(geographyKeys[i], "#ffffe5", arrayOfArrays[0][i]);
+            }
         }
         simplemaps_statemap.load();
     }
