@@ -430,6 +430,30 @@ vm.getCountyPopRace90 = (targetState) => {
             return response.data
         });
     }
+    
+    vm.getPopulationPerSquareMileForUS = () => {
+        return $http({
+            // This URL will return area in square meters
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            let returnArray = [];
+            // To convert meters to square miles, divide by 2,589,988
+            const squareMetersInSquareMiles = 2589988;
+            for(let i = 0; i < response.data.length; i++){
+                // If the data value is a number (IE, it's not in the header)
+                if(!isNaN(parseInt(response.data[i][0]))) {
+                    // Convert it to square miles
+                    let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                    
+                    let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                    console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                    returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3]]);
+                }
+            }
+            return returnArray;
+        });
+    }
 }
 
 angular.module("App").service("CensusDataService", CensusDataService);
