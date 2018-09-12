@@ -93,11 +93,30 @@ h1 {
     height: 100%;
     width: 100%;
     border-right: 4px solid black;
-    background: blue;
 }
-
 .legend div:last-child {
     border-right: none;
+}
+.legend div:nth-child(1) {
+    background: #0b6739;
+}
+.legend div:nth-child(2) {
+    background: #36a258;
+}
+.legend div:nth-child(3) {
+    background: #7ac57d;
+}
+.legend div:nth-child(4) {
+    background: #abdd94;
+}
+.legend div:nth-child(5) {
+    background: #d9efa6;
+}
+.legend div:nth-child(6) {
+    background: #fffecd;
+}
+.legend div:nth-child(7) {
+    background: #fff;
 }
 
 
