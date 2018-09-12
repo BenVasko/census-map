@@ -82,10 +82,8 @@ const data = {
                 state2.src = `scripts/states/${vm.stateID}/statemap.js`;
                 state2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(state2);
-            vm.getDataForState(vm.stateID).then((response) => {
-                ColorService.getColorsByCounties(response);
-            });
-
+                
+            vm.getPopulationDataForState(vm.stateID);
         });
 
         vm.hideButton = () => {
@@ -107,7 +105,7 @@ const data = {
             vm.getCensusData();
         }
 
-        vm.getDataForState = (stateID) => {
+        vm.getPopulationDataForState = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
             console.log(stateName);
             let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
