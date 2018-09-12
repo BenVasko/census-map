@@ -26,23 +26,29 @@ const data = {
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
                 vm.datas=response;
-                vm.datas=AgeService.calculateAvgAge(vm.datas,true);
-                console.log("State by age: " + vm.datas);
+
+                vm.datas=AgeService.calculateAvgAge(vm.datas);
+                console.log("State by age 2010: " + vm.datas);
+
                 ColorService.getColors(vm.datas);
             });
+        
         };
+        vm.getAgeData2010();
+      
+  
 
-        // vm.getAgeData2010();
-
-        // vm.datas = CensusDataService.getStatePopAge90();
-        // vm.datas = AgeService90.CalculateAvgAge(vm.datas);
-        // ColorService.getColors(vm.datas);
-
-        // vm.datas = CensusDataService.getStatePopAge00();
-        // vm.datas = AgeService.CalculateAvgAge(vm.datas);
-        // ColorService.getColors(vm.datas);
-
-
+        vm.getAgeData1990 = () => {           
+            CensusDataService.getStatePopAge90().then((response)=>{
+                vm.datas=response;
+                console.log("Response is: ");
+                console.log(vm.datas);
+                vm.datas=AgeService90.calculateAvgAge(vm.datas);
+                console.log("State by age 1990: " + vm.datas);
+                ColorService.getColors(vm.datas);
+            });
+        }
+        vm.getAgeData1990();
     
 
         // taz added functionality for dropdown select to call API
