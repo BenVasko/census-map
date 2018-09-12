@@ -144,37 +144,37 @@ function CensusDataService($http) {
         // multiple90: '',
 
         //age, both sexes 1990
-        under1_90:'P0130001',
-        a1_2_90:'P0130002',
-        a3_4_90:'P0130003',
-        a5_90:'P0130004',
-        a6_90:'P0130005',
-        a7_9_90:'P0130006',
-        a10_11_90:'P0130007',
-        a12_13_90:'P0130008',
-        a14_90:'P0130009',
-        a15_90:'P0130010',
-        a16_90:'P0130011',
-        a17_90:'P0130012',
-        a18_90:'P0130013',
-        a19_90:'P0130014',
-        a20_90:'P0130015',
-        a21_90:'P0130016',
-        a22_24_90:'P0130017',
-        a25_29_90:'P0130018',
-        a30_34:'P0130019',
-        a35_39_90:'P0130020',
-        a40_44_90:'P0130021',
-        a45_49_90:'P0130022',
-        a50_54_90:'P0130023',
-        a55_59_90:'P0130024',
-        a60_61_90:'P0130025',
-        a62_64_90:'P0130026',
-        a65_69_90:'P0130027',
-        a70_74_90:'P0130028',
-        a75_79_90:'P0130029',
-        a80_84_90:'P0130030',
-        a_over_85_90:'P0130031'
+        under1_90:'P0110001',	
+        a1_2_90:'P0110002',
+        a3_4_90:'P0110003',
+        a5_90:'P0110004',
+        a6_90:'P0110005',
+        a7_9_90:'P0110006',
+        a10_11_90:'P0110007',
+        a12_13_90:'P0110008',
+        a14_90:'P0110009',
+        a15_90:'P0110010',
+        a16_90:'P0110011',
+        a17_90:'P0110012',
+        a18_90:'P0110013',
+        a19_90:'P0110014',
+        a20_90:'P0110015',
+        a21_90:'P0110016',
+        a22_24_90:'P0110017',
+        a25_29_90:'P0110018',
+        a30_34:'P0110019',
+        a35_39_90:'P0110020',
+        a40_44_90:'P0110021',
+        a45_49_90:'P0110022',
+        a50_54_90:'P0110023',
+        a55_59_90:'P0110024',
+        a60_61_90:'P0110025',
+        a62_64_90:'P0110026',
+        a65_69_90:'P0110027',
+        a70_74_90:'P0110028',
+        a75_79_90:'P0110029',
+        a80_84_90:'P0110030',
+        a_over_85_90:'P0110031',
 
    
     };
@@ -411,15 +411,16 @@ vm.getCountyPopRace90 = (targetState) => {
     })
 }
 //_____________1990 Getting age based on state__________________ 
-    vm.getStatePopAge90 = () => {
-        return $http({
-            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90},${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
-            method:'GET'
-        }).then((response) => {
-            console.log(response.data);
-            return response.data
-        })
-    }
+
+vm.getStatePopAge90 = () => {
+    return $http({
+        url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90},${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data);
+        return response.data
+    });
+}
 //_____________1990 Getting age based on county__________________ 
     vm.getCountyPopAge90 = (targetState) => {
         return $http({
@@ -428,6 +429,30 @@ vm.getCountyPopRace90 = (targetState) => {
         }).then((response) => {
             console.log(response.data)
             return response.data
+        });
+    }
+    
+    vm.getPopulationPerSquareMileForUS = () => {
+        return $http({
+            // This URL will return area in square meters
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            let returnArray = [];
+            // To convert meters to square miles, divide by 2,589,988
+            const squareMetersInSquareMiles = 2589988;
+            for(let i = 0; i < response.data.length; i++){
+                // If the data value is a number (IE, it's not in the header)
+                if(!isNaN(parseInt(response.data[i][0]))) {
+                    // Convert it to square miles
+                    let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                    
+                    let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                    console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                    returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3]]);
+                }
+            }
+            return returnArray;
         });
     }
 }

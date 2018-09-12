@@ -3,8 +3,10 @@ const AgeService = function(){
     const vm = this;
     vm.calculateAvgAge = (passedData, usMode) => {
         let dataArray = [["Avg Age", "Geography"]];
+
         for(let j = 1; j < passedData.length; j++){
             let geography = null;
+
             let totalAgeofState = 
             (((parseInt(passedData[j][0])) + (parseInt(passedData[j][23]))) * 2.5) + 
             (((parseInt(passedData[j][1])) + (parseInt(passedData[j][24]))) * 7) + 

@@ -8,14 +8,32 @@
 
     <section class="parent">
     <select class="drop-down" ng-model="API" ng-change="$ctrl.getCensusData(API)">
-        <option value="1" selected="selected">State Population</option>
+
+        <option value="1" aria-selected="true">State Population</option>
         <option value="2">State Population: by Race</option>
         <option value="3">State Population: by Age</option>
+        <option value="4">State Population Per Square Mile</option>
     </select>
 
-    <input class="slider" type="range" min="1990" max="2010" step="10">
-
-    <section class="legend"></section>
+    <label id="sliderLabel">
+        <input class="slider" type="range" min="1990" max="2010" step="10" />
+        <div>
+            <span>1990</span>
+            <span>2000</span>
+            <span>2010</span>
+        </div>
+    </label>
+    
+    <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
+    <section class="legend">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
 <!-- 
     <select class="drop-down" ng-model="" ng-change="">
             <option value="1">State Population</option>

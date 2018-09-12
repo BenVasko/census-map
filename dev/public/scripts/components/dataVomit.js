@@ -4,7 +4,10 @@ const data = {
     templateUrl: `scripts/components/dataVomit.html`,
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
         const vm = this;
+        vm.legendTitle = "";
         vm.datas;
+        vm.dataMode = 1;
+        vm.stateID = null;
         // selecting the back button
         vm.button = angular.element(document.getElementById("back-button"));
         vm.button.innerHTML = "reply";
@@ -21,7 +24,7 @@ const data = {
                 state2.src = `scripts/states/${vm.stateID}/statemap.js`;
                 state2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(state2);
-            vm.getPopulationDataForState(vm.stateID);
+            vm.getCensusData(vm.dataMode);
         }
 
         vm.getData = () => {
@@ -29,6 +32,7 @@ const data = {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
                 vm.total = 0;
+                vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
                 }
@@ -40,29 +44,36 @@ const data = {
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
                 vm.datas=response;
-                vm.datas=AgeService.calculateAvgAge(vm.datas,true);
-                console.log("State by age: " + vm.datas);
+
+                vm.datas=AgeService.calculateAvgAge(vm.datas);
+                console.log("State by age 2010: " + vm.datas);
+
                 ColorService.getColors(vm.datas);
             });
+        
         };
+        vm.getAgeData2010();
+      
+  
 
-        // vm.getAgeData2010();
-
-        // vm.datas = CensusDataService.getStatePopAge90();
-        // vm.datas = AgeService90.CalculateAvgAge(vm.datas);
-        // ColorService.getColors(vm.datas);
-
-        // vm.datas = CensusDataService.getStatePopAge00();
-        // vm.datas = AgeService.CalculateAvgAge(vm.datas);
-        // ColorService.getColors(vm.datas);
-
-
+        vm.getAgeData1990 = () => {           
+            CensusDataService.getStatePopAge90().then((response)=>{
+                vm.datas=response;
+                console.log("Response is: ");
+                console.log(vm.datas);
+                vm.datas=AgeService90.calculateAvgAge(vm.datas);
+                console.log("State by age 1990: " + vm.datas);
+                ColorService.getColors(vm.datas);
+            });
+        }
+        vm.getAgeData1990();
     
 
         // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
             console.log(API);
-            if (API == 1) {
+            vm.dataMode = parseInt(API);
+            if (vm.dataMode === 1) {
                 // If we're in US mode
                 if(!vm.stateID)
                 {
@@ -79,18 +90,28 @@ const data = {
                 }
 
             }
-            if (API == 2) {
+            if (vm.dataMode === 2) {
                 vm.getAgeData2010();
+                vm.legendTitle = "RACE DATA (BUT REALLY IT'S AGE DATA)";
                 console.log('selected 2')
             }
-            if (API == 3) {
+            if (vm.dataMode === 3) {
                 if(!vm.stateID) {
                     vm.getAgeData2010();
+                    vm.legendTitle = "AVERAGE AGE";
                     console.log('selected 3');
                 } else {
                     vm.getAgeDataForState(vm.stateID);
                 }
             }
+            if (vm.dataMode == 4) {
+                if(!vm.stateID) {
+                    vm.getPopPerSM();
+                } else {
+                    vm.getPopPerSMForState(vm.stateID);
+                }
+            }
+
         };
 
         // selecting a state in mobile and tablet will show that map
@@ -110,12 +131,14 @@ const data = {
             // remove class of "ng-hide" so button will display
             vm.button.removeClass("ng-hide");
             // checking to see if you clicked on a state object
-            if (angular.element(e.target).attr("class")){
-                vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-                vm.appendStateScripts();
-            } else if (e.target.innerHTML) {
-                vm.stateID = e.target.innerHTML;
-                vm.appendStateScripts();
+            // Check if we're in a state
+            if(vm.stateID===null){
+                if (angular.element(e.target).attr("class")){
+                    vm.stateID = (angular.element(e.target).attr("class").slice(-2));
+                    vm.appendStateScripts();
+                } else if (e.target.innerHTML) {
+                    vm.stateID = e.target.innerHTML;
+                    vm.appendStateScripts();
             }
         });
 
@@ -136,8 +159,8 @@ const data = {
                 us2.src = `scripts/us-map/us-map-by-state/usmap.js`;
                 us2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us2);
-            vm.getData();
-            vm.getCensusData();
+
+            vm.getCensusData(vm.dataMode);
         }
 
         vm.getPopulationDataForState = (stateID) => {
@@ -160,6 +183,12 @@ const data = {
                 vm.datas = response;
                 vm.datas = AgeService.calculateAvgAge(vm.datas, false);
                 ColorService.getColorsForCounties(vm.datas);
+            });
+        }
+
+        vm.getPopPerSM = () => {
+            CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
+                ColorService.getColors(response);
             });
         }
     }]
