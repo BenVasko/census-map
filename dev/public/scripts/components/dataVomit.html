@@ -6,9 +6,10 @@
 
 <section class="parent">
     <select class="drop-down" ng-model="API" ng-change="$ctrl.getCensusData(API)">
-        <option value="1" selected>State Population</option>
+        <option value="1" aria-selected="true">State Population</option>
         <option value="2">State Population: by Race</option>
         <option value="3">State Population: by Age</option>
+        <option value="4">State Population Per Square Mile</option>
     </select>
 
     <label id="sliderLabel">
