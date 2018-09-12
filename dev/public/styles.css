@@ -53,6 +53,7 @@ h1 {
     height: 5px;
     color: black;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .slider::-webkit-slider-thumb {

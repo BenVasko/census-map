@@ -121,6 +121,7 @@ const ColorService = function(){
     this.setDataForState = (state, colorLevel, populationData) => {
         simplemaps_usmap_mapdata.state_specific[state].color = colorLevel;
         simplemaps_usmap_mapdata.state_specific[state].description = `Population: ${populationData}`;
+        console.log(`The state ${state} is at colorLevel ${colorLevel}.`);
     }
 
     this.setDataForCounty = (county, colorLevel, populationData) => {
