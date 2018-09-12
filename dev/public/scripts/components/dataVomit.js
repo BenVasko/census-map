@@ -5,6 +5,8 @@ const data = {
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
         const vm = this;
         vm.datas;
+        vm.dataMode = 1;
+        vm.stateID = null;
         // selecting the back button
         vm.button = angular.element(document.getElementsByTagName("button"));
 
@@ -46,7 +48,8 @@ const data = {
         // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
             console.log(API);
-            if (API == 1) {
+            vm.dataMode = parseInt(API);
+            if (vm.dataMode === 1) {
                 // If we're in US mode
                 if(!vm.stateID)
                 {
@@ -63,11 +66,11 @@ const data = {
                 }
 
             }
-            if (API == 2) {
+            if (vm.dataMode === 2) {
                 vm.getAgeData2010();
                 console.log('selected 2')
             }
-            if (API == 3) {
+            if (vm.dataMode === 3) {
                 if(!vm.stateID) {
                     vm.getAgeData2010();
                     console.log('selected 3');
@@ -75,6 +78,14 @@ const data = {
                     vm.getAgeDataForState(vm.stateID);
                 }
             }
+            if (vm.dataMode == 4) {
+                if(!vm.stateID) {
+                    vm.getPopPerSM();
+                } else {
+                    vm.getPopPerSMForState(vm.stateID);
+                }
+            }
+
         };
 
         // when you click on the map
@@ -83,24 +94,27 @@ const data = {
             // remove class of "ng-hide" so button will display
             vm.button.removeClass("ng-hide");
             // checking to see if you clicked on a state object
-            if (angular.element(e.target).attr("class")){
-                vm.stateID = (angular.element(e.target).attr("class").slice(-2));
-            } else if (e.target.innerHTML) {
-                vm.stateID = e.target.innerHTML;
-            }
-            let state1 = document.createElement("script");
-                state1.type = "text/javascript";
-                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                state1.innerHTML = null;
-                document.getElementById("map-scripts").innerHTML = "";
-                document.getElementById("map-scripts").appendChild(state1);
-            let state2 = document.createElement("script");
-                state2.type = "text/javascript";
-                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                state2.innerHTML = null;
-                document.getElementById("map-scripts").appendChild(state2);
+            // Check if we're in a state
+            if(vm.stateID===null){
+                if (angular.element(e.target).attr("class")){
+                    vm.stateID = (angular.element(e.target).attr("class").slice(-2));
+                } else if (e.target.innerHTML) {
+                    vm.stateID = e.target.innerHTML;
+                }
+                let state1 = document.createElement("script");
+                    state1.type = "text/javascript";
+                    state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                    state1.innerHTML = null;
+                    document.getElementById("map-scripts").innerHTML = "";
+                    document.getElementById("map-scripts").appendChild(state1);
+                let state2 = document.createElement("script");
+                    state2.type = "text/javascript";
+                    state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                    state2.innerHTML = null;
+                    document.getElementById("map-scripts").appendChild(state2);
 
-            vm.getPopulationDataForState(vm.stateID);
+                vm.getCensusData(vm.dataMode);
+            }
         });
 
         vm.hideButton = () => {
@@ -120,8 +134,8 @@ const data = {
                 us2.src = `scripts/us-map/us-map-by-state/usmap.js`;
                 us2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us2);
-            vm.getData();
-            vm.getCensusData();
+
+            vm.getCensusData(vm.dataMode);
         }
 
         vm.getPopulationDataForState = (stateID) => {
@@ -144,6 +158,12 @@ const data = {
                 vm.datas = response;
                 vm.datas = AgeService.calculateAvgAge(vm.datas, false);
                 ColorService.getColorsForCounties(vm.datas);
+            });
+        }
+
+        vm.getPopPerSM = () => {
+            CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
+                ColorService.getColors(response);
             });
         }
     }]
