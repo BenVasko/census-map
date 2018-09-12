@@ -139,6 +139,7 @@ const data = {
                 } else if (e.target.innerHTML) {
                     vm.stateID = e.target.innerHTML;
                     vm.appendStateScripts();
+                }
             }
         });
 
