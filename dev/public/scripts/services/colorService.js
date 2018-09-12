@@ -1,4 +1,3 @@
-
 const ColorService = function(){
     this.lightest = 90; // the L value (lightness) in HSL. 90 is near white.
     this.darkest = 20; // the L value (lightness) in HSL. 20 is near black.
@@ -41,6 +40,7 @@ const ColorService = function(){
 
         console.log(min, max);
 
+        // normalize the range
         max -= min;
 
         // arrayOfArrays[0][25]
@@ -75,6 +75,7 @@ const ColorService = function(){
         let geographyKeys = []
         // parse the passed data into arrays that group the data up by variable
         // instead of by geography (ie, all total population in one array)
+        console.log(myArray);
         for(let i = 0; i < myArray[1].length; i++) {
             if(!isNaN(parseInt(myArray[1][i]))){
                 let newArray = [parseInt(myArray[1][i])];
@@ -89,7 +90,8 @@ const ColorService = function(){
             for(let j = 0; j < arrayOfArrays.length; j++) {
                 arrayOfArrays[j].push(parseInt(myArray[i][j]));
             }
-            geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]);
+            console.log(geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]));
+            console.log(geographyKeys[i]);
         }
         console.log(arrayOfArrays);
         
@@ -104,8 +106,7 @@ const ColorService = function(){
             }
         }
 
-        console.log(min, max);
-
+        // normalize the range
         max -= min;
 
         for (let i = 0; i < arrayOfArrays[0].length; i++) {
@@ -113,10 +114,13 @@ const ColorService = function(){
             let stateAdjustedByMinPop = arrayOfArrays[0][i] - min;
             let statePercentage = stateAdjustedByMinPop / max;
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
+            console.log(geographyKeys[i]);
             this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
         }
         simplemaps_statemap.load();
     }
+
+
 
     this.setDataForState = (state, colorLevel, populationData) => {
         simplemaps_usmap_mapdata.state_specific[state].color = colorLevel;

@@ -24,7 +24,7 @@ const data = {
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
                 vm.datas=response;
-                vm.datas=AgeService.calculateAvgAge(vm.datas);
+                vm.datas=AgeService.calculateAvgAge(vm.datas,true);
                 console.log("State by age: " + vm.datas);
                 ColorService.getColors(vm.datas);
             });
@@ -47,16 +47,33 @@ const data = {
         vm.getCensusData = function(API){
             console.log(API);
             if (API == 1) {
-                vm.getData();
-                console.log(vm.datas);
+                // If we're in US mode
+                if(!vm.stateID)
+                {
+                    vm.getData();
+                    console.log(vm.datas);
+                }
+                // If we're in state mode, get the state data for the current state
+                // Current State => vm.stateID
+                else
+                {
+                    console.log(vm.stateID);
+                    vm.getPopulationDataForState(vm.stateID);
+                    console.log(vm.datas);
+                }
+
             }
             if (API == 2) {
                 vm.getAgeData2010();
                 console.log('selected 2')
             }
             if (API == 3) {
-                vm.getAgeData2010();
-                console.log('selected 3')
+                if(!vm.stateID) {
+                    vm.getAgeData2010();
+                    console.log('selected 3');
+                } else {
+                    vm.getAgeDataForState(vm.stateID);
+                }
             }
         };
 
@@ -82,16 +99,16 @@ const data = {
                 state2.src = `scripts/states/${vm.stateID}/statemap.js`;
                 state2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(state2);
-            vm.getDataForState(vm.stateID).then((response) => {
-                ColorService.getColorsByCounties(response);
-            });
 
+            vm.getPopulationDataForState(vm.stateID);
         });
 
         vm.hideButton = () => {
             document.getElementById("map-scripts").innerHTML = "";
             // add class of "ng-hide" again so button will be hidden
             vm.button.addClass("ng-hide");
+            // Since we're going back, clear vm.stateID
+            vm.stateID = null;
 
             let us1 = document.createElement("script");
                 us1.type = "text/javascript";
@@ -107,7 +124,7 @@ const data = {
             vm.getCensusData();
         }
 
-        vm.getDataForState = (stateID) => {
+        vm.getPopulationDataForState = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
             console.log(stateName);
             let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
@@ -116,8 +133,19 @@ const data = {
                 vm.datas = response;
                 ColorService.getColorsForCounties(vm.datas);
             });
-            console.log(vm.datas);
         };
+
+        vm.getAgeDataForState = (stateID) => {
+            let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
+            console.log(stateName);
+            let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
+            console.log(censusStateID);
+            CensusDataService.getCountyPopAge(censusStateID).then((response) => {
+                vm.datas = response;
+                vm.datas = AgeService.calculateAvgAge(vm.datas, false);
+                ColorService.getColorsForCounties(vm.datas);
+            });
+        }
     }]
 };
 
