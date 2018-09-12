@@ -61,7 +61,30 @@ const ColorService = function(){
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
             for(let state in simplemaps_usmap_mapdata.state_specific) {
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
-                    this.setDataForState(state, `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+                    console.log(`the state's color percentage is....${stateColorPercentage}`);
+                    //this.setDataForState(state, `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+                    if (stateColorPercentage < 30) {
+                        this.setDataForState(state, "#0b6739", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 30) {
+                        this.setDataForState(state, "#36a258", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 40) {
+                        this.setDataForState(state, "#7ac57d", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 50) {
+                        this.setDataForState(state, "#abdd94", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 60) {
+                        this.setDataForState(state, "#d9efa6", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 70) {
+                        this.setDataForState(state, "#fffecd", arrayOfArrays[0][i]);
+                    }
+                    if (stateColorPercentage >= 80) {
+                        this.setDataForState(state, "#ffffe5", arrayOfArrays[0][i]);
+                    }
+                    
                 }
             }
             // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
@@ -115,7 +138,28 @@ const ColorService = function(){
             let statePercentage = stateAdjustedByMinPop / max;
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
             console.log(geographyKeys[i]);
-            this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+            //this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
+            if (stateColorPercentage < 30) {
+                this.setDataForCounty(geographyKeys[i], "#0b6739", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 30) {
+                this.setDataForCounty(geographyKeys[i], "#36a258", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 40) {
+                this.setDataForCounty(geographyKeys[i], "#7ac57d", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 50) {
+                this.setDataForCounty(geographyKeys[i], "#abdd94", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 60) {
+                this.setDataForCounty(geographyKeys[i], "#d9efa6", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 70) {
+                this.setDataForCounty(geographyKeys[i], "#fffecd", arrayOfArrays[0][i]);
+            }
+            if (stateColorPercentage >= 80) {
+                this.setDataForCounty(geographyKeys[i], "#ffffe5", arrayOfArrays[0][i]);
+            }
         }
         simplemaps_statemap.load();
     }
@@ -125,7 +169,6 @@ const ColorService = function(){
     this.setDataForState = (state, colorLevel, populationData) => {
         simplemaps_usmap_mapdata.state_specific[state].color = colorLevel;
         simplemaps_usmap_mapdata.state_specific[state].description = `Population: ${populationData}`;
-        console.log(`The state ${state} is at colorLevel ${colorLevel}.`);
     }
 
     this.setDataForCounty = (county, colorLevel, populationData) => {
