@@ -20,6 +20,8 @@ const data = {
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
                 }
+                
+                
             });   
         };
 
@@ -36,7 +38,7 @@ const data = {
             });
         
         };
-        vm.getAgeData2010();
+        //vm.getAgeData2010();  <-- taz: commenting out because this call overwrites vm.getData() on line 28.
       
   
 
@@ -50,7 +52,7 @@ const data = {
                 ColorService.getColors(vm.datas);
             });
         }
-        vm.getAgeData1990();
+        // vm.getAgeData1990(); <-- taz: commenting out because this call overwrites vm.getData() from line 28
     
 
         // taz added functionality for dropdown select to call API
