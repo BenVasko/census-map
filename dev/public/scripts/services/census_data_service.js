@@ -385,7 +385,7 @@ vm.getCountyPopulationForState90 = (targetState) => {
         url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},ANPSADPI&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method: 'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     });
 };
@@ -396,7 +396,7 @@ vm.getStatePopRace90 = () => {
         url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data
     })
 }
@@ -406,7 +406,7 @@ vm.getCountyPopRace90 = (targetState) => {
         url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }
@@ -417,7 +417,7 @@ vm.getStatePopAge90 = () => {
         url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90},${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data
     });
 }
@@ -427,7 +427,7 @@ vm.getStatePopAge90 = () => {
             url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90}${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
             method:'GET'
         }).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
             return response.data
         });
     }
@@ -448,7 +448,7 @@ vm.getStatePopAge90 = () => {
                     let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
                     
                     let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
-                    console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                    // console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
                     returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3]]);
                 }
             }

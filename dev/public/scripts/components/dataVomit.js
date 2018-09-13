@@ -30,7 +30,7 @@ const data = {
                 vm.datas=response;
 
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
-                console.log("State by age 2010: " + vm.datas);
+                // console.log("State by age 2010: " + vm.datas);
 
                 ColorService.getColors(vm.datas);
             });
@@ -43,10 +43,10 @@ const data = {
         vm.getAgeData1990 = () => {           
             CensusDataService.getStatePopAge90().then((response)=>{
                 vm.datas=response;
-                console.log("Response is: ");
-                console.log(vm.datas);
+                // console.log("Response is: ");
+                // console.log(vm.datas);
                 vm.datas=AgeService90.calculateAvgAge(vm.datas);
-                console.log("State by age 1990: " + vm.datas);
+                // console.log("State by age 1990: " + vm.datas);
                 ColorService.getColors(vm.datas);
             });
         }
@@ -55,35 +55,35 @@ const data = {
 
         // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
-            console.log(API);
+            // console.log(API);
             vm.dataMode = parseInt(API);
             if (vm.dataMode === 1) {
                 // If we're in US mode
                 if(!vm.stateID)
                 {
                     vm.getData();
-                    console.log(vm.datas);
+                    // console.log(vm.datas);
                 }
                 // If we're in state mode, get the state data for the current state
                 // Current State => vm.stateID
                 else
                 {
-                    console.log(vm.stateID);
+                    // console.log(vm.stateID);
                     vm.getPopulationDataForState(vm.stateID);
-                    console.log(vm.datas);
+                    // console.log(vm.datas);
                 }
 
             }
             if (vm.dataMode === 2) {
                 vm.getAgeData2010();
                 vm.legendTitle = "RACE DATA (BUT REALLY IT'S AGE DATA)";
-                console.log('selected 2')
+                // console.log('selected 2')
             }
             if (vm.dataMode === 3) {
                 if(!vm.stateID) {
                     vm.getAgeData2010();
                     vm.legendTitle = "AVERAGE AGE";
-                    console.log('selected 3');
+                    // console.log('selected 3');
                 } else {
                     vm.getAgeDataForState(vm.stateID);
                 }
@@ -150,9 +150,9 @@ const data = {
 
         vm.getPopulationDataForState = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
-            console.log(stateName);
+            // console.log(stateName);
             let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
-            console.log(censusStateID);
+            // console.log(censusStateID);
             CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
                 vm.datas = response;
                 ColorService.getColorsForCounties(vm.datas);
@@ -161,9 +161,9 @@ const data = {
 
         vm.getAgeDataForState = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
-            console.log(stateName);
+            // console.log(stateName);
             let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
-            console.log(censusStateID);
+            // console.log(censusStateID);
             CensusDataService.getCountyPopAge(censusStateID).then((response) => {
                 vm.datas = response;
                 vm.datas = AgeService.calculateAvgAge(vm.datas, false);
