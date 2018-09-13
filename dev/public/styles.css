@@ -21,7 +21,7 @@ h1 {
 }
 
 #map {
-    max-width: 100%;
+    max-width: 375px;
     height: auto;
 }
 
@@ -35,12 +35,16 @@ h1 {
     margin: 10% auto;
 }
 
+form {
+    display: flex;
+}
+
 .drop-down {
     margin: 0 auto;
     width: 60%;
     height: 50px;
     background: #6ebbe7;
-    text-align: center;
+    text-align-last: center;
     color: black;
     border: 5px solid black;
     border-radius: 10px;
@@ -54,7 +58,7 @@ h1 {
     width: 80%;
     height: 5px;
     color: black;
-    border-radius: 20px;
+    border-radius: 40px;
     cursor: pointer;
 }
 
@@ -132,6 +136,9 @@ h1 {
     background: red;
     width: 60px;
     height: 40px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 #sliderLabel {

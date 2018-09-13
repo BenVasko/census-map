@@ -1,6 +1,6 @@
 simplemaps_statemap_mapdata={
   main_settings: {
-    width: "700",
+    width: "responsive",
     background_color: "#FFFFFF",
     background_transparent: "yes",
     popups: "detect",
