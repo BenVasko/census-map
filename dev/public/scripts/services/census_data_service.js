@@ -257,7 +257,7 @@ function CensusDataService($http) {
             url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
             method: 'GET'
         }).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             return response.data;
         });
     };
@@ -268,7 +268,7 @@ function CensusDataService($http) {
             url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
             method:'GET'
         }).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             return response.data
         })
     }
@@ -280,7 +280,7 @@ vm.getCountyPopRace = (targetState) => {
         url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }
@@ -292,7 +292,7 @@ vm.getStatePopAge = () => {
         url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44},${dataHeaders.male45_49},${dataHeaders.male50_54},${dataHeaders.male55_59},${dataHeaders.male60_61},${dataHeaders.male62_64},${dataHeaders.male65_66},${dataHeaders.male67_69},${dataHeaders.male70_74},${dataHeaders.male75_79},${dataHeaders.male80_84},${dataHeaders.male21},${dataHeaders.male85_over},${dataHeaders.femaleUnder5},${dataHeaders.female5_9},${dataHeaders.female10_14},${dataHeaders.female15_17},${dataHeaders.female18_19},${dataHeaders.female20},${dataHeaders.female21},${dataHeaders.female22_24},${dataHeaders.female25_29},${dataHeaders.female30_34},${dataHeaders.female35_39},${dataHeaders.female40_44},${dataHeaders.female45_49},${dataHeaders.female50_54},${dataHeaders.female55_59},${dataHeaders.female60_61},${dataHeaders.female62_64},${dataHeaders.female65_66},${dataHeaders.female67_69},${dataHeaders.female70_74},${dataHeaders.female75_79},${dataHeaders.female80_84},${dataHeaders.female85_over},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data
     })
 }
@@ -302,7 +302,7 @@ vm.getCountyPopAge = (targetState) => {
         url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44},${dataHeaders.male45_49},${dataHeaders.male50_54},${dataHeaders.male55_59},${dataHeaders.male60_61},${dataHeaders.male62_64},${dataHeaders.male65_66},${dataHeaders.male67_69},${dataHeaders.male70_74},${dataHeaders.male75_79},${dataHeaders.male80_84},${dataHeaders.male21},${dataHeaders.male85_over},${dataHeaders.femaleUnder5},${dataHeaders.female5_9},${dataHeaders.female10_14},${dataHeaders.female15_17},${dataHeaders.female18_19},${dataHeaders.female20},${dataHeaders.female21},${dataHeaders.female22_24},${dataHeaders.female25_29},${dataHeaders.female30_34},${dataHeaders.female35_39},${dataHeaders.female40_44},${dataHeaders.female45_49},${dataHeaders.female50_54},${dataHeaders.female55_59},${dataHeaders.female60_61},${dataHeaders.female62_64},${dataHeaders.female65_66},${dataHeaders.female67_69},${dataHeaders.female70_74},${dataHeaders.female75_79},${dataHeaders.female80_84},${dataHeaders.female85_over},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }
@@ -315,7 +315,7 @@ vm.getStatePopulation00 = () => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
         method: 'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     });
 };
@@ -325,7 +325,7 @@ vm.getCountyPopulationForState00 = (targetState) => {
         url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method: 'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     });
 };
@@ -335,7 +335,7 @@ vm.getStatePopRace00 = () => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data
     })
 }
@@ -345,7 +345,7 @@ vm.getCountyPopRace00 = (targetState) => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }
@@ -355,7 +355,7 @@ vm.getStatePopAge00 = () => {
         url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data
     })
 }
@@ -365,7 +365,7 @@ vm.getCountyPopAge00 = (targetState) => {
         url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00}${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00}${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }
@@ -375,7 +375,7 @@ vm.getStatePopulation90 = () => {
         url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},ANPSADPI&for=state:${state.all}&key=${dataHeaders.key}`,
         method: 'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     });
 };
