@@ -25,7 +25,7 @@ h1 {
     height: auto;
 }
 
-#map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
+#map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4), #map_inner > div:nth-child(6) {
     visibility: hidden; /* attribution removal */
 }
 
