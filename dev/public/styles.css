@@ -23,6 +23,7 @@ h1 {
 #map {
     max-width: 375px;
     height: auto;
+    margin: 0 auto;
 }
 
 #map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
