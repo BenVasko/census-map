@@ -19,10 +19,8 @@ const data = {
                 vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
-                }
-                
-                
-            });   
+                }        
+            }); 
         };
 
         vm.getData();
@@ -77,7 +75,8 @@ const data = {
 
             }
             if (vm.dataMode === 2) {
-                vm.getAgeData2010();
+                //vm.getAgeData2010();
+                CensusDataService.getStatePopRace();
                 vm.legendTitle = "RACE DATA (BUT REALLY IT'S AGE DATA)";
                 // console.log('selected 2')
             }
@@ -97,7 +96,8 @@ const data = {
                     vm.getPopPerSMForState(vm.stateID);
                 }
             }
-
+            simplemaps_usmap.load();
+            console.log(`The data returned is ${vm.datas}`);
         };
 
         // when you click on the map

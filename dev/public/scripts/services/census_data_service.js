@@ -268,7 +268,7 @@ function CensusDataService($http) {
             url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
             method:'GET'
         }).then((response) => {
-            // console.log(response.data);
+            console.log(response.data);
             return response.data
         })
     }

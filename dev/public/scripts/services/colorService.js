@@ -95,7 +95,7 @@ const ColorService = function(){
             
             // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
         }
-        simplemaps_usmap.load();
+        // simplemaps_usmap.load();
     }
 
     this.getColorsForCounties = (myArray) => {
@@ -185,6 +185,7 @@ const ColorService = function(){
             // console.log(`County: ${county} failed to be colored`);
         }
     }
+
 
 };
 
