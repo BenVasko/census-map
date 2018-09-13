@@ -2,7 +2,7 @@
 
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", function(CensusDataService, ColorService, AgeService, AgeService90) {
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -10,7 +10,9 @@ const data = {
         vm.stateID = null;
         // selecting the back button
         vm.button = angular.element(document.getElementById("back-button"));
-        vm.button.innerHTML = "reply";
+        vm.dataType = DropdownDataService.dataType;
+        vm.listOfStates = DropdownDataService.listOfStates;
+
         // the function that will append script tags for state maps to index
         vm.appendStateScripts = () => {
             let state1 = document.createElement("script");
@@ -52,7 +54,7 @@ const data = {
             });
         
         };
-        vm.getAgeData2010();
+        // vm.getAgeData2010();
       
   
 
@@ -66,7 +68,7 @@ const data = {
                 ColorService.getColors(vm.datas);
             });
         }
-        vm.getAgeData1990();
+        // vm.getAgeData1990();
     
 
         // taz added functionality for dropdown select to call API
@@ -114,6 +116,19 @@ const data = {
 
         };
 
+        // functionality for the slider
+        vm.chooseYear = (year) => {
+            if (year === 1990) {
+                console.log("YOU HAVE SELECTED 1990");
+                vm.getAgeData1990();
+            } else if (year === 2000) {
+                console.log("YOU HAVE SELECTED 2000");
+            } else if (year === 2010) {
+                console.log("YOU HAVE SELECTED 2010");
+                vm.getAgeData2010();
+            }
+        }
+
         // selecting a state in mobile and tablet will show that map
         vm.selectStateMap = (ID) => {
             if (ID !== null) {
@@ -127,12 +142,12 @@ const data = {
 
         // when you click on the map
         document.getElementById("map").addEventListener("click", (e) => {
-            document.getElementById("map-scripts").innerHTML = "";
-            // remove class of "ng-hide" so button will display
-            vm.button.removeClass("ng-hide");
-            // checking to see if you clicked on a state object
             // Check if we're in a state
             if(vm.stateID===null){
+                document.getElementById("map-scripts").innerHTML = "";
+                // remove class of "ng-hide" so button will display
+                vm.button.removeClass("ng-hide");
+                // checking to see if you clicked on a state object
                 if (angular.element(e.target).attr("class")){
                     vm.stateID = (angular.element(e.target).attr("class").slice(-2));
                     vm.appendStateScripts();
