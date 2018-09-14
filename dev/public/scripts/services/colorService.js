@@ -25,7 +25,7 @@ const ColorService = function(){
             }
             geographyKeys.push(myArray[i][arrayOfArrays.length])
         }
-        console.log(arrayOfArrays);
+        // console.log(arrayOfArrays);
         
         arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = arrayOfArrays[0][0];
@@ -39,7 +39,7 @@ const ColorService = function(){
             }
         }
 
-        console.log(min, max);
+        // console.log(min, max);
 
         // normalize the range
         max -= min;
@@ -55,11 +55,11 @@ const ColorService = function(){
 
 
         for (let i = 0; i < arrayOfArrays[0].length; i++) {
-            console.log(arrayOfArrays[0][i], min, max);
+            // console.log(arrayOfArrays[0][i], min, max);
             let statePercentage = (arrayOfArrays[0][i] - min)/max;
-            console.log(statePercentage)
+            // console.log(statePercentage)
 
-            console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
+            // console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
 
             
             
@@ -104,7 +104,7 @@ const ColorService = function(){
         let geographyKeys = []
         // parse the passed data into arrays that group the data up by variable
         // instead of by geography (ie, all total population in one array)
-        console.log(myArray);
+        // console.log(myArray);
         for(let i = 0; i < myArray[1].length; i++) {
             if(!isNaN(parseInt(myArray[1][i]))){
                 let newArray = [parseInt(myArray[1][i])];
@@ -119,10 +119,10 @@ const ColorService = function(){
             for(let j = 0; j < arrayOfArrays.length; j++) {
                 arrayOfArrays[j].push(parseInt(myArray[i][j]));
             }
-            console.log(geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]));
-            console.log(geographyKeys[i]);
+            geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]);
+            // console.log(geographyKeys[i]);
         }
-        console.log(arrayOfArrays);
+        // console.log(arrayOfArrays);
         
         
         let min = max = arrayOfArrays[0][0];
@@ -143,7 +143,7 @@ const ColorService = function(){
             let stateAdjustedByMinPop = arrayOfArrays[0][i] - min;
             let statePercentage = stateAdjustedByMinPop / max;
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
-            console.log(geographyKeys[i]);
+            // console.log(geographyKeys[i]);
             //this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
             if (stateColorPercentage < 30) {
                 this.setDataForCounty(geographyKeys[i], "#0b6739", arrayOfArrays[0][i]);
