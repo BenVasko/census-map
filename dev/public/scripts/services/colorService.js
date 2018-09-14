@@ -55,11 +55,11 @@ const ColorService = function(){
 
 
         for (let i = 0; i < arrayOfArrays[0].length; i++) {
-            console.log(arrayOfArrays[0][i], min, max);
+            // console.log(arrayOfArrays[0][i], min, max);
             let statePercentage = (arrayOfArrays[0][i] - min)/max;
-            console.log(statePercentage)
+            // console.log(statePercentage)
 
-            console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
+            // console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
 
             
             

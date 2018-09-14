@@ -242,6 +242,9 @@ const data = {
                 if(vm.dataMode === 1){
                     
                 } else if (vm.dataMode === 2) {
+                    CensusDataService.getStatePopRace00().then((response) => {
+                        ColorService.getColors(response)
+                    })
 
                 } else if (vm.dataMode === 3) {
 
