@@ -332,6 +332,31 @@ vm.getPopulationPerSquareMileForUS = () => {
     });
 }
 
+vm.getPopulationPerSquareMileForState2010 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+            }
+        }
+        console.log(returnArray);
+        return returnArray;
+    });
+
+}
+
 
 //___________________2000 populations _________________________________
 
@@ -420,6 +445,32 @@ vm.getPopulationPerSquareMileForUS2000 = () => {
     });
 }
 
+vm.getPopulationPerSquareMileForState2000 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+            }
+        }
+        console.log(returnArray);
+        return returnArray;
+    });
+
+}
+
+
 //___________________1990 populations _________________________________
 vm.getStatePopulation90 = () => {
     return $http({
@@ -485,12 +536,12 @@ vm.getStatePopAge90 = () => {
     vm.getPopulationPerSquareMileForUS1990 = () => {
         return $http({
             // This URL will return area in square meters
-            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI&for=state:${state.all}&key=${dataHeaders.key}`,
             method: `GET`
         }).then((response) => {
             let returnArray = [];
             // To convert meters to square miles, divide by 2,589,988
-            const squareMetersInSquareMiles = 2589988;
+            const squareMetersInSquareMiles = 2589.988;
             for(let i = 0; i < response.data.length; i++){
                 // If the data value is a number (IE, it's not in the header)
                 if(!isNaN(parseInt(response.data[i][0]))) {
@@ -505,6 +556,31 @@ vm.getStatePopAge90 = () => {
             return returnArray;
         });
     }
+    vm.getPopulationPerSquareMileForState1990 = (targetState) => {
+        return $http({
+            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            let returnArray = [];
+            // To convert meters to square miles, divide by 2,589,988
+            const squareMetersInSquareMiles = 2589.988;
+            for(let i = 0; i < response.data.length; i++){
+                // If the data value is a number (IE, it's not in the header)
+                if(!isNaN(parseInt(response.data[i][0]))) {
+                    // Convert it to square miles
+                    let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                    
+                    let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                    console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                    returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+                }
+            }
+            console.log(returnArray);
+            return returnArray;
+        });
+
+    }
+
 
 }
 

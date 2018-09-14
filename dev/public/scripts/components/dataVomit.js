@@ -246,12 +246,29 @@ const data = {
                     ColorService.getColors(response);
                 });
             } else {
-
+                console.log("Get Pop Density 1990");
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getPopulationPerSquareMileForState1990(censusStateID).then((response) => {
+                    ColorService.getColorsForCounties(response);
+                });
             }
         }
 
-        vm.getPopPerSMForState = (year, stateID) => {
-            console.log("NOT YET FINISHED!!!!")
+        vm.getPopPerSMForState = (stateID) => {
+            let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+            if(vm.year===2010){
+                CensusDataService.getPopulationPerSquareMileForState2010(censusStateID).then((response) => {
+                    ColorService.getColorsForCounties(response);
+                });
+            }
+            else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getPopulationPerSquareMileForState2000(censusStateID).then((response) => {
+                    ColorService.getColorsForCounties(response);
+                });
+
+            }
+
         }
 
         vm.convertStateIDtoCode = (stateID) => {
@@ -281,11 +298,8 @@ const data = {
                     vm.getAgeData1990();
                 } else if (vm.dataMode === 4) {
                     vm.legendTitle = "POPULATION PER SQUARE MILE";
-                    if(!vm.stateID){
-                        vm.getPopDensity1990();
-                    } else {
-                        
-                    }
+                    vm.getPopDensity1990();
+
 
                 }
             } else if (vm.year === 2000) {

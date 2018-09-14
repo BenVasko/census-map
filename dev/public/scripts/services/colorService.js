@@ -122,8 +122,8 @@ const ColorService = function(){
             geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]);
             // console.log(geographyKeys[i]);
         }
-        // console.log(arrayOfArrays);
-        
+        console.log(geographyKeys);
+        console.log(arrayOfArrays);
         
         let min = max = arrayOfArrays[0][0];
 
