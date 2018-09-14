@@ -31,9 +31,10 @@ const data = {
 
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
-                vm.datas = response;
+                vm.datas = response; 
                 ColorService.getColors(vm.datas);
                 vm.total = 0;
+                simplemaps_usmap.load();
                 vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
@@ -41,7 +42,7 @@ const data = {
             }); 
         };
 
-        vm.getData();
+        //vm.getData();
 
         vm.getAgeData2010 = () => {
             CensusDataService.getStatePopAge().then((response)=>{
@@ -71,24 +72,24 @@ const data = {
         // vm.getAgeData1990();
     
 
-        // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
-            // console.log(API);
-            vm.dataMode = parseInt(API);
+            //  console.log(API);
+            vm.dataMode = parseInt(API.value); // added ".value" because the api is no longer a number but a value property in DropdownDataService.js
+            // console.log(vm.dataMode);
             if (vm.dataMode === 1) {
-                // If we're in US mode
+                // If we're in US mode, there's no state id set yet.
                 if(!vm.stateID)
                 {
-                    vm.getData();
-                    // console.log(vm.datas);
+                    vm.getData(); // ~ line 32
+                    //  console.log(vm.datas);
                 }
                 // If we're in state mode, get the state data for the current state
                 // Current State => vm.stateID
                 else
                 {
-                    // console.log(vm.stateID);
-                    vm.getPopulationDataForState(vm.stateID);
-                    // console.log(vm.datas);
+                      // console.log(vm.stateID);
+                    vm.getPopulationDataForState(vm.stateID); // ~line 184
+                    //  console.log(vm.datas);
                 }
 
             }
@@ -114,8 +115,8 @@ const data = {
                     vm.getPopPerSMForState(vm.stateID);
                 }
             }
-            simplemaps_usmap.load();
-            console.log(`The data returned is ${vm.datas}`);
+            // simplemaps_usmap.load();
+            // console.log(`The data returned is ${vm.datas}`);
         };
 
         // functionality for the slider

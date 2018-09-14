@@ -6,7 +6,7 @@
     <section class="parent">
     <select class="drop-down" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
 
-    <label id="sliderLabel">
+    <!-- <label id="sliderLabel">
         <input class="slider" type="range" min="1990" max="2010" step="10" ng-model="year" ng-change="$ctrl.chooseYear(year);">
         
         <div>
@@ -14,7 +14,7 @@
             <span>2000</span>
             <span>2010</span>
         </div>
-    </label>
+    </label> -->
     
     <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
     <section class="legend">
