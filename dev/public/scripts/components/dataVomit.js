@@ -88,6 +88,13 @@ const data = {
 
                     ColorService.getColors(vm.datas);
                 });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopAge00(censusStateID).then((response)=> {
+                    vm.datas = response;
+                    vm.datas = AgeService.calculateAvgAge(vm.datas, false);
+                    ColorService.getColorsForCounties(vm.datas);
+                });
             }
         };
 
@@ -289,7 +296,6 @@ const data = {
                 } else if (vm.dataMode === 2) {
                     vm.legendTitle = "DIVERSITY: NOT IMPLEMENTED";
                     vm.getAgeData2000();
-
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData2000();
