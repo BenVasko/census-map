@@ -190,7 +190,7 @@ const ColorService = function(){
     };
 
     this.getLegend = function(){
-        // console.log(arrayOfArrays[0]);
+        console.log(arrayOfArrays[0]);
         for(let i = 0; i < arrayOfArrays[0].length; i++){
             legendArray.push(Math.exp(arrayOfArrays[0][i]))
         }

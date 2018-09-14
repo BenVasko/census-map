@@ -55,6 +55,7 @@ const data = {
                 // console.log("State by age 2010: " + vm.datas);
 
                 ColorService.getColors(vm.datas);
+                ColorService.getLegend(vm.datas);
             });
         
         };
