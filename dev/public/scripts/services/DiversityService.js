@@ -5,9 +5,13 @@ const DiversityService = function() {
         let dataArray = [["percent white", "state id"]];
         // console.log(dataArray[0]);
         for (let i =1; i<passedData.length; i++){
-            dataArray[i] = (passedData[i][0]/passedData[i][1])*100
+            dataArray[i] = [(passedData[i][0]/passedData[i][1])*100, passedData[i][2]]
+            // dataArray[i][1] = 
+           
         }
-        console.log(dataArray)
+        console.log(passedData)
+        return dataArray
+       
     }
     
 }

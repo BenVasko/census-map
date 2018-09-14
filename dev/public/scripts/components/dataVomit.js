@@ -247,9 +247,11 @@ const data = {
                     CensusDataService.getStatePopRace00().then((response) => {
                         // vm.datas = response;
                         // console.dir(vm.datas);
-                        DiversityService.diversityPercent(response);
-                        console.log(response)
-                        // ColorService.getColors(vm.datas);
+                        let kate = DiversityService.diversityPercent(response);
+                        console.log(response);
+                        console.log(kate);
+                        ColorService.getColors(kate);
+                       
                     })
 
                 } else if (vm.dataMode === 3) {
