@@ -299,8 +299,6 @@ const data = {
                 } else if (vm.dataMode === 4) {
                     vm.legendTitle = "POPULATION PER SQUARE MILE";
                     vm.getPopDensity1990();
-
-
                 }
             } else if (vm.year === 2000) {
                 // 2000 API PULLS
@@ -319,7 +317,7 @@ const data = {
                     if(!vm.stateID) {
                         vm.getPopPerSM2000();
                     } else {
-                        vm.getPopPerSMForState(2000, vm.stateID);
+                        vm.getPopPerSMForState(vm.stateID);
                     }
                 }
             } else {

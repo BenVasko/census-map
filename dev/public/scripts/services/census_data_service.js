@@ -356,7 +356,22 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
     });
 
 }
-
+vm.getDataForState2010 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        console.log(response.data);
+        const squareMetersInSquareMiles = 2589988;
+        let data = {
+            areaName: response.data[1][2],
+            totalPop: response.data[1][0],
+            landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+            popPerSM: ()=>{this.totalPop/this.landSizeAreaInMiles}
+        }
+        return data;
+    });
+}
 
 //___________________2000 populations _________________________________
 
