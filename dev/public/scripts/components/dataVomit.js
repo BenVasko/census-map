@@ -2,7 +2,7 @@
 
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService) {
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "DiversityService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, DiversityService) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
