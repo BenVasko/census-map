@@ -5,6 +5,7 @@ const data = {
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService) {
         const vm = this;
         vm.legendTitle = "";
+        vm.legend;
         vm.datas;
         vm.dataMode = 1;
         vm.stateID = null;
@@ -33,6 +34,8 @@ const data = {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response; 
                 ColorService.getColors(vm.datas);
+                vm.legend = ColorService.getLegend(vm.datas);
+                console.log(vm.legend);
                 vm.total = 0;
                 simplemaps_usmap.load();
                 vm.legendTitle = "POPULATION IN MILLIONS";

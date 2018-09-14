@@ -18,13 +18,9 @@
     
     <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
     <section class="legend">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div ng-repeat="meter in $ctrl.legend">{{meter}}</div>
+ 
+        
     </section>
 
 <form>

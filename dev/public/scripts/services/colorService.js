@@ -1,14 +1,17 @@
 const ColorService = function(){
     this.lightest = 90; // the L value (lightness) in HSL. 90 is near white.
     this.darkest = 20; // the L value (lightness) in HSL. 20 is near black.
+    let arrayOfArrays;
+    let legendArray = [];
     
     this.getColors = function(myArray){
         // will hold arrays for all the data
-        let arrayOfArrays = [];
-        let geographyKeys = []
+        arrayOfArrays = [];
+        let geographyKeys = [];
+
         // parse the passed data into arrays that group the data up by variable
         // instead of by geography (ie, all total population in one array)
-        for(let i = 0; i < myArray[1].length; i++) {
+        for(let i = 0; i < myArray[0].length; i++) {
             if(!isNaN(parseInt(myArray[1][i]))){
                 let newArray = [parseInt(myArray[1][i])];
                 arrayOfArrays.push(newArray);
@@ -17,7 +20,7 @@ const ColorService = function(){
                 break;
             }
         }
-        
+        // console.log(newArray);
 
         for(let i = 2; i < myArray.length; i++){
             for(let j = 0; j < arrayOfArrays.length; j++) {
@@ -25,8 +28,7 @@ const ColorService = function(){
             }
             geographyKeys.push(myArray[i][arrayOfArrays.length])
         }
-        // console.log(arrayOfArrays);
-        
+
         arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = arrayOfArrays[0][0];
 
@@ -135,6 +137,7 @@ const ColorService = function(){
             }
         }
 
+
         // normalize the range
         max -= min;
 
@@ -175,7 +178,7 @@ const ColorService = function(){
     this.setDataForState = (state, colorLevel, populationData) => {
         simplemaps_usmap_mapdata.state_specific[state].color = colorLevel;
         simplemaps_usmap_mapdata.state_specific[state].description = `Population: ${populationData}`;
-    }
+    };
 
     this.setDataForCounty = (county, colorLevel, populationData) => {
         try {
@@ -184,6 +187,24 @@ const ColorService = function(){
         } catch {
             // console.log(`County: ${county} failed to be colored`);
         }
+    };
+
+    this.getLegend = function(){
+        // console.log(arrayOfArrays[0]);
+        for(let i = 0; i < arrayOfArrays[0].length; i++){
+            legendArray.push(Math.exp(arrayOfArrays[0][i]))
+        }
+        // console.log(legendArray);
+        let min = Math.round(Math.min.apply(null, legendArray));
+        let max = Math.round(Math.max.apply(null, legendArray));
+        let meter = Math.floor(max/6);
+        let meter2 = Math.floor(min + meter);
+        let meter3 = Math.floor(min + meter * 2);
+        let meter4 = Math.floor(min + meter * 3);
+        let meter5 = Math.floor(min + meter * 4);
+        // console.log(`meter ${meter}`)
+        return [max, meter5, meter4, meter3, meter2, min];
+
     }
 
 
