@@ -55,8 +55,6 @@ const data = {
         
         };
         // vm.getAgeData2010();
-      
-  
 
         vm.getAgeData1990 = () => {           
             CensusDataService.getStatePopAge90().then((response)=>{
@@ -74,58 +72,23 @@ const data = {
         // taz added functionality for dropdown select to call API
         vm.getCensusData = function(API){
             console.log(API);
-            vm.dataMode = parseInt(API);
-            if (vm.dataMode === 1) {
-                // If we're in US mode
-                if(!vm.stateID)
-                {
-                    vm.getData();
-                    console.log(vm.datas);
-                }
-                // If we're in state mode, get the state data for the current state
-                // Current State => vm.stateID
-                else
-                {
-                    console.log(vm.stateID);
-                    vm.getPopulationDataForState(vm.stateID);
-                    console.log(vm.datas);
-                }
-
-            }
-            if (vm.dataMode === 2) {
-                vm.getAgeData2010();
-                vm.legendTitle = "RACE DATA (BUT REALLY IT'S AGE DATA)";
-                console.log('selected 2')
-            }
-            if (vm.dataMode === 3) {
-                if(!vm.stateID) {
-                    vm.getAgeData2010();
-                    vm.legendTitle = "AVERAGE AGE";
-                    console.log('selected 3');
-                } else {
-                    vm.getAgeDataForState(vm.stateID);
-                }
-            }
-            if (vm.dataMode == 4) {
-                if(!vm.stateID) {
-                    vm.getPopPerSM();
-                } else {
-                    vm.getPopPerSMForState(vm.stateID);
-                }
-            }
-
+            vm.dataMode = parseInt(API.value);
+            vm.chooseDisplay();
         };
 
         // functionality for the slider
         vm.chooseYear = (year) => {
+            vm.year = year;
             if (year === 1990) {
                 console.log("YOU HAVE SELECTED 1990");
-                vm.getAgeData1990();
+                vm.chooseDisplay();
             } else if (year === 2000) {
                 console.log("YOU HAVE SELECTED 2000");
+                vm.chooseDisplay();
             } else if (year === 2010) {
                 console.log("YOU HAVE SELECTED 2010");
                 vm.getAgeData2010();
+                vm.chooseDisplay();
             }
         }
 
@@ -202,10 +165,102 @@ const data = {
             });
         }
 
-        vm.getPopPerSM = () => {
-            CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
+        vm.getPopPerSM = (year) => {
+            CensusDataService.getPopulationPerSquareMileForUS(year).then((response) => {
                 ColorService.getColors(response);
             });
+        };
+
+        vm.getPop1990 = () => {
+            // Get for country if it's null
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopulation90().then((response) => {
+                    ColorService.getColors(response);
+                });
+            }
+            // Get for state
+            else {
+                CensusDataService.getCountyPopulationForState90(vm.stateID).then((response) => {
+                    ColorService.getColorsForCounties(response);
+                });
+            }
+        };
+
+        vm.getPopDensity1990 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getPopulationPerSquareMileForUS1990().then((response) => {
+                    ColorService.getColors(response);
+                });
+            } else {
+
+            }
+        }
+
+        vm.getPopPerSMForState = (year, stateID) => {
+            console.log("NOT YET FINISHED!!!!")
+        }
+
+        vm.chooseDisplay = () => {
+            if(vm.year===1990) {
+                // 1990 API PULLS
+                if(vm.dataMode === 1){
+                    vm.getPop1990();
+                } else if (vm.dataMode === 2) {
+                    vm.getAgeData1990();
+                } else if (vm.dataMode === 3) {
+                    vm.getAgeData1990();
+                } else if (vm.dataMode === 4) {
+
+                }
+            } else if (vm.year === 2000) {
+                // 2000 API PULLS
+                if(vm.dataMode === 1){
+                    
+                } else if (vm.dataMode === 2) {
+
+                } else if (vm.dataMode === 3) {
+
+                } else if (vm.dataMode === 4) {
+                    vm.legendTitle = "POPULATION PER SQUARE MILE";
+                    if(!vm.stateID) {
+                        vm.getPopPerSM(2000);
+                    } else {
+                        vm.getPopPerSMForState(2000, vm.stateID);
+                    }
+                }
+            } else {
+                // 2010 API PULLS
+                if(vm.dataMode === 1){
+                    vm.legendTitle = "POPULATION";
+                    if(!vm.stateID)
+                    {
+                        vm.getData();
+                    } else {
+                        vm.getPopulationDataForState(vm.stateID);
+                    }
+                } else if (vm.dataMode === 2) {
+                    vm.legendTitle = "DIVERSITY: NOT IMPLEMENTED";
+                    if(!vm.stateID) {
+                        vm.getAgeData2010();
+                    } else {
+                        vm.getAgeDataForState(vm.stateID);
+                    }    
+                } else if (vm.dataMode === 3) {
+                    vm.legendTitle = "AVERAGE AGE";
+                    if(!vm.stateID) {
+                        vm.getAgeData2010();
+                    } else {
+                        vm.getAgeDataForState(vm.stateID);
+                    }
+                } else if (vm.dataMode === 4) {
+                    vm.legendTitle = "POPULATION PER SQUARE MILE";
+                    if(!vm.stateID) {
+                        vm.getPopPerSM();
+                    } else {
+                        vm.getPopPerSMForState(2010, vm.stateID);
+                    }
+                }
+            }
         }
     }]
 };
