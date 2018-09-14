@@ -4,6 +4,10 @@ const DropdownDataService = function(){
     const vm = this;
 
     vm.dataType = [
+        {
+            name: "Select Census Data",
+            value: "null",
+        },
     {
         name: 'State Population',
         value: '1'
