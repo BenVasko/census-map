@@ -104,7 +104,7 @@ const data = {
             }
             if (vm.dataMode === 3) {
                 if(!vm.stateID) {
-                    vm.getAgeData2010();
+                    vm.getAgeData2010(); // ~ line 50
                     vm.legendTitle = "AVERAGE AGE";
                     // console.log('selected 3');
                 } else {
