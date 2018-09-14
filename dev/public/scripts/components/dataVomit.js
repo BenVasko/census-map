@@ -32,6 +32,7 @@ const data = {
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
+                // console.log(vm.datas)
                 ColorService.getColors(vm.datas);
                 vm.total = 0;
                 vm.legendTitle = "POPULATION IN MILLIONS";
@@ -48,7 +49,7 @@ const data = {
                 vm.datas=response;
 
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
-                console.log("State by age 2010: " + vm.datas);
+                // console.log("State by age 2010: " + vm.datas);
 
                 ColorService.getColors(vm.datas);
             });
@@ -144,10 +145,11 @@ const data = {
 
         vm.getPopulationDataForState = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
-            console.log(stateName);
+            // console.log(stateName);
             let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
-            console.log(censusStateID);
+            // console.log(censusStateID);
             CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
+                // console.log(response)
                 vm.datas = response;
                 ColorService.getColorsForCounties(vm.datas);
             });
@@ -243,7 +245,11 @@ const data = {
                     
                 } else if (vm.dataMode === 2) {
                     CensusDataService.getStatePopRace00().then((response) => {
-                        ColorService.getColors(response)
+                        // vm.datas = response;
+                        // console.dir(vm.datas);
+                        DiversityService.diversityPercent(response);
+                        console.log(response)
+                        // ColorService.getColors(vm.datas);
                     })
 
                 } else if (vm.dataMode === 3) {
