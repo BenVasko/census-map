@@ -7,8 +7,9 @@ path {
     stroke-width: 1px;
 }
 
-body {
+html {
     background: linear-gradient(#c4edf5, #d6e0e4);
+    min-height: 100%;
 }
 
 h1 {
