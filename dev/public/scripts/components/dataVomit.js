@@ -166,7 +166,13 @@ const data = {
         }
 
         vm.getPopPerSM = (year) => {
-            CensusDataService.getPopulationPerSquareMileForUS(year).then((response) => {
+            CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
+                ColorService.getColors(response);
+            });
+        };
+
+        vm.getPopPerSM2000 = (year) => {
+            CensusDataService.getPopulationPerSquareMileForUS2000().then((response) => {
                 ColorService.getColors(response);
             });
         };
@@ -204,12 +210,31 @@ const data = {
             if(vm.year===1990) {
                 // 1990 API PULLS
                 if(vm.dataMode === 1){
-                    vm.getPop1990();
+                    if(!vm.stateID){
+                        vm.getPop1990();
+                    } else {
+
+                    }
                 } else if (vm.dataMode === 2) {
-                    vm.getAgeData1990();
+                    if(!vm.stateID){
+                        vm.getAgeData1990();
+                    } else {
+                        
+                    }
+
                 } else if (vm.dataMode === 3) {
-                    vm.getAgeData1990();
+                    if(!vm.stateID){
+                        vm.getAgeData1990();
+                    } else {
+                        
+                    }
+
                 } else if (vm.dataMode === 4) {
+                    if(!vm.stateID){
+                        vm.getPopDensity1990();
+                    } else {
+                        
+                    }
 
                 }
             } else if (vm.year === 2000) {
@@ -223,7 +248,7 @@ const data = {
                 } else if (vm.dataMode === 4) {
                     vm.legendTitle = "POPULATION PER SQUARE MILE";
                     if(!vm.stateID) {
-                        vm.getPopPerSM(2000);
+                        vm.getPopPerSM2000();
                     } else {
                         vm.getPopPerSMForState(2000, vm.stateID);
                     }
@@ -257,7 +282,7 @@ const data = {
                     if(!vm.stateID) {
                         vm.getPopPerSM();
                     } else {
-                        vm.getPopPerSMForState(2010, vm.stateID);
+                        vm.getPopPerSMForState(vm.stateID);
                     }
                 }
             }
