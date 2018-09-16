@@ -107,8 +107,17 @@ const ColorService = function(){
         legend.box4 = Math.floor(legend.min + legend.spread * 4);
         legend.box5 = Math.floor(legend.min + legend.spread * 5);
         legend.box6 = Math.floor(legend.min + legend.spread * 6);
-        console.log(legend);
+        if (legend.max > 1000000) {
+            legend.box1 = Math.round(legend.box1 / 1000000);
+            legend.box2 = Math.round(legend.box2 / 1000000);
+            legend.box3 = Math.round(legend.box3 / 1000000);
+            legend.box4 = Math.round(legend.box4 / 1000000);
+            legend.box5 = Math.round(legend.box5 / 1000000);
+            legend.box6 = Math.round(legend.box6 / 1000000);
+        }
+        // console.log(legend);
         simplemaps_usmap.load();
+        return legend;
     }
 
     this.getColorsForCounties = (myArray) => {

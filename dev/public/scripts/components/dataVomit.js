@@ -13,6 +13,7 @@ const data = {
         vm.button = angular.element(document.getElementById("back-button"));
         vm.dataType = DropdownDataService.dataType;
         vm.listOfStates = DropdownDataService.listOfStates;
+        vm.legend;
 
         // the function that will append script tags for state maps to index
         vm.appendStateScripts = () => {
@@ -33,7 +34,7 @@ const data = {
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
-                ColorService.getColors(vm.datas);
+                ColorService.getColors(vm.datas); 
                 vm.total = 0;
                 // vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
@@ -47,7 +48,7 @@ const data = {
                 // Get population for US
                 CensusDataService.getStatePopulation00().then((response) => {
                     vm.datas = response;
-                    ColorService.getColors(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas); // ColorService.getColors returns the numbers to go in the legend.
                     vm.total = 0;
                     vm.legendTitle = "POPULATION IN MILLIONS";
                     for(let i = 1; i < vm.datas.length; i++) {
