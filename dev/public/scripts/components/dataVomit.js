@@ -244,8 +244,19 @@ const data = {
                 // 2000 API PULLS
                 if(vm.dataMode === 1){
                     
-                } else if (vm.dataMode === 2) {
-                    CensusDataService.getStatePopRace00().then((response) => {
+                } else if (vm.dataMode === 2) 
+                //     if (!vm.stateID){
+                //         CensusDataService.getCountyPopRace00().then((response) => {
+                //             let diverse = DiversityService.diversityPercent(response);
+                //             console.log(response);
+                //             console.log(diverse);
+                //             ColorService.getColors(diverse);
+                           
+                //         })
+                    
+                // }else
+                {
+                    CensusDataService.getCountyPopRace00().then((response) => {
                         let diverse = DiversityService.diversityPercent(response);
                         console.log(response);
                         console.log(diverse);
