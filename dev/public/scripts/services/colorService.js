@@ -23,19 +23,19 @@ const ColorService = function(){
             for(let j = 0; j < arrayOfArrays.length; j++) {
                 arrayOfArrays[j].push(parseInt(myArray[i][j]));
             }
-            geographyKeys.push(myArray[i][arrayOfArrays.length])
+            geographyKeys.push(myArray[i][arrayOfArrays.length]);
         }
-        // console.log(arrayOfArrays);
-        
-        arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
-        let min = max = arrayOfArrays[0][0];
+        console.log(arrayOfArrays);
+        let logArrayOfArrays = [[]];
+        logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
+        let min = max = logArrayOfArrays[0][0];
 
         for(let i = 1; i < arrayOfArrays[0].length; i++) {
-            arrayOfArrays[0][i] = Math.log(arrayOfArrays[0][i]);
-            if(arrayOfArrays[0][i] > max) {
-                max = arrayOfArrays[0][i];
-            } else if (arrayOfArrays[0][i] < min) {
-                min = arrayOfArrays[0][i];
+            logArrayOfArrays[0][i] = Math.log(arrayOfArrays[0][i]);
+            if(logArrayOfArrays[0][i] > max) {
+                max = logArrayOfArrays[0][i];
+            } else if (logArrayOfArrays[0][i] < min) {
+                min = logArrayOfArrays[0][i];
             }
         }
 
@@ -54,9 +54,9 @@ const ColorService = function(){
         // console.log(michiganColorPercentage);
 
 
-        for (let i = 0; i < arrayOfArrays[0].length; i++) {
+        for (let i = 0; i < logArrayOfArrays[0].length; i++) {
             // console.log(arrayOfArrays[0][i], min, max);
-            let statePercentage = (arrayOfArrays[0][i] - min)/max;
+            let statePercentage = (logArrayOfArrays[0][i] - min)/max;
             // console.log(statePercentage)
 
             // console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
@@ -69,25 +69,25 @@ const ColorService = function(){
                 if(simplemaps_usmap_mapdata.state_specific[state].name === geographyKeys[i]) {
 
                     if (stateColorPercentage < 30) {
-                        this.setDataForState(state, "#0b6739", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#0b6739", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 30) {
-                        this.setDataForState(state, "#36a258", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#36a258", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 40) {
-                        this.setDataForState(state, "#7ac57d", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#7ac57d", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 50) {
-                        this.setDataForState(state, "#abdd94", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#abdd94", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 60) {
-                        this.setDataForState(state, "#d9efa6", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#d9efa6", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 70) {
-                        this.setDataForState(state, "#fffecd", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#fffecd", logArrayOfArrays[0][i]);
                     }
                     if (stateColorPercentage >= 80) {
-                        this.setDataForState(state, "#ffffe5", arrayOfArrays[0][i]);
+                        this.setDataForState(state, "#ffffe5", logArrayOfArrays[0][i]);
                     }
 
                 }
@@ -95,6 +95,19 @@ const ColorService = function(){
             
             // document.querySelector(".sm_state_MI").style.fill = `hsl(0,100%,${michiganColorPercentage}%)`;
         }
+
+        // legend groups
+        let legend = {};
+        legend.max = Math.max.apply(null, arrayOfArrays[0]); // gets the max value of the data set
+        legend.min = Math.min.apply(null, arrayOfArrays[0]); // gets the min value of the data set
+        legend.spread = (legend.max - legend.min) / 6;
+        legend.box1 = Math.floor(legend.min + legend.spread * 1);
+        legend.box2 = Math.floor(legend.min + legend.spread * 2);
+        legend.box3 = Math.floor(legend.min + legend.spread * 3);
+        legend.box4 = Math.floor(legend.min + legend.spread * 4);
+        legend.box5 = Math.floor(legend.min + legend.spread * 5);
+        legend.box6 = Math.floor(legend.min + legend.spread * 6);
+        console.log(legend);
         simplemaps_usmap.load();
     }
 
@@ -122,8 +135,8 @@ const ColorService = function(){
             geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]);
             // console.log(geographyKeys[i]);
         }
-        console.log(geographyKeys);
-        console.log(arrayOfArrays);
+        // console.log(geographyKeys);
+        // console.log(arrayOfArrays);
         
         let min = max = arrayOfArrays[0][0];
 
