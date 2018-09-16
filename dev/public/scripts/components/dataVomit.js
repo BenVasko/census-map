@@ -34,7 +34,7 @@ const data = {
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
-                ColorService.getColors(vm.datas); 
+                vm.legend = ColorService.getColors(vm.datas); 
                 vm.total = 0;
                 // vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
@@ -60,7 +60,7 @@ const data = {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopulationForState00(censusStateID).then((response) => {
                     vm.datas = response;
-                    ColorService.getColorsForCounties(vm.datas);
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
                 });
 
             }
@@ -74,7 +74,7 @@ const data = {
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
                 // console.log("State by age 2010: " + vm.datas);
 
-                ColorService.getColors(vm.datas);
+                vm.legend = ColorService.getColors(vm.datas);
             });
         
         };
@@ -87,14 +87,14 @@ const data = {
                     vm.datas=AgeService.calculateAvgAge(vm.datas);
                     // console.log("State by age 2000: " + vm.datas);
 
-                    ColorService.getColors(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopAge00(censusStateID).then((response)=> {
                     vm.datas = response;
                     vm.datas = AgeService.calculateAvgAge(vm.datas, false);
-                    ColorService.getColorsForCounties(vm.datas);
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
                 });
             }
         };
@@ -107,7 +107,7 @@ const data = {
                     // console.log(vm.datas);
                     vm.datas=AgeService90.calculateAvgAge(vm.datas, true);
                     // console.log("State by age 1990: " + vm.datas);
-                    ColorService.getColors(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas);
                 });
             } else {
                 // console.log(`Getting age data for 1990 for ${vm.stateID}`);
@@ -116,7 +116,7 @@ const data = {
                     vm.datas = response;
                     // console.log(vm.datas);
                     vm.datas = AgeService90.calculateAvgAge(vm.datas, false);
-                    ColorService.getColorsForCounties(vm.datas);
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
                 });
             }
 
@@ -198,7 +198,7 @@ const data = {
             let censusStateID = vm.convertStateIDtoCode(stateID);
             CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
                 vm.datas = response;
-                ColorService.getColorsForCounties(vm.datas);
+                vm.legend = ColorService.getColorsForCounties(vm.datas);
             });
         };
 
@@ -208,19 +208,19 @@ const data = {
                 // console.log('called');
                 vm.datas = response;
                 vm.datas = AgeService.calculateAvgAge(vm.datas, false);
-                ColorService.getColorsForCounties(vm.datas);
+                vm.legend = ColorService.getColorsForCounties(vm.datas);
             });
         }
 
         vm.getPopPerSM = (year) => {
             CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
-                ColorService.getColors(response);
+                vm.legend = ColorService.getColors(response);
             });
         };
 
         vm.getPopPerSM2000 = (year) => {
             CensusDataService.getPopulationPerSquareMileForUS2000().then((response) => {
-                ColorService.getColors(response);
+                vm.legend = ColorService.getColors(response);
             });
         };
 
@@ -228,7 +228,7 @@ const data = {
             // Get for country if it's null
             if(vm.stateID === null) {
                 CensusDataService.getStatePopulation90().then((response) => {
-                    ColorService.getColors(response);
+                    vm.legend = ColorService.getColors(response);
                 });
             }
             // Get for state
@@ -236,7 +236,7 @@ const data = {
                 let stateCode = vm.convertStateIDtoCode(vm.stateID);
                 // console.log("Get pop for state");
                 CensusDataService.getCountyPopulationForState90(stateCode).then((response) => {
-                    ColorService.getColorsForCounties(response);
+                    vm.legend = ColorService.getColorsForCounties(response);
                 });
             }
         };
@@ -244,13 +244,13 @@ const data = {
         vm.getPopDensity1990 = () => {
             if(vm.stateID === null) {
                 CensusDataService.getPopulationPerSquareMileForUS1990().then((response) => {
-                    ColorService.getColors(response);
+                    vm.legend = ColorService.getColors(response);
                 });
             } else {
                 // console.log("Get Pop Density 1990");
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getPopulationPerSquareMileForState1990(censusStateID).then((response) => {
-                    ColorService.getColorsForCounties(response);
+                    vm.legend = ColorService.getColorsForCounties(response);
                 });
             }
         }
@@ -259,13 +259,13 @@ const data = {
             let censusStateID = vm.convertStateIDtoCode(vm.stateID);
             if(vm.year===2010){
                 CensusDataService.getPopulationPerSquareMileForState2010(censusStateID).then((response) => {
-                    ColorService.getColorsForCounties(response);
+                    vm.legend = ColorService.getColorsForCounties(response);
                 });
             }
             else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getPopulationPerSquareMileForState2000(censusStateID).then((response) => {
-                    ColorService.getColorsForCounties(response);
+                    vm.legend = ColorService.getColorsForCounties(response);
                 });
 
             }
