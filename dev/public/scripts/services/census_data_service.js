@@ -88,7 +88,7 @@ function CensusDataService($http) {
         male18_19_00:'P012007',
         male20_00:'P012008',
         male21_00:'P012009',
-        male22_24_00:'P0120010',
+        male22_24_00:'P012010',
         male25_29_00:'P012011',
         male30_34_00:'P012012',
         male35_39_00:'P012013',
@@ -113,7 +113,7 @@ function CensusDataService($http) {
         female18_19_00:'P012031',
         female20_00:'P012032',
         female21_00:'P012033',
-        female22_24_00:'P0120034',
+        female22_24_00:'P012034',
         female25_29_00:'P012035',
         female30_34_00:'P012036',
         female35_39_00:'P012037',
@@ -307,6 +307,72 @@ vm.getCountyPopAge = (targetState) => {
     })
 }
 
+//___________________2010 Population Density____________________
+vm.getPopulationPerSquareMileForUS = () => {
+    return $http({
+        // This URL will return area in square meters
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3]]);
+            }
+        }
+        return returnArray;
+    });
+}
+
+vm.getPopulationPerSquareMileForState2010 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+            }
+        }
+        console.log(returnArray);
+        return returnArray;
+    });
+
+}
+vm.getDataForState2010 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        console.log(response.data);
+        const squareMetersInSquareMiles = 2589988;
+        let data = {
+            areaName: response.data[1][2],
+            totalPop: response.data[1][0],
+            landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+            popPerSM: ()=>{this.totalPop/this.landSizeAreaInMiles}
+        }
+        return data;
+    });
+}
+
 //___________________2000 populations _________________________________
 
 
@@ -352,7 +418,7 @@ vm.getCountyPopRace00 = (targetState) => {
 //_____________2000 Getting age based on state__________________ 
 vm.getStatePopAge00 = () => {
     return $http({
-        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59_00},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00},${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data);
@@ -362,13 +428,64 @@ vm.getStatePopAge00 = () => {
 //_____________2000 Getting age based on county__________________ 
 vm.getCountyPopAge00 = (targetState) => {
     return $http({
-        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00}${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00}${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data)
         return response.data
     })
 }
+
+vm.getPopulationPerSquareMileForUS2000 = () => {
+    return $http({
+        // This URL will return area in square meters
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3]]);
+            }
+        }
+        return returnArray;
+    });
+}
+
+vm.getPopulationPerSquareMileForState2000 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        let returnArray = [];
+        // To convert meters to square miles, divide by 2,589,988
+        const squareMetersInSquareMiles = 2589988;
+        for(let i = 0; i < response.data.length; i++){
+            // If the data value is a number (IE, it's not in the header)
+            if(!isNaN(parseInt(response.data[i][0]))) {
+                // Convert it to square miles
+                let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                
+                let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+            }
+        }
+        console.log(returnArray);
+        return returnArray;
+    });
+
+}
+
+
 //___________________1990 populations _________________________________
 vm.getStatePopulation90 = () => {
     return $http({
@@ -424,23 +541,22 @@ vm.getStatePopAge90 = () => {
 //_____________1990 Getting age based on county__________________ 
     vm.getCountyPopAge90 = (targetState) => {
         return $http({
-            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90}${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.under1_90},${dataHeaders.a1_2_90},${dataHeaders.a3_4_90},${dataHeaders.a5_90},${dataHeaders.a6_90},${dataHeaders.a7_9_90},${dataHeaders.a10_11_90},${dataHeaders.a12_13_90},${dataHeaders.a14_90},${dataHeaders.a15_90},${dataHeaders.a16_90},${dataHeaders.a17_90},${dataHeaders.a18_90},${dataHeaders.a19_90},${dataHeaders.a20_90},${dataHeaders.a21_90},${dataHeaders.a22_24_90},${dataHeaders.a25_29_90},${dataHeaders.a30_34},${dataHeaders.a35_39_90},${dataHeaders.a40_44_90},${dataHeaders.a45_49_90},${dataHeaders.a50_54_90},${dataHeaders.a55_59_90},${dataHeaders.a60_61_90},${dataHeaders.a62_64_90},${dataHeaders.a65_69_90},${dataHeaders.a70_74_90},${dataHeaders.a75_79_90},${dataHeaders.a80_84_90},${dataHeaders.a_over_85_90},ANPSADPI&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
             method:'GET'
         }).then((response) => {
             // console.log(response.data)
             return response.data
         });
     }
-    
-    vm.getPopulationPerSquareMileForUS = () => {
+    vm.getPopulationPerSquareMileForUS1990 = () => {
         return $http({
             // This URL will return area in square meters
-            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI&for=state:${state.all}&key=${dataHeaders.key}`,
             method: `GET`
         }).then((response) => {
             let returnArray = [];
             // To convert meters to square miles, divide by 2,589,988
-            const squareMetersInSquareMiles = 2589988;
+            const squareMetersInSquareMiles = 2589.988;
             for(let i = 0; i < response.data.length; i++){
                 // If the data value is a number (IE, it's not in the header)
                 if(!isNaN(parseInt(response.data[i][0]))) {
@@ -455,6 +571,32 @@ vm.getStatePopAge90 = () => {
             return returnArray;
         });
     }
+    vm.getPopulationPerSquareMileForState1990 = (targetState) => {
+        return $http({
+            url: `https://api.census.gov/data/1990/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            let returnArray = [];
+            // To convert meters to square miles, divide by 2,589,988
+            const squareMetersInSquareMiles = 2589.988;
+            for(let i = 0; i < response.data.length; i++){
+                // If the data value is a number (IE, it's not in the header)
+                if(!isNaN(parseInt(response.data[i][0]))) {
+                    // Convert it to square miles
+                    let areaInSquareMiles = response.data[i][1] / squareMetersInSquareMiles;
+                    
+                    let popPerSquareMile = response.data[i][0] / areaInSquareMiles;
+                    console.log(`Area of ${response.data[i][2]} is ${areaInSquareMiles} and population per square mile is ${popPerSquareMile}`);
+                    returnArray.push([popPerSquareMile, response.data[i][2], response.data[i][3], response.data[i][4]]);
+                }
+            }
+            console.log(returnArray);
+            return returnArray;
+        });
+
+    }
+
+
 }
 
 angular.module("App").service("CensusDataService", CensusDataService);

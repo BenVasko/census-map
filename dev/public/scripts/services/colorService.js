@@ -28,7 +28,12 @@ const ColorService = function(){
             }
             geographyKeys.push(myArray[i][arrayOfArrays.length])
         }
+<<<<<<< HEAD
 
+=======
+        // console.log(arrayOfArrays);
+        
+>>>>>>> master
         arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = arrayOfArrays[0][0];
 
@@ -121,11 +126,18 @@ const ColorService = function(){
             for(let j = 0; j < arrayOfArrays.length; j++) {
                 arrayOfArrays[j].push(parseInt(myArray[i][j]));
             }
+<<<<<<< HEAD
             // console.log(geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]));
             // console.log(geographyKeys[i]);
         }
         // console.log(arrayOfArrays);
-        
+=======
+            geographyKeys.push(myArray[i][arrayOfArrays.length+1] + myArray[i][arrayOfArrays.length+2]);
+            // console.log(geographyKeys[i]);
+        }
+        console.log(geographyKeys);
+        console.log(arrayOfArrays);
+>>>>>>> master
         
         let min = max = arrayOfArrays[0][0];
 
