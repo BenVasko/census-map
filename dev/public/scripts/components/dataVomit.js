@@ -35,7 +35,7 @@ const data = {
                 vm.datas = response;
                 ColorService.getColors(vm.datas);
                 vm.total = 0;
-                vm.legendTitle = "POPULATION IN MILLIONS";
+                // vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
                     vm.total += parseInt(vm.datas[i][0]);
                 }
@@ -356,7 +356,7 @@ const data = {
         }
 
         // Default display when loading
-        vm.chooseDisplay();
+        // vm.chooseDisplay(); <-- causes code to fire twice.
 
     }]
 };
