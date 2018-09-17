@@ -7,8 +7,9 @@ path {
     stroke-width: 1px;
 }
 
-body {
+html {
     background: linear-gradient(#c4edf5, #d6e0e4);
+    min-height: 100%;
 }
 
 h1 {
@@ -23,6 +24,7 @@ h1 {
 #map {
     max-width: 375px;
     height: auto;
+    margin: 0 auto;
 }
 
 #map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
@@ -93,22 +95,31 @@ form {
     height: 40px;
     text-align: center;
     color: black;
-    border: 5px solid black;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
     border-radius: 15px;
     font-size: 24px;
     display: flex;
     overflow: hidden;
+    flex-direction: row-reverse; /* can set direction as row on mobile for sort-descending legend */
 
 }
 
 .legend div {
     height: 100%;
     width: 100%;
-    border-right: 4px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.legend div:last-child {
+/* .legend div:last-child {
     border-right: none;
-}
+} */
 .legend div:nth-child(1) {
     background: #0b6739;
 }
@@ -128,7 +139,11 @@ form {
     background: #fffecd;
 }
 .legend div:nth-child(7) {
-    background: #fff;
+    background: #ffffe5;
+}
+
+#noData {
+    background: white;
 }
 
 #back-button {
@@ -152,3 +167,4 @@ form {
     width: 80%;
     margin: 0 auto;
 }
+

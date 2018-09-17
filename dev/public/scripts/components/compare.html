@@ -1,0 +1,6 @@
+<form>
+        <input type="reset" class="ng-hide" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
+    
+        <select class="drop-down" ng-init="ID1 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.getPopulationDataForState(ID1.value)"></select>
+        <select class="drop-down" ng-init="ID2 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.getPopulationDataForState(ID2.value)"></select>
+</form>
