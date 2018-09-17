@@ -109,13 +109,13 @@ const ColorService = function(){
         legend.box6 = Math.floor(legend.min + legend.spread * 6);
         legend.box7 = Math.floor(legend.min + legend.spread * 7);
         if (legend.max > 1000000) {
-            legend.box1 = Math.round(legend.box1 / 1000000);
-            legend.box2 = Math.round(legend.box2 / 1000000);
-            legend.box3 = Math.round(legend.box3 / 1000000);
-            legend.box4 = Math.round(legend.box4 / 1000000);
-            legend.box5 = Math.round(legend.box5 / 1000000);
-            legend.box6 = Math.round(legend.box6 / 1000000);
-            legend.box7 = Math.round(legend.box7 / 1000000);
+            legend.box1 = Math.round(legend.box1 / 1000000) + "M";
+            legend.box2 = Math.round(legend.box2 / 1000000) + "M";
+            legend.box3 = Math.round(legend.box3 / 1000000) + "M";
+            legend.box4 = Math.round(legend.box4 / 1000000) + "M";
+            legend.box5 = Math.round(legend.box5 / 1000000) + "M";
+            legend.box6 = Math.round(legend.box6 / 1000000) + "M";
+            legend.box7 = Math.round(legend.box7 / 1000000) + "M";
         }
         // console.log(legend);
         simplemaps_usmap.load();
@@ -191,7 +191,7 @@ const ColorService = function(){
                 this.setDataForCounty(geographyKeys[i], "#ffffe5", arrayOfArrays[0][i]);
             }
         }
-        console.log(arrayOfArrays);// legend groups
+        // console.log(arrayOfArrays);// legend groups
         let legend = {};
         legend.max = Math.max.apply(null, arrayOfArrays[0]); // gets the max value of the data set
         legend.min = Math.min.apply(null, arrayOfArrays[0]); // gets the min value of the data set

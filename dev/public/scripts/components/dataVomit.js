@@ -50,7 +50,7 @@ const data = {
                     vm.datas = response;
                     vm.legend = ColorService.getColors(vm.datas); // ColorService.getColors returns the numbers to go in the legend.
                     vm.total = 0;
-                    vm.legendTitle = "POPULATION IN MILLIONS";
+                    // vm.legendTitle = "POPULATION IN MILLIONS";
                     for(let i = 1; i < vm.datas.length; i++) {
                         vm.total += parseInt(vm.datas[i][0]);
                     }    
