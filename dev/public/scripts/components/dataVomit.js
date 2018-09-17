@@ -3,7 +3,6 @@
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
 
-
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", "CompareService", "$location", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService, CompareService, $location) {
         const vm = this;
         vm.legendTitle = "";
