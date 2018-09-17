@@ -47,7 +47,7 @@ const data = {
                 // Get population for US
                 CensusDataService.getStatePopulation00().then((response) => {
                     vm.datas = response;
-                    ColorService.getColors(vm.datas);
+                    vm.legendTitle = ColorService.getColors(vm.datas);
                     vm.total = 0;
                     vm.legendTitle = "POPULATION IN MILLIONS";
                     for(let i = 1; i < vm.datas.length; i++) {
