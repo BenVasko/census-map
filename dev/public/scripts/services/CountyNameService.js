@@ -1,15 +1,17 @@
 const CountyNameService = function(){
     this.state = {
-        Delaware : {
+        DE : {
 
             "c10001": "Kent",
             "c10003": "New Castle",
             "c10005": "Sussex"
         },
+
         DC : {
 
             "c11001": "District of Columbia",
         },
+
         Florida : {
 
             "c12001": "Alachua",

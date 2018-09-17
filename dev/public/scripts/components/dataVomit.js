@@ -358,7 +358,11 @@ const data = {
 
         // Default display when loading
         // vm.chooseDisplay(); <-- causes code to fire twice.
-        vm.counties = CountyNameService.countyID;
+
+        // this is the list of county ids by state from the CountyNameService.js file
+        vm.countiesByState = CountyNameService.state;
+        console.log(vm.countiesByState);
+        
 
     }]
 };
