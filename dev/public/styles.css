@@ -194,4 +194,12 @@ form {
     width: 90%;
     margin: 50px;
 }
+@media only screen and (min-width: 480px) {
+   .lengend div{
+    width:50%;
+   }
+   #back-button{
+       background: blue;
+   }
+}
 
