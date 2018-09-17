@@ -2,7 +2,7 @@
 
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService) {
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -358,6 +358,7 @@ const data = {
 
         // Default display when loading
         // vm.chooseDisplay(); <-- causes code to fire twice.
+        vm.counties = CountyNameService.countyID;
 
     }]
 };
