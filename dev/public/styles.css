@@ -112,6 +112,10 @@ form {
     width: 100%;
     border-left: 2px solid black;
     border-right: 2px solid black;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* .legend div:last-child {
     border-right: none;
@@ -135,7 +139,11 @@ form {
     background: #fffecd;
 }
 .legend div:nth-child(7) {
-    background: #fff;
+    background: #ffffe5;
+}
+
+#noData {
+    background: white;
 }
 
 #back-button {
