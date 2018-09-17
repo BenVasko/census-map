@@ -1,4 +1,9 @@
 <h1>demoGraphics</h1>
+<h2>{{$ctrl.stateID}}</h2>
+<input>
+<ul id="countyList" >
+    <li></li>
+</ul>
 <section class="map-parent">
     <div id="map"></div>
 </section>
@@ -17,13 +22,14 @@
     
     <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
     <section class="legend">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div> {{$ctrl.legend.box6}} - {{$ctrl.legend.box7}} </div>
+        <div> {{$ctrl.legend.box5}} - {{$ctrl.legend.box6}} </div>
+        <div> {{$ctrl.legend.box4}} - {{$ctrl.legend.box5}} </div>
+        <div> {{$ctrl.legend.box3}} - {{$ctrl.legend.box4}} </div>
+        <div> {{$ctrl.legend.box2}} - {{$ctrl.legend.box3}} </div>
+        <div> {{$ctrl.legend.box1}} - {{$ctrl.legend.box2}} </div>
+        <div> {{$ctrl.legend.box1}} </div>
+        <div id="noData"> No Data </div>
     </section>
 
 <form>
@@ -31,6 +37,20 @@
 
     <select class="drop-down" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
 </form>
+
+<button ng-click="$ctrl.showCompareModal();">Compare States</button>
+
+
+<form id="compare-modal" class="ng-hide">
+        <input type="reset" class="" id="back-button" ng-click="$ctrl.hideModal();" value="Back">
+    
+        <select class="drop-down" ng-init="ID1 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
+        <select class="drop-down" ng-init="ID2 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
+
+        <button ng-click="$ctrl.changePath();">Compare!</button>
+
+</form>
+
 
 </section>
 <!-- 
