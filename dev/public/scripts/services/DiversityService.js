@@ -8,7 +8,7 @@ const DiversityService = function() {
             if(usMode){
                 dataArray.push([(passedData[i][0]/passedData[i][1])*100, passedData[i][2]]);
             } else {
-                dataArray.push([(passedData[i][0]/passedData[i][1])*100, passedData[i][3], passedData[i][4]]);
+                dataArray.push([(passedData[i][0]/passedData[i][1])*100, passedData[i][2],passedData[i][3], passedData[i][4]]);
             }
            
         }
