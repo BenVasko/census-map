@@ -198,8 +198,13 @@ form {
    .lengend div{
     width:50%;
    }
-   #back-button{
-       background: blue;
+   .drop-down{
+       width: 30%;
    }
+   #map{
+       width:800px;
+       height:auto;
+   }
+  
 }
 
