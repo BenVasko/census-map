@@ -400,11 +400,11 @@ vm.getCountyPopulationForState00 = (targetState) => {
 vm.getStatePopRace00 = () => {
     return $http({
         // url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
-        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},P003001,NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.totalPopRace00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        // console.log(response.data);
-        return response.data
+        console.log(response.data);
+        return response.data;
     })
 }
 //_____________2000 Getting populatations based on race by county__________________ 
@@ -414,7 +414,7 @@ vm.getCountyPopRace00 = (targetState) => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},P003001,NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        // console.log(response.data)
+        console.log(response.data)
         return response.data
     })
 }

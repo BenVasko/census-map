@@ -3,7 +3,7 @@
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
 
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService) {
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -276,7 +276,25 @@ const data = {
                 });
 
             }
+        }
 
+        vm.getDiversity90 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace90().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace90(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
         }
 
         vm.convertStateIDtoCode = (stateID) => {
@@ -294,15 +312,8 @@ const data = {
                     vm.legendTitle = "POPULATION";
                     vm.getPop1990();
                 } else if (vm.dataMode === 2) {
-
-                    CensusDataService.getStatePopRace90().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-
-
-                })
+                    vm.legendTitle = "DIVERSITY";
+                    vm.getDiversity90();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData1990();
@@ -317,9 +328,10 @@ const data = {
                     vm.getPopulation2000();
                     
                 } else if (vm.dataMode === 2) {
-                    CensusDataService.getCountyPopRace00().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
+                    vm.legendTitle = "DIVERSITY";
+                    CensusDataService.getStatePopRace00().then((response) => {
                         console.log(response);
+                        let diverse = DiversityService.diversityPercent(response);
                         console.log(diverse);
                         ColorService.getColors(diverse);
                     });
@@ -346,7 +358,7 @@ const data = {
                         vm.getPopulationDataForState(vm.stateID);
                     }
                 } else if (vm.dataMode === 2) {
-                    vm.lengendTitle = "DIVERSITY";
+                    vm.legendTitle = "DIVERSITY";
                     CensusDataService.getStatePopRace().then((response) => {
                         let diverse = DiversityService.diversityPercent(response);
                         console.log(response);
