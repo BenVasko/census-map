@@ -276,8 +276,65 @@ const data = {
                 });
 
             }
-
         }
+
+        vm.getDiversity90 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace90().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace90(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
+        }
+
+        vm.getDiversity00 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace00().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace00(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
+        }
+
+        vm.getDiversity10 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
+        }
+
 
         vm.convertStateIDtoCode = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
@@ -294,15 +351,8 @@ const data = {
                     vm.legendTitle = "POPULATION";
                     vm.getPop1990();
                 } else if (vm.dataMode === 2) {
-
-                    CensusDataService.getStatePopRace90().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-
-
-                })
+                    vm.legendTitle = "DIVERSITY";
+                    vm.getDiversity90();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData1990();
@@ -317,12 +367,8 @@ const data = {
                     vm.getPopulation2000();
                     
                 } else if (vm.dataMode === 2) {
-                    CensusDataService.getCountyPopRace00().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-                    });
+                    vm.legendTitle = "DIVERSITY";
+                    vm.getDiversity00();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData2000();
@@ -346,13 +392,8 @@ const data = {
                         vm.getPopulationDataForState(vm.stateID);
                     }
                 } else if (vm.dataMode === 2) {
-                    vm.lengendTitle = "DIVERSITY";
-                    CensusDataService.getStatePopRace().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-                    })
+                    vm.legendTitle = "DIVERSITY";
+                    vm.getDiversity10();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     if(!vm.stateID) {
