@@ -4,6 +4,7 @@ const ColorService = function(){
     
     this.getColors = function(myArray){
         // will hold arrays for all the data
+        console.log(myArray);
         let arrayOfArrays = [];
         let geographyKeys = []
         // parse the passed data into arrays that group the data up by variable
