@@ -368,7 +368,7 @@ vm.getDataForState2010 = (targetState) => {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
-            popPerSM: ()=>{this.totalPop/this.landSizeAreaInMiles}
+            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1]
         }
         return data;
     });
