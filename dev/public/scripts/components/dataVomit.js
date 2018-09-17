@@ -2,7 +2,8 @@
 
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService) {
+
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -34,7 +35,9 @@ const data = {
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
+
                 vm.legend = ColorService.getColors(vm.datas); 
+
                 vm.total = 0;
                 // vm.legendTitle = "POPULATION IN MILLIONS";
                 for(let i = 1; i < vm.datas.length; i++) {
@@ -195,8 +198,10 @@ const data = {
             }
 
         vm.getPopulationDataForState = (stateID) => {
+
             let censusStateID = vm.convertStateIDtoCode(stateID);
             CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
+                // console.log(response)
                 vm.datas = response;
                 vm.legend = ColorService.getColorsForCounties(vm.datas);
             });
@@ -287,13 +292,15 @@ const data = {
                     vm.legendTitle = "POPULATION";
                     vm.getPop1990();
                 } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY: NOT IMPLEMENTED";
-                    if(!vm.stateID){
-                        vm.getAgeData1990();
-                    } else {
-                        
-                    }
 
+                    CensusDataService.getStatePopRace90().then((response) => {
+                        let diverse = DiversityService.diversityPercent(response);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColors(diverse);
+
+
+                })
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData1990();
@@ -304,11 +311,17 @@ const data = {
             } else if (vm.year === 2000) {
                 // 2000 API PULLS
                 if(vm.dataMode === 1){
-                    vm.legendTitle = "POPULATION";
-                    vm.getPopulation2000();
-                } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY: NOT IMPLEMENTED";
-                    vm.getAgeData2000();
+                    
+                    
+                } else if (vm.dataMode === 2) 
+                {
+                    CensusDataService.getCountyPopRace00().then((response) => {
+                        let diverse = DiversityService.diversityPercent(response);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColors(diverse);
+                       
+                    })
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData2000();
@@ -332,12 +345,13 @@ const data = {
                         vm.getPopulationDataForState(vm.stateID);
                     }
                 } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY: NOT IMPLEMENTED";
-                    if(!vm.stateID) {
-                        vm.getAgeData2010();
-                    } else {
-                        vm.getAgeDataForState(vm.stateID);
-                    }    
+                    vm.lengendTitle = "DIVERSITY";
+                    CensusDataService.getStatePopRace().then((response) => {
+                        let diverse = DiversityService.diversityPercent(response);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColors(diverse);
+                    })
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     if(!vm.stateID) {

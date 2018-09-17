@@ -132,7 +132,7 @@ function CensusDataService($http) {
 //1990--------------------------------------------------
         //population 1990
         totalPop90: 'P0010001',
-        totalPopRace90: 'P0030001',
+        totalPopRace90: 'P0010001',
         totalPopAge90: 'P0120001',
         //race 1990
         white90:'P0080001',
@@ -264,11 +264,11 @@ function CensusDataService($http) {
 //_____________2010 Getting populatations based on race by state__________________ 
     vm.getStatePopRace = () => {
         return $http({
-
-            url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            // url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=state:${state.all}&key=${dataHeaders.key}`,
+            url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},P0030001,NAME&for=state:${state.all}&key=${dataHeaders.key}`,
             method:'GET'
         }).then((response) => {
-            // console.log(response.data);
+
             return response.data
         })
     }
@@ -277,10 +277,11 @@ function CensusDataService($http) {
 //_____________2010 Getting populatations based on race by county__________________ 
 vm.getCountyPopRace = (targetState) => {
     return $http({
-        url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        // url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},${dataHeaders.black},${dataHeaders.americanIndian},${dataHeaders.asian},${dataHeaders.other},${dataHeaders.hawaiian},${dataHeaders.multiple},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        url:`https://api.census.gov/data/2010/sf1?get=${dataHeaders.white},P0030001,NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method:'GET'
     }).then((response) => {
-        // console.log(response.data)
+
         return response.data
     })
 }
@@ -398,7 +399,8 @@ vm.getCountyPopulationForState00 = (targetState) => {
 //_____________2000 Getting populatations based on race by state__________________ 
 vm.getStatePopRace00 = () => {
     return $http({
-        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        // url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},P003001,NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data);
@@ -408,7 +410,8 @@ vm.getStatePopRace00 = () => {
 //_____________2000 Getting populatations based on race by county__________________ 
 vm.getCountyPopRace00 = (targetState) => {
     return $http({
-        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        // url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.black00},${dataHeaders.americanIndian00},${dataHeaders.asian00},${dataHeaders.other00},${dataHeaders.hawaiian00},${dataHeaders.multiple00},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},P003001,NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data)
@@ -511,7 +514,8 @@ vm.getCountyPopulationForState90 = (targetState) => {
 //_____________1990 Getting populatations based on race by state__________________ 
 vm.getStatePopRace90 = () => {
     return $http({
-        url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        // url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url:`https://api.census.gov/data/1990/sf1?get=P0070001,P0010001,ANPSADPI&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data);
@@ -521,7 +525,8 @@ vm.getStatePopRace90 = () => {
 //_____________1990 Getting populatations based on race by county__________________ 
 vm.getCountyPopRace90 = (targetState) => {
     return $http({
-        url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        // url:`https://api.census.gov/data/1990/sf1?get=${dataHeaders.white90},${dataHeaders.black90},${dataHeaders.americanIndian90},${dataHeaders.asian90},${dataHeaders.other90},${dataHeaders.hawaiian90},ANPSADPI&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url:`https://api.census.gov/data/1990/sf1?get=P0070001,P0010001,ANPSADPI&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data)

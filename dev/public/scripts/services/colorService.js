@@ -26,6 +26,7 @@ const ColorService = function(){
             geographyKeys.push(myArray[i][arrayOfArrays.length]);
         }
         // console.log(arrayOfArrays);
+
         let logArrayOfArrays = [[]];
         logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = logArrayOfArrays[0][0];
@@ -54,9 +55,11 @@ const ColorService = function(){
         // console.log(michiganColorPercentage);
 
 
+
         for (let i = 0; i < logArrayOfArrays[0].length; i++) {
             // console.log(arrayOfArrays[0][i], min, max);
             let statePercentage = (logArrayOfArrays[0][i] - min)/max;
+
             // console.log(statePercentage)
 
             // console.log(`${geographyKeys[i]} percentage is: ${statePercentage}`);
