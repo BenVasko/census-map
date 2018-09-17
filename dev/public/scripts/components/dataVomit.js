@@ -3,7 +3,8 @@
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
 
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService) {
+
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", "CompareService", "$location", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService, CompareService, $location) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -418,11 +419,40 @@ const data = {
         // this is the list of county ids by state from the CountyNameService.js file
         vm.countiesByState = CountyNameService.state;
         console.log(vm.countiesByState);
+
+        vm.showCompareModal = () => {
+            angular.element(document.getElementById("compare-modal")).removeClass("ng-hide");
+        }
+
+        vm.hideModal = () => {
+            angular.element(document.getElementById("compare-modal")).addClass("ng-hide");
+        }
+
+        vm.firstState = (stateID) => {
+            let censusStateID = vm.convertStateIDtoCode(stateID);
+            CensusDataService.getDataForState2010(censusStateID).then((response) => {
+                vm.datas = response;
+                vm.datas.stateID = stateID;
+                vm.state1 = CompareService.setState1Data(vm.datas);
+                console.log(vm.state1);
+            });
+        }
         
+        vm.secondState = (stateID) => {
+            let censusStateID = vm.convertStateIDtoCode(stateID);
+            CensusDataService.getDataForState2010(censusStateID).then((response) => {
+                vm.datas = response;
+                vm.datas.stateID = stateID;
+                vm.state2 = CompareService.setState2Data(vm.datas);
+                console.log(vm.state2);
+            });
+        }
+        
+        vm.changePath = () => {
+            $location.path('/compare');
+        }
 
     }]
 };
 
 angular.module('App').component("data", data);
-
-

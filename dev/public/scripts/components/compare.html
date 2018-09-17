@@ -1,7 +1,7 @@
 <form class="compare-form">
-        <input type="reset" class="ng-hide" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
+        <input type="reset" class="" id="back-button" ng-click="$ctrl.changePath();" value="Back">
     
-        <select class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
+        <select class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
         <section>
                 <p>{{$ctrl.state1.areaName}}</p>
                 <p>{{$ctrl.state1.totalPop}} is the population of {{$ctrl.state1.areaName}}</p>
@@ -18,5 +18,5 @@
                 <p>{{$ctrl.state2.landSizeAreaInMiles}} is the area of {{$ctrl.state2.areaName}}</p>
                 <p>{{$ctrl.state2.popPerSM}} is the population density of {{$ctrl.state2.areaName}}</p>
         </section>
-        <select class="drop-down compare-state-selection" ng-init="ID2 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
+        <select class="drop-down compare-state-selection" ng-init="ID2 = $ctrl.listOfStates[$ctrl.state2index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
 </form>
