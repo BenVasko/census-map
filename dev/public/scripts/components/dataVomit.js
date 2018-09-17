@@ -3,7 +3,8 @@
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
 
-    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService) {
+
+    controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", "CompareService", "$location", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService, CompareService, $location) {
         const vm = this;
         vm.legendTitle = "";
         vm.datas;
@@ -297,6 +298,45 @@ const data = {
             }
         }
 
+        vm.getDiversity00 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace00().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace00(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
+        }
+
+        vm.getDiversity10 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getStatePopRace().then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(response);
+                    console.log(diverse);
+                    ColorService.getColors(diverse);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getCountyPopRace(censusStateID).then((response) => {
+                    let diverse = DiversityService.diversityPercent(response, false);
+                        console.log(response);
+                        console.log(diverse);
+                        ColorService.getColorsForCounties(diverse);
+                });
+            }
+        }
+
+
         vm.convertStateIDtoCode = (stateID) => {
             let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
             // console.log(stateName);
@@ -329,12 +369,7 @@ const data = {
                     
                 } else if (vm.dataMode === 2) {
                     vm.legendTitle = "DIVERSITY";
-                    CensusDataService.getStatePopRace00().then((response) => {
-                        console.log(response);
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-                    });
+                    vm.getDiversity00();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData2000();
@@ -359,12 +394,7 @@ const data = {
                     }
                 } else if (vm.dataMode === 2) {
                     vm.legendTitle = "DIVERSITY";
-                    CensusDataService.getStatePopRace().then((response) => {
-                        let diverse = DiversityService.diversityPercent(response);
-                        console.log(response);
-                        console.log(diverse);
-                        ColorService.getColors(diverse);
-                    })
+                    vm.getDiversity10();
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     if(!vm.stateID) {
@@ -389,11 +419,40 @@ const data = {
         // this is the list of county ids by state from the CountyNameService.js file
         vm.countiesByState = CountyNameService.state;
         console.log(vm.countiesByState);
+
+        vm.showCompareModal = () => {
+            angular.element(document.getElementById("compare-modal")).removeClass("ng-hide");
+        }
+
+        vm.hideModal = () => {
+            angular.element(document.getElementById("compare-modal")).addClass("ng-hide");
+        }
+
+        vm.firstState = (stateID) => {
+            let censusStateID = vm.convertStateIDtoCode(stateID);
+            CensusDataService.getDataForState2010(censusStateID).then((response) => {
+                vm.datas = response;
+                vm.datas.stateID = stateID;
+                vm.state1 = CompareService.setState1Data(vm.datas);
+                console.log(vm.state1);
+            });
+        }
         
+        vm.secondState = (stateID) => {
+            let censusStateID = vm.convertStateIDtoCode(stateID);
+            CensusDataService.getDataForState2010(censusStateID).then((response) => {
+                vm.datas = response;
+                vm.datas.stateID = stateID;
+                vm.state2 = CompareService.setState2Data(vm.datas);
+                console.log(vm.state2);
+            });
+        }
+        
+        vm.changePath = () => {
+            $location.path('/compare');
+        }
 
     }]
 };
 
 angular.module('App').component("data", data);
-
-

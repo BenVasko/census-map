@@ -195,3 +195,15 @@ form {
     margin: 50px;
 }
 
+#compare-modal {
+    flex-direction: column;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background: green;
+    border: black;
+    left: 5%;
+    top: 5%;
+}
+
+
