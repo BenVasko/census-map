@@ -357,6 +357,7 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
     });
 
 }
+// This currently returns an object with the name, totalpop, 
 vm.getDataForState2010 = (targetState) => {
     return $http({
         url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${targetState}&key=${dataHeaders.key}`,
@@ -368,7 +369,7 @@ vm.getDataForState2010 = (targetState) => {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
-            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1]
+            popPerSM: response.data[1][0] * squareMetersInSquareMiles / response.data[1][1]
         }
         return data;
     });

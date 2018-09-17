@@ -153,9 +153,11 @@ const ColorService = function(){
         // console.log(geographyKeys);
         // console.log(arrayOfArrays);
         
+        arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = arrayOfArrays[0][0];
 
         for(let i = 1; i < arrayOfArrays[0].length; i++) {
+            arrayOfArrays[0][i] = Math.log(arrayOfArrays[0][i]);
             if(arrayOfArrays[0][i] > max) {
                 max = arrayOfArrays[0][i];
             } else if (arrayOfArrays[0][i] < min) {
