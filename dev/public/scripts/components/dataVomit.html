@@ -2,7 +2,7 @@
 <h2>{{$ctrl.stateID}}</h2>
 <input>
 <ul id="countyList" >
-    <li ng-repeat="county in $ctrl.countiesByState[$ctrl.stateID]">{{county}}</li>
+    <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID]" class="{{class}}">{{county}}</li>
 </ul>
 <section class="map-parent">
     <div id="map"></div>
