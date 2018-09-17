@@ -47,10 +47,12 @@ const data = {
         };
 
         vm.getPopulation2000 = () => {
+            console.log("Called getPop2000");
             if(!vm.stateID) {
                 // Get population for US
                 CensusDataService.getStatePopulation00().then((response) => {
                     vm.datas = response;
+                    console.log(vm.datas);
                     vm.legend = ColorService.getColors(vm.datas); // ColorService.getColors returns the numbers to go in the legend.
                     vm.total = 0;
                     // vm.legendTitle = "POPULATION IN MILLIONS";
@@ -311,17 +313,16 @@ const data = {
             } else if (vm.year === 2000) {
                 // 2000 API PULLS
                 if(vm.dataMode === 1){
+                    vm.legendTitle = "POPULATION";
+                    vm.getPopulation2000();
                     
-                    
-                } else if (vm.dataMode === 2) 
-                {
+                } else if (vm.dataMode === 2) {
                     CensusDataService.getCountyPopRace00().then((response) => {
                         let diverse = DiversityService.diversityPercent(response);
                         console.log(response);
                         console.log(diverse);
                         ColorService.getColors(diverse);
-                       
-                    })
+                    });
                 } else if (vm.dataMode === 3) {
                     vm.legendTitle = "AVERAGE AGE";
                     vm.getAgeData2000();
