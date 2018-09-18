@@ -368,7 +368,56 @@ const data = {
                     vm.legend = ColorService.getColorsForCounties(seniorPercent);
                 });
             }
+        }
 
+        vm.getHomeOwnership2000 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getOccupancyForState2000().then((response) => {
+                    vm.datas = response;
+
+                    console.log(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getOccupancyForCounty2000(censusStateID).then((response) => {
+                    vm.datas = response;
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
+                });
+            }
+        }
+
+        vm.getHomeOwnership2010 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getOccupancyForState2010().then((response) => {
+                    vm.datas = response;
+                    console.log(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getOccupancyForCounty2010(censusStateID).then((response) => {
+                    vm.datas = response;
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
+                });
+            }
+        }
+
+        vm.getHomeOwnership1990 = () => {
+            if(vm.stateID === null) {
+                CensusDataService.getOccupancyForState1990().then((response) => {
+                    vm.datas = response;
+
+                    console.log(vm.datas);
+                    vm.legend = ColorService.getColors(vm.datas);
+                });
+            } else {
+                let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                CensusDataService.getOccupancyForCounty1990(censusStateID).then((response) => {
+                    vm.datas = response;
+                    vm.legend = ColorService.getColorsForCounties(vm.datas);
+                });
+            }
         }
 
 
@@ -414,6 +463,9 @@ const data = {
                 } else if (vm.dataMode === 5) {
                     vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
                     vm.getSeniorCitizens1990();
+                } else if (vm.dataMode === 6) {
+                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                    vm.getHomeOwnership1990();
                 }
             } else if (vm.year === 2000) {
                 // 2000 API PULLS
@@ -438,6 +490,9 @@ const data = {
                 } else if (vm.dataMode === 5) {
                     vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
                     vm.getSeniorCitizens2000();
+                } else if (vm.dataMode === 6) {
+                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                    vm.getHomeOwnership2000();
                 }
 
             } else {
@@ -470,6 +525,9 @@ const data = {
                 } else if (vm.dataMode === 5) {
                     vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
                     vm.getSeniorCitizens2010();
+                } else if (vm.dataMode === 6) {
+                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                    vm.getHomeOwnership2010();
                 }
 
             }

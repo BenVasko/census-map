@@ -19,6 +19,9 @@ const DropdownDataService = function(){
     }, {
         name: 'Percentage Senior Citizens',
         value: '5'
+    }, {
+        name: 'Percentage of Citizens Homeowners',
+        value: '6'
     }
     ];
 
