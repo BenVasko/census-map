@@ -355,8 +355,8 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
         // console.log(returnArray);
         return returnArray;
     });
-
 }
+
 vm.getDataForState2010 = (targetState) => {
     return $http({
         url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace}&for=state:${targetState}&key=${dataHeaders.key}`,
