@@ -207,3 +207,8 @@ option {
     fill: rgb(59, 114, 159);
     cursor: pointer;
   }
+
+  #countyList {
+      overflow: scroll;
+      height: 200px;
+  }

@@ -18,7 +18,7 @@
     </datalist>
 </form> -->
 
-<ul style="float: left">
+<ul style="float: left" id="countyList">
     <input type="text" placeholder="search by county" ng-model="countysearch">
     <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID] | custom:countysearch" class="{{class}}">{{ county }}</li>
 </ul>

@@ -389,25 +389,39 @@ const data = {
                 when you hover over the state map, the county name is displayed in the search bar.
                 */ 
                 let selectedClass;
-                $(document).on("mouseenter", "path", function(e){
-                       
-                    // console.log(this);
-                 let stuff = $(e.target).attr("class") ;
-                // console.log(stuff); // sm_state_12345
+                
+
+                    $(document).on("mouseenter", "path", function(e){
+                        if (vm.stateID){
+
+                            // console.log(this);
+                         let stuff = $(e.target).attr("class") ;
+                         // console.log(stuff); // sm_state_12345
+            
+                         $("input:eq(0)").val(CountyNameService.state[vm.stateID][stuff]);
+                         // console.log(CountyNameService.state[vm.stateID][stuff])
+                        }
     
-                $("input:eq(0)").val(CountyNameService.state[vm.stateID][stuff]);
-                // console.log(CountyNameService.state[vm.stateID][stuff])
-                })
+                        
+    
+                    })
+    
+                    $("ul").on("mouseenter", "li", function(e){
+                        
+                        selectedClass = $(e.target).attr("class");
+                        // console.log(`.${selectedClass}`);
+                        $(`.${selectedClass}`).toggleClass("bound");
+                        
+                    }).on("mouseleave", "li", function(e){
+                        $(`.${selectedClass}`).toggleClass("bound");
+    
+    
+                    })
 
-                $("ul").on("mouseenter", "li", function(e){
-                    selectedClass = $(e.target).attr("class");
-                    // console.log(`.${selectedClass}`);
-                    $(`.${selectedClass}`).toggleClass("bound");
-                    
-                }).on("mouseleave", "li", function(e){
-                    $(`.${selectedClass}`).toggleClass("bound");
-
-                })
+                    $("ul").on("click", "li", function(e){
+                        $("input:eq(0)").val($(e.target).text())
+                    })
+                
                 // $("ul").on("mouseenter", "li", function(e){
                 //     // let stuff = $(e.target).attr("class") ;
                 //     let stuff = $(e.target).attr("class") ;
