@@ -18,18 +18,22 @@ const data = {
 
         // the function that will append script tags for state maps to index
         vm.appendStateScripts = () => {
-            let state1 = document.createElement("script");
-                state1.type = "text/javascript";
-                state1.src = `scripts/states/${vm.stateID}/mapdata.js`
-                state1.innerHTML = null;
-                document.getElementById("map-scripts").innerHTML = "";
-                document.getElementById("map-scripts").appendChild(state1);
-            let state2 = document.createElement("script");
-                state2.type = "text/javascript";
-                state2.src = `scripts/states/${vm.stateID}/statemap.js`;
-                state2.innerHTML = null;
-                document.getElementById("map-scripts").appendChild(state2);
-            vm.chooseDisplay();
+            if(vm.stateID !== null && vm.stateID.length === 2) {
+                let state1 = document.createElement("script");
+                    state1.type = "text/javascript";
+                    state1.src = `scripts/states/${vm.stateID}/mapdata.js`
+                    state1.innerHTML = null;
+                    document.getElementById("map-scripts").innerHTML = "";
+                    document.getElementById("map-scripts").appendChild(state1);
+                let state2 = document.createElement("script");
+                    state2.type = "text/javascript";
+                    state2.src = `scripts/states/${vm.stateID}/statemap.js`;
+                    state2.innerHTML = null;
+                    document.getElementById("map-scripts").appendChild(state2);
+                vm.chooseDisplay();
+            } else {
+                vm.hideButton();
+            }
         }
 
         vm.getData = () => {
@@ -61,11 +65,13 @@ const data = {
                     }    
                 });
             } else {
-                // console.log("Called for a specific state " + vm.stateID);
+                console.log("Called for a specific state " + vm.stateID);
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                console.log(censusStateID);
                 CensusDataService.getCountyPopulationForState00(censusStateID).then((response) => {
                     vm.datas = response;
                     vm.legend = ColorService.getColorsForCounties(vm.datas);
+                    console.log(vm.datas);
                 });
 
             }
@@ -284,7 +290,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -292,7 +298,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
@@ -303,7 +309,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -311,7 +317,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
@@ -322,7 +328,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -330,18 +336,35 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
 
 
         vm.convertStateIDtoCode = (stateID) => {
-            let stateName = simplemaps_usmap_mapdata.state_specific[stateID].name;
-            // console.log(stateName);
-            let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
-            // console.log(censusStateID);
-            return censusStateID;
+            console.log(stateID)
+            if(stateID !== null) {
+                try{
+                    let stateName = vm.getStateNameFromStateID(stateID);
+                    let censusStateID = CensusDataService.convertStateNameToCensusID(stateName);
+                    return censusStateID;
+                } catch {
+                    vm.hideButton();
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+
+        vm.getStateNameFromStateID = (stateID) => {
+            if(stateID !== null && stateID.length === 2) {
+                return simplemaps_usmap_mapdata.state_specific[stateID].name;
+            }
+            else {
+                return null;
+            }
         }
 
         vm.chooseDisplay = () => {
@@ -433,7 +456,6 @@ const data = {
                 vm.datas = response;
                 vm.datas.stateID = stateID;
                 vm.state1 = CompareService.setState1Data(vm.datas);
-                console.log(vm.state1);
             });
         }
         
@@ -443,7 +465,6 @@ const data = {
                 vm.datas = response;
                 vm.datas.stateID = stateID;
                 vm.state2 = CompareService.setState2Data(vm.datas);
-                console.log(vm.state2);
             });
         }
         

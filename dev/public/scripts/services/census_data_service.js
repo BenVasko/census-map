@@ -237,7 +237,7 @@ function CensusDataService($http) {
 
 //___________Convert State Names to IDs_________________________
     vm.convertStateNameToCensusID = (stateName) => {
-        let checkedName = stateName.replace(' ', '_').toLowerCase();
+        let checkedName = stateName.replace(/\s+/g, '_').toLowerCase();
         return state[checkedName];
     }
 
@@ -355,21 +355,21 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
         // console.log(returnArray);
         return returnArray;
     });
-
 }
-// This currently returns an object with the name, totalpop, 
 vm.getDataForState2010 = (targetState) => {
     return $http({
-        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME&for=state:${targetState}&key=${dataHeaders.key}`,
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace}&for=state:${targetState}&key=${dataHeaders.key}`,
         method: `GET`
     }).then((response) => {
         // console.log(response.data);
+        let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
         const squareMetersInSquareMiles = 2589988;
         let data = {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
-            popPerSM: response.data[1][0] * squareMetersInSquareMiles / response.data[1][1]
+            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+            percentWhite: percentWhite
         }
         return data;
     });
@@ -490,6 +490,25 @@ vm.getPopulationPerSquareMileForState2000 = (targetState) => {
 
 }
 
+vm.getDataForState2000 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME,${dataHeaders.white00},${dataHeaders.totalPopRace00}&for=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        // console.log(response.data);
+        let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
+        const squareMetersInSquareMiles = 2589988;
+        let data = {
+            areaName: response.data[1][2],
+            totalPop: response.data[1][0],
+            landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+            percentWhite: percentWhite
+        }
+        return data;
+    });
+}
+
 
 //___________________1990 populations _________________________________
 vm.getStatePopulation90 = () => {
@@ -602,7 +621,24 @@ vm.getStatePopAge90 = () => {
         });
 
     }
-
+    vm.getDataForState1990 = (targetState) => {
+        return $http({
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI,${dataHeaders.white90},${dataHeaders.totalPopRace90}&for=state:${targetState}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            // console.log(response.data);
+            let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
+            const squareMetersInSquareMiles = 2589988;
+            let data = {
+                areaName: response.data[1][2],
+                totalPop: response.data[1][0],
+                landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+                popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+                percentWhite: percentWhite
+            }
+            return data;
+        });
+    }
 
 }
 
