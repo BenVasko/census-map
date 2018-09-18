@@ -152,6 +152,7 @@ const ColorService = function(){
         // console.log(geographyKeys);
         // console.log(arrayOfArrays);
         
+<<<<<<< HEAD
         let logArrayOfArrays = [[]];
         logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
         let min = max = logArrayOfArrays[0][0];
@@ -162,6 +163,17 @@ const ColorService = function(){
                 max = logArrayOfArrays[0][i];
             } else if (logArrayOfArrays[0][i] < min) {
                 min = logArrayOfArrays[0][i];
+=======
+        arrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
+        let min = max = arrayOfArrays[0][0];
+
+        for(let i = 1; i < arrayOfArrays[0].length; i++) {
+            arrayOfArrays[0][i] = Math.log(arrayOfArrays[0][i]);
+            if(arrayOfArrays[0][i] > max) {
+                max = arrayOfArrays[0][i];
+            } else if (arrayOfArrays[0][i] < min) {
+                min = arrayOfArrays[0][i];
+>>>>>>> c34f6c8d9492df3b0db9a26bdb68e5239b4a955c
             }
         }
 

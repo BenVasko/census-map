@@ -22,7 +22,17 @@ body {
 
 h1 {
     text-align: center;
-    margin: 5% auto;;
+    margin: 5% auto;
+    font-family: 'Fredoka One', cursive;
+}
+
+.county-search-parent {
+    display: flex;
+    justify-content: center;
+}
+
+.county-search {
+    width: 75%;
 }
 
 .map-parent {
@@ -59,6 +69,7 @@ form {
     border: 5px solid black;
     border-radius: 10px;
     font-size: 24px;
+    font-family: 'Fredoka One', cursive;
 }
 
 .slider {
@@ -195,15 +206,36 @@ form {
     margin: 50px;
 }
 
+.compare {
+    background: #0b6739;
+    margin: 5% auto;
+}
+
 #compare-modal {
     flex-direction: column;
     position: absolute;
+    align-items: center;
+    justify-content: space-around;
     width: 90%;
-    height: 90%;
-    background: green;
+    height: 50%;
+    background: linear-gradient(purple, white);
     border: black;
-    left: 5%;
+    left: 4%;
     top: 5%;
+    border-radius: 20px;
+    border: 5px solid black;
+    box-shadow: black;
 }
 
+#compare-modal p {
+    color: white;
+    background: #00000063;
+    width: 100%;
+    text-align: center;
+    height: auto;
+    font-size: 40px;
+}
 
+.back {
+    background: white;
+}

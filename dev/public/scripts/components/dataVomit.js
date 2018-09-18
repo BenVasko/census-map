@@ -3,7 +3,6 @@
 const data = {
     templateUrl: `scripts/components/dataVomit.html`,
 
-
     controller: ["CensusDataService","ColorService","AgeService","AgeService90", "DropdownDataService", "CountyNameService", "DiversityService", "CompareService", "$location", function(CensusDataService, ColorService, AgeService, AgeService90, DropdownDataService, CountyNameService, DiversityService, CompareService, $location) {
         const vm = this;
         vm.legendTitle = "";
@@ -53,8 +52,8 @@ const data = {
                 // Get population for US
                 CensusDataService.getStatePopulation00().then((response) => {
                     vm.datas = response;
-                    console.log(vm.datas);
                     vm.legend = ColorService.getColors(vm.datas); // ColorService.getColors returns the numbers to go in the legend.
+
                     vm.total = 0;
                     // vm.legendTitle = "POPULATION IN MILLIONS";
                     for(let i = 1; i < vm.datas.length; i++) {
