@@ -194,4 +194,10 @@ form {
     width: 90%;
     margin: 50px;
 }
-
+.container {
+    display: flex;
+    
+}
+#countyList li {
+    
+}

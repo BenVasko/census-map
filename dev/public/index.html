@@ -31,5 +31,24 @@
     <script src="scripts/us-map/us-map-by-state/usmap.js"></script>
     <!--STATE MAPS-->
     <div id="map-scripts"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <style>
+            .bound {
+              border: 1px solid black;
+              fill: red;
+            }
+            </style>
+            <!-- <script>
+               
+            $(document).on("mouseenter", "path", function(e){
+               
+                // console.log(this);
+             let stuff = $(e.target).attr("class") ;
+            // console.log(stuff); // sm_state_12345
+            console.log($ctrl.stateID)
+            $("input:eq(0)").val("A");
+            })
+            </script> -->
 </body>
 </html>

@@ -377,6 +377,26 @@ const data = {
         // this is the list of county ids by state from the CountyNameService.js file
         vm.countiesByState = CountyNameService.state;
         console.log(vm.countiesByState);
+
+
+
+
+
+
+        vm.listOfCountiesInSearchBar = (function() {
+            
+
+                $(document).on("mouseenter", "path", function(e){
+                       
+                    // console.log(this);
+                 let stuff = $(e.target).attr("class") ;
+                // console.log(stuff); // sm_state_12345
+    
+                $("input:eq(0)").val(CountyNameService.state[vm.stateID][stuff]);
+                // console.log(CountyNameService.state[vm.stateID][stuff])
+                })
+            
+        })();
         
 
     }]
