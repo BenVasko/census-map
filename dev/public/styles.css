@@ -13,6 +13,12 @@ header{
     position: fixed;
     z-index: 999;
 }
+h2{
+    font-family: 'Fredoka One', cursive;
+    display:aboslute;
+    top:10%;
+    left:40%;
+}    
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
@@ -223,6 +229,18 @@ form {
 .compare-state-selection {
     margin: 20px;
 }
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+}
 
 .line {
     background: black;
@@ -233,6 +251,7 @@ form {
 
 .compare {
     background: #7ac57d;
+    border-radius:10px;
     margin: 5% auto;
 }
 
@@ -278,6 +297,14 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+footer{
+    background-color: #6ebbe7;
+    height:60px;
+    bottom:0;
+    position:fixed;
+    width:100%;
 }
 
 .state-info{
@@ -342,6 +369,7 @@ footer {
    h1{
     font-size:40px;
    }
+
    #map {
     max-width: 65%;
     height: auto;
@@ -352,8 +380,8 @@ footer {
     padding:0;
     margin:0;
     font-family: 'Open Sans', sans-serif;
-    height: 75%;
-    width: 3%;
+    height: 500px;
+    width: 38px;
     position: absolute;
     left: 10%;
     top: 12%;
@@ -361,27 +389,27 @@ footer {
 
 }
 .slider{
-    padding:0;
-    margin:0; 
-    width: 44%; 
     position: absolute;
-    left: -14.5%;
-    top: 49.5%; 
-    background: black;
-    border: 1px solid black;
     cursor: pointer; 
     transform: rotate(90deg);
+    left:-14.5%;
+    top: 49.5%;
+    width:44%;
+    background: black;
+    border: 1px solid black;
+    padding:0;
+    margin:0;
 } 
 
 #sliderLabel div {
     display: flex;
     justify-content: space-between;
     flex-direction:column;
-    height: 75%;
+    height: 60%;
     width: 40px;
     position: absolute;
     left: 1%;
-    top: 13%;
+    top: 20%;
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
@@ -395,16 +423,16 @@ footer {
 
 }
 .compare{
-    position:absolute;
+    position:fixed;
     left:15%;
-    top:95%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
 #state-drop{
-    position:absolute;
+    position:fixed;
     right:15%;
-    top:90%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
@@ -418,11 +446,7 @@ footer {
     margin:20px;
 }
 #legendLabel{
-    position:absolute;
-    right:-10%;
-    top:85%;
-    padding:0;
-    margin:0;
+    display:none;
 }
 .compare-container{
     flex-direction: row;
@@ -435,6 +459,11 @@ footer {
     padding:5px;
     border-radius:5px;
     margin:20px;
+    width:350px;
+}
+.parent{
+    margin:0;
+    padding:0;
 }
 
 }
