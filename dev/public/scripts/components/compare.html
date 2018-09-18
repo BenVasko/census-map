@@ -1,5 +1,5 @@
 <form class="compare-form">
-        <input type="reset" class="" id="back-button" ng-click="$ctrl.changePath();" value="Back">
+        <input type="reset" class="drop-down" id="back-button" ng-click="$ctrl.changePath();" value="Back">
     
         <select class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
         <section>

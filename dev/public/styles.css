@@ -37,11 +37,12 @@ h1 {
 }
 
 .map-parent {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 #map {
-    max-width: 375px;
+    max-width: 100%;
     height: auto;
     margin: 0 auto;
 }
@@ -62,16 +63,17 @@ form {
 
 .drop-down {
     margin: 0 auto;
-    width: 60%;
+    width: 73%;
     height: 50px;
     background: #6ebbe7;
     text-align-last: center;
     color: black;
     border: 5px solid black;
     border-radius: 10px;
-    font-size: 24px;
+    font-size: 22.5px;
     font-family: 'Fredoka One', cursive;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .slider {
@@ -168,9 +170,9 @@ form {
 }
 
 #back-button {
-    color: white;
-    background: red;
-    width: 60px;
+    color: black;
+    background: white;
+    width: 80px;
     height: 40px;
     position: absolute;
     top: 8px;
@@ -209,8 +211,12 @@ form {
 }
 
 .compare {
-    background: #0b6739;
+    background: #7ac57d;
     margin: 5% auto;
+}
+
+.compare:hover {
+    background: #36a258;
 }
 
 #compare-modal {
@@ -220,7 +226,7 @@ form {
     justify-content: space-around;
     width: 90%;
     height: 50%;
-    background: linear-gradient(purple, white);
+    background: linear-gradient(#fffecd, white);
     border: black;
     left: 4%;
     top: 5%;
@@ -240,6 +246,10 @@ form {
 
 .back {
     background: white;
+}
+
+.back:hover {
+    background: #d6e0e4;
 }
 /* _______________________________________________________________________________________________ */
 
