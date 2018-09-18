@@ -8,21 +8,26 @@ path {
 }
 header{
     background:#6ebbe7;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 999;
 }
-
-
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
     min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 100%;
 }
 
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 h1 {
@@ -32,9 +37,14 @@ h1 {
     padding:4px;
 }
 
+h2 {
+    text-align: center;
+}
+
 .county-search-parent {
     display: flex;
     justify-content: center;
+    margin-top: 70px;
 }
 
 .county-search {
@@ -59,7 +69,7 @@ h1 {
 .parent {
     display: flex;
     flex-direction: column;
-    margin: 10% auto;
+    margin: 10% auto 0 auto;
 }
 
 form {
@@ -182,15 +192,14 @@ form {
     width: 80px;
     height: 40px;
     position: absolute;
-    top: 8px;
+    top: 95px;
     right: 8px;
 }
 
 #sliderLabel {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5%;
-   
+    margin-bottom: 1%;
 }
 #sliderLabel div {
     display: flex;
@@ -205,8 +214,10 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100%;
     width: 100%;
+    margin-top: 40px;
 }
 
 .compare-state-selection {
@@ -239,7 +250,7 @@ form {
     background: linear-gradient(#fffecd, white);
     border: black;
     left: 4%;
-    top: 5%;
+    top: 8%;
     border-radius: 20px;
     border: 5px solid black;
     box-shadow: black;
@@ -262,12 +273,13 @@ form {
     background: #d6e0e4;
 }
 
-footer{
-    background-color: #6ebbe7;
-    height:60px;
-    padding:0;
-    margin:0;
+.compare-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 .state-info{
     font-family:'Open Sans', sans-serif;
 }
@@ -276,14 +288,54 @@ footer{
     font-size:15px;
     font-weight: bolder;
 }
-footer p{
-    text-align:right;
-    font-family:'Fredoka One', cursive;
-    padding:15px;
+
+footer {
+    display: none;
 }
+
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin: 10px auto;
+}
+#state1{
+    background-color:#0b6739;
+    margin-bottom: 0;
+}
+#state2{
+    background-color:#7ac57d;
+    margin-bottom: 0;
+}
+
+.chart-parent{
+    position:relative;
+    width: 100%;
+    margin: 20px auto;
+}
+
 /* _______________________________________________________________________________________________ */
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
+    footer{
+        display: block;
+        background-color: #6ebbe7;
+        height:60px;
+        padding:0;
+        margin:0;
+        width: 100%;
+        bottom: 0;
+    }
+    footer p{
+        text-align:right;
+        font-family:'Fredoka One', cursive;
+        padding:15px;
+    }
+
+    .parent {
+        margin: 0;
+    }
+
    .drop-down{
        width:30%;
    }
@@ -319,9 +371,7 @@ footer p{
     border: 1px solid black;
     cursor: pointer; 
     transform: rotate(90deg);
-
 } 
-
 
 #sliderLabel div {
     display: flex;
@@ -337,7 +387,7 @@ footer p{
 }
 #category-drop{
     position: absolute;
-    top:10%;
+    top:90px;
     left:37%;
     height:6%;
     width:25%;
@@ -347,7 +397,7 @@ footer p{
 .compare{
     position:absolute;
     left:15%;
-    top:90%;
+    top:95%;
     padding:0;
     margin:0;
 }
@@ -364,14 +414,7 @@ footer p{
     top:0%;
 }
 .chart-parent{
-    position:relative;
     width:45%;
-    margin:20px;
-}
-.state-info{
-    background-color:white;
-    padding:5px;
-    border-radius:5px;
     margin:20px;
 }
 #legendLabel{
@@ -382,15 +425,16 @@ footer p{
     margin:0;
 }
 .compare-container{
-    display:flex;
+    flex-direction: row;
 }
 .compare-state-selection{
     width:280px;
 }
-#state1{
-    background-color:#0b6739;
+
+.state-info{
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
 }
-#state2{
-    background-color:#7ac57d;
-}
+
 }
