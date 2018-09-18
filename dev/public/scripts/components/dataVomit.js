@@ -284,7 +284,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -292,7 +292,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
@@ -303,7 +303,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -311,7 +311,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
@@ -322,7 +322,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     console.log(response);
                     console.log(diverse);
-                    ColorService.getColors(diverse);
+                    vm.legend = ColorService.getColors(diverse);
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
@@ -330,7 +330,7 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, false);
                         console.log(response);
                         console.log(diverse);
-                        ColorService.getColorsForCounties(diverse);
+                        vm.legend = ColorService.getColorsForCounties(diverse);
                 });
             }
         }
