@@ -45,6 +45,32 @@ const AgeService = function(){
         }
         return dataArray;
     }
+
+    vm.calculateSeniorCitizenPercentage = (passedData, usMode) => {
+        let dataArray = [["% Seniors", "Geography"]];
+
+        for(let j = 1; j < passedData.length; j++){
+            let geography = null;
+
+
+            let totalPop = 0;
+            let seniorCount = 0;
+            for(let i = 0; i < 46; i++) {
+                totalPop += parseInt(passedData[j][i]);
+                if((i >= 17 && i <= 22) || (i>=40 && i<=45)) {
+                    seniorCount += parseInt(passedData[j][i]);
+                }
+            }
+            let seniorPercentage = seniorCount / totalPop * 100;
+            console.log(seniorPercentage);
+            if(usMode){
+                dataArray.push([seniorPercentage, passedData[j][47]]);
+            } else {
+                dataArray.push([seniorPercentage, passedData[j][47], passedData[j][48], passedData[j][49]]);
+            }
+        }
+        return dataArray;
+    }
 }
 
 angular

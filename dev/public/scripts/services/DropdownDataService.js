@@ -16,6 +16,9 @@ const DropdownDataService = function(){
     }, {
         name: 'Pop. Per Sq. Mile',
         value: '4'
+    }, {
+        name: 'Percentage Senior Citizens',
+        value: '5'
     }
     ];
 
