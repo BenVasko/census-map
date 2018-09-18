@@ -322,5 +322,8 @@ form {
     left:0%;
     top:0%;
 }
-
+.chart-parent{
+    position:relative;
+    width:48%;
+}
 }
