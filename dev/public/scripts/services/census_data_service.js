@@ -490,6 +490,25 @@ vm.getPopulationPerSquareMileForState2000 = (targetState) => {
 
 }
 
+vm.getDataForState2000 = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME,${dataHeaders.white00},${dataHeaders.totalPopRace00}&for=state:${targetState}&key=${dataHeaders.key}`,
+        method: `GET`
+    }).then((response) => {
+        // console.log(response.data);
+        let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
+        const squareMetersInSquareMiles = 2589988;
+        let data = {
+            areaName: response.data[1][2],
+            totalPop: response.data[1][0],
+            landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+            percentWhite: percentWhite
+        }
+        return data;
+    });
+}
+
 
 //___________________1990 populations _________________________________
 vm.getStatePopulation90 = () => {
@@ -602,7 +621,24 @@ vm.getStatePopAge90 = () => {
         });
 
     }
-
+    vm.getDataForState1990 = (targetState) => {
+        return $http({
+            url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop90},AREALAND,ANPSADPI,${dataHeaders.white90},${dataHeaders.totalPopRace90}&for=state:${targetState}&key=${dataHeaders.key}`,
+            method: `GET`
+        }).then((response) => {
+            // console.log(response.data);
+            let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
+            const squareMetersInSquareMiles = 2589988;
+            let data = {
+                areaName: response.data[1][2],
+                totalPop: response.data[1][0],
+                landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+                popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+                percentWhite: percentWhite
+            }
+            return data;
+        });
+    }
 
 }
 
