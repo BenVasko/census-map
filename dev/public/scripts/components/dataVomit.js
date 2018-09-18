@@ -346,7 +346,7 @@ const data = {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopAge(censusStateID).then((response) => {
                     vm.datas = response;
-                    let seniorPercent = AgeService90.calculateSeniorCitizenPercentage(vm.datas, false);
+                    let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, false);
                     vm.legend = ColorService.getColorsForCounties(seniorPercent);
                 });
             }

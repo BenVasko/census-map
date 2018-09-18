@@ -43,7 +43,7 @@ const AgeService90 = function(){
             if(usMode){
                 dataArray.push([seniorPercentage, passedData[j][31]]);
             } else {
-                dataArray.push([avgAgeOfState, passedData[j][31], passedData[j][32], passedData[j][33]]);
+                dataArray.push([seniorPercentage, passedData[j][31], passedData[j][32], passedData[j][33]]);
             }
         }
         console.log(dataArray);

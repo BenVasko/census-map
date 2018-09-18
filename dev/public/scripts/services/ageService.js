@@ -38,9 +38,9 @@ const AgeService = function(){
             }
             let avgAgeOfState = totalAgeofState/totalPop;
             if(usMode){
-                dataArray.push([avgAgeOfState, passedData[j][47]]);
+                dataArray.push([avgAgeOfState, passedData[j][46]]);
             } else {
-                dataArray.push([avgAgeOfState, passedData[j][47], passedData[j][48], passedData[j][49]]);
+                dataArray.push([avgAgeOfState, passedData[j][46], passedData[j][47], passedData[j][48]]);
             }
         }
         return dataArray;
@@ -62,11 +62,10 @@ const AgeService = function(){
                 }
             }
             let seniorPercentage = seniorCount / totalPop * 100;
-            console.log(seniorPercentage);
             if(usMode){
-                dataArray.push([seniorPercentage, passedData[j][47]]);
+                dataArray.push([seniorPercentage, passedData[j][46]]);
             } else {
-                dataArray.push([seniorPercentage, passedData[j][47], passedData[j][48], passedData[j][49]]);
+                dataArray.push([seniorPercentage, passedData[j][46], passedData[j][47], passedData[j][48]]);
             }
         }
         return dataArray;
