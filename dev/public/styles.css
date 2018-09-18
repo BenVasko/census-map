@@ -22,8 +22,9 @@ body {
 
 h1 {
     text-align: center;
-    margin: 5% auto;
+    /* margin: 5% auto; */
     font-family: 'Fredoka One', cursive;
+    padding:4px;
 }
 
 .county-search-parent {
@@ -250,4 +251,87 @@ form {
 .back:hover {
     background: #d6e0e4;
 }
+/* _______________________________________________________________________________________________ */
 
+@media only screen and (min-width: 768px) {
+   .drop-down{
+       width:30%;
+   }
+   h1{
+    font-size:40px;
+   }
+   #map {
+    max-width: 65%;
+    height: auto;
+    margin: 0 auto;
+   
+}
+.legend {
+    padding:0;
+    margin:0;
+    font-family: 'Open Sans', sans-serif;
+    height: 75%;
+    width: 3%;
+    position: absolute;
+    left: 8%;
+    top: 12%;
+    flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
+
+}
+.slider{
+    padding:0;
+    margin:0; 
+    width: 41%; 
+    position: absolute;
+    left: -14.5%;
+    top: 49.5%; 
+    background: black;
+    border: 1px solid black;
+    cursor: pointer; 
+    transform: rotate(90deg);
+
+} 
+
+
+#sliderLabel div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction:column;
+    height: 75%;
+    width: 40px;
+    position: absolute;
+    left: 1%;
+    top: 13%;
+    margin: 0 auto;   
+    font-family: 'Open Sans', sans-serif;
+}
+#category-drop{
+    position: absolute;
+    top:10%;
+    left:37%;
+    height:6%;
+    width:25%;
+    font-size:100%;
+
+}
+.compare{
+    position:absolute;
+    left:15%;
+    top:90%;
+    padding:0;
+    margin:0;
+}
+#state-drop{
+    position:absolute;
+    right:15%;
+    top:90%;
+    padding:0;
+    margin:0;
+}
+#compare-button{
+    position:relative;
+    left:0%;
+    top:0%;
+}
+
+}

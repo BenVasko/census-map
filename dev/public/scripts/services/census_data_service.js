@@ -237,7 +237,7 @@ function CensusDataService($http) {
 
 //___________Convert State Names to IDs_________________________
     vm.convertStateNameToCensusID = (stateName) => {
-        let checkedName = stateName.replace(' ', '_').toLowerCase();
+        let checkedName = stateName.replace(/\s+/g, '_').toLowerCase();
         return state[checkedName];
     }
 
