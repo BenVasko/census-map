@@ -1,4 +1,6 @@
-<h1>demoGraphics</h1>
+<header>
+    <h1>demoGraphics</h1>
+</header>
 <h2>{{$ctrl.getStateNameFromStateID($ctrl.stateID)}}</h2>
 <section class="county-search-parent">
         <input type="text" class="county-search">
@@ -36,7 +38,7 @@
     </section>
 
 <form>
-    <input type="reset" class="ng-hide" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
+    <input type="reset" class="ng-hide drop-down" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
 
     <select class="drop-down" id="state-drop" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
 </form>
@@ -54,6 +56,9 @@
 
 
 </section>
+<footer>
+    <p>demoGraphics</p>
+</footer>
 <!-- 
 <h1>Data:</h1>
 

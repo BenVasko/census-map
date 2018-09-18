@@ -6,6 +6,11 @@
 path {
     stroke-width: 1px;
 }
+header{
+    background:#6ebbe7;
+}
+
+
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
@@ -37,11 +42,12 @@ h1 {
 }
 
 .map-parent {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 #map {
-    max-width: 375px;
+    max-width: 100%;
     height: auto;
     margin: 0 auto;
 }
@@ -62,16 +68,17 @@ form {
 
 .drop-down {
     margin: 0 auto;
-    width: 60%;
+    width: 73%;
     height: 50px;
     background: #6ebbe7;
     text-align-last: center;
     color: black;
     border: 5px solid black;
     border-radius: 10px;
-    font-size: 24px;
+    font-size: 22.5px;
     font-family: 'Fredoka One', cursive;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .slider {
@@ -109,6 +116,7 @@ form {
     text-align: center;
     margin: 0 auto;
     letter-spacing: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 .legend {
     margin: 0 auto 5% auto;
@@ -137,6 +145,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
 }
 /* .legend div:last-child {
     border-right: none;
@@ -168,9 +177,9 @@ form {
 }
 
 #back-button {
-    color: white;
-    background: red;
-    width: 60px;
+    color: black;
+    background: white;
+    width: 80px;
     height: 40px;
     position: absolute;
     top: 8px;
@@ -181,12 +190,15 @@ form {
     display: flex;
     flex-direction: column;
     margin-bottom: 5%;
+   
 }
 #sliderLabel div {
     display: flex;
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+ 
 }
 
 .compare-form {
@@ -209,8 +221,12 @@ form {
 }
 
 .compare {
-    background: #0b6739;
+    background: #7ac57d;
     margin: 5% auto;
+}
+
+.compare:hover {
+    background: #36a258;
 }
 
 #compare-modal {
@@ -220,7 +236,7 @@ form {
     justify-content: space-around;
     width: 90%;
     height: 50%;
-    background: linear-gradient(purple, white);
+    background: linear-gradient(#fffecd, white);
     border: black;
     left: 4%;
     top: 5%;
@@ -240,6 +256,30 @@ form {
 
 .back {
     background: white;
+}
+
+.back:hover {
+    background: #d6e0e4;
+}
+
+footer{
+    background-color: #6ebbe7;
+    height:60px;
+    padding:0;
+    margin:0;
+}
+.state-info{
+    font-family:'Open Sans', sans-serif;
+}
+#desc{
+    color:#0b6739;
+    font-size:15px;
+    font-weight: bolder;
+}
+footer p{
+    text-align:right;
+    font-family:'Fredoka One', cursive;
+    padding:15px;
 }
 /* _______________________________________________________________________________________________ */
 
@@ -263,7 +303,7 @@ form {
     height: 75%;
     width: 3%;
     position: absolute;
-    left: 8%;
+    left: 10%;
     top: 12%;
     flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
 
@@ -271,7 +311,7 @@ form {
 .slider{
     padding:0;
     margin:0; 
-    width: 41%; 
+    width: 44%; 
     position: absolute;
     left: -14.5%;
     top: 49.5%; 
@@ -323,5 +363,34 @@ form {
     left:0%;
     top:0%;
 }
-
+.chart-parent{
+    position:relative;
+    width:45%;
+    margin:20px;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+}
+#legendLabel{
+    position:absolute;
+    right:-10%;
+    top:85%;
+    padding:0;
+    margin:0;
+}
+.compare-container{
+    display:flex;
+}
+.compare-state-selection{
+    width:280px;
+}
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
 }

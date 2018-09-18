@@ -14,47 +14,50 @@ const compare = {
             console.log(censusStateID);
             return censusStateID;
         }
-
-        // vm.getDataForState = (stateID) => {
-        //     let censusStateID = vm.convertStateIDtoCode(stateID);
-        //     CensusDataService.getDataForState2010(censusStateID).then((response) => {
-        //         vm.datas = response;
-        //     });
-        // };
-
         
-// if (vm.state1 !== null && vm.state2 !== null) {
     let ctx = document.getElementById("myChart").getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Pop", "Area", "Density"],
+            labels: ["Pop", "Avg Age", "Avg Diversity", "Seniors", "Area", "Pop Density"],
             datasets: [{
                 label: `${vm.state1.areaName}`,
                 data: [],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)'
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739'
                 ],
                 borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(255,99,132,1)',
-                    'rgba(255,99,132,1)'
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739',
+                    '#0b6739'
                 ],
                 borderWidth: 1
             }, {
                 label: `${vm.state2.areaName}`,
                 data: [],
                 backgroundColor: [
-                    'rgba(54, 162, 235)',
-                    'rgba(54, 162, 235)',
-                    'rgba(54, 162, 235)'
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d'
                 ],
                 borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(54, 162, 235, 1)'
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d',
+                    '#7ac57d'
                 ],
                 borderWidth: 1
             }],
@@ -69,7 +72,7 @@ const compare = {
             }
         }
     });
-// }
+
         for (let i = 0; i < vm.listOfStates.length; i++) {
             if (vm.listOfStates[i].value === CompareService.state1.stateID) {
                 vm.state1index = i;
@@ -99,8 +102,8 @@ const compare = {
                 vm.state1ComparePopPerSMPercentage = vm.state1ComparePopPerSMPercentage * (-1);
                 vm.state2ComparePopPerSMPercentage = vm.state2ComparePopPerSMPercentage * (-1);
             }
-            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
-            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
+            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, , , , vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
+            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, , , , vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
             myChart.update();
         }
 
