@@ -8,7 +8,17 @@ path {
 }
 header{
     background:#6ebbe7;
+    top:0;
+    position:fixed;
+    width:100%;
+    z-index:100;
 }
+h2{
+    font-family: 'Fredoka One', cursive;
+    display:aboslute;
+    top:10%;
+    left:40%;
+}    
 
 
 
@@ -212,6 +222,18 @@ form {
 .compare-state-selection {
     margin: 20px;
 }
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+}
 
 .line {
     background: black;
@@ -222,6 +244,7 @@ form {
 
 .compare {
     background: #7ac57d;
+    border-radius:10px;
     margin: 5% auto;
 }
 
@@ -267,6 +290,9 @@ footer{
     height:60px;
     padding:0;
     margin:0;
+    bottom:0;
+    position:fixed;
+    width:100%;
 }
 .state-info{
     font-family:'Open Sans', sans-serif;
@@ -290,6 +316,7 @@ footer p{
    h1{
     font-size:40px;
    }
+
    #map {
     max-width: 65%;
     height: auto;
@@ -300,8 +327,8 @@ footer p{
     padding:0;
     margin:0;
     font-family: 'Open Sans', sans-serif;
-    height: 75%;
-    width: 3%;
+    height: 500px;
+    width: 38px;
     position: absolute;
     left: 10%;
     top: 12%;
@@ -309,17 +336,20 @@ footer p{
 
 }
 .slider{
-    padding:0;
-    margin:0; 
-    width: 44%; 
     position: absolute;
-    left: -14.5%;
-    top: 49.5%; 
-    background: black;
-    border: 1px solid black;
     cursor: pointer; 
     transform: rotate(90deg);
+    /* -webkit-appearance: slider-vertical; */
+    /* height:500px; */
+    left:-12%;
+    top: 333px;;
+    width:500px;
+    background: black;
+    border: 1px solid black;
+    padding:0;
+    margin:0; 
 
+   
 } 
 
 
@@ -327,7 +357,7 @@ footer p{
     display: flex;
     justify-content: space-between;
     flex-direction:column;
-    height: 75%;
+    height: 73%;
     width: 40px;
     position: absolute;
     left: 1%;
@@ -345,16 +375,16 @@ footer p{
 
 }
 .compare{
-    position:absolute;
+    position:fixed;
     left:15%;
-    top:90%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
 #state-drop{
-    position:absolute;
+    position:fixed;
     right:15%;
-    top:90%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
@@ -368,29 +398,19 @@ footer p{
     width:45%;
     margin:20px;
 }
-.state-info{
-    background-color:white;
-    padding:5px;
-    border-radius:5px;
-    margin:20px;
-}
+
 #legendLabel{
-    position:absolute;
-    right:-10%;
-    top:85%;
-    padding:0;
-    margin:0;
+    display:none;
 }
 .compare-container{
     display:flex;
 }
 .compare-state-selection{
-    width:280px;
+    width:350px;
 }
-#state1{
-    background-color:#0b6739;
+.parent{
+    margin:0;
+    padding:0;
 }
-#state2{
-    background-color:#7ac57d;
-}
+
 }
