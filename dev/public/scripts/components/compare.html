@@ -1,6 +1,5 @@
 <header><h1>demoGraphics</h1></header>
 <form class="compare-form">
-        <input type="reset" class="" id="back-button" ng-click="$ctrl.changePath();" value="Back">
 <section class="compare-container">
         <select id="state1"class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
         <section class="state-info">
@@ -19,10 +18,11 @@
         <section class="state-info">
                 <p> <span id="desc">Population: </span>{{$ctrl.state2.totalPop}}</p>
                 <p> <span id="desc">Area: </span>{{$ctrl.state2.landSizeAreaInMiles}}</p>
-                <p> <span id="desc">Pop. Density: </span>{{$ctrl.state2.popPerSM}}}</p>
+                <p> <span id="desc">Pop. Density: </span>{{$ctrl.state2.popPerSM}}</p>
         </section>
         
-    </section>
+</section>
+<input type="reset" class="back drop-down" ng-click="$ctrl.changePath();" value="Back">
 </form>
 <footer>
         <p>demoGraphics</p>
