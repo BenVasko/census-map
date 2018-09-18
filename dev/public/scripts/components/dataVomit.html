@@ -48,7 +48,7 @@
         <select class="drop-down" ng-init="ID1 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
         <p>VS.</p>
         <select class="drop-down" ng-init="ID2 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
-        <button class="compare drop-down" ng-click="$ctrl.changePath();">Compare!</button>
+        <button class="compare drop-down"  id="compare-button" ng-click="$ctrl.changePath();">Compare!</button>
         <input type="reset" class="back drop-down" id="" ng-click="$ctrl.hideModal();" value="Back">
 </form>
 
