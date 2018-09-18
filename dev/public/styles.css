@@ -295,102 +295,123 @@ footer p{
     height: auto;
     margin: 0 auto;
    
-}
-.legend {
-    padding:0;
-    margin:0;
-    font-family: 'Open Sans', sans-serif;
-    height: 75%;
-    width: 3%;
-    position: absolute;
-    left: 10%;
-    top: 12%;
-    flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
+    }
+    .legend {
+        padding:0;
+        margin:0;
+        font-family: 'Open Sans', sans-serif;
+        height: 75%;
+        width: 3%;
+        position: absolute;
+        left: 10%;
+        top: 12%;
+        flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
+
+    }
+    .slider{
+        padding:0;
+        margin:0; 
+        width: 44%; 
+        position: absolute;
+        left: -14.5%;
+        top: 49.5%; 
+        background: black;
+        border: 1px solid black;
+        cursor: pointer; 
+        transform: rotate(90deg);
+
+    } 
+
+
+    #sliderLabel div {
+        display: flex;
+        justify-content: space-between;
+        flex-direction:column;
+        height: 75%;
+        width: 40px;
+        position: absolute;
+        left: 1%;
+        top: 13%;
+        margin: 0 auto;   
+        font-family: 'Open Sans', sans-serif;
+    }
+    #category-drop{
+        position: absolute;
+        top:10%;
+        left:37%;
+        height:6%;
+        width:25%;
+        font-size:100%;
+
+    }
+    .compare{
+        position:absolute;
+        left:15%;
+        top:90%;
+        padding:0;
+        margin:0;
+    }
+    #state-drop{
+        position:absolute;
+        right:15%;
+        top:90%;
+        padding:0;
+        margin:0;
+    }
+    #compare-button{
+        position:relative;
+        left:0%;
+        top:0%;
+    }
+    .chart-parent{
+        position:relative;
+        width:45%;
+        margin:20px;
+    }
+    .state-info{
+        background-color:white;
+        padding:5px;
+        border-radius:5px;
+        margin:20px;
+    }
+    #legendLabel{
+        position:absolute;
+        right:-10%;
+        top:85%;
+        padding:0;
+        margin:0;
+    }
+    .compare-container{
+        display:flex;
+    }
+    .compare-state-selection{
+        width:280px;
+    }
+    #state1{
+        background-color:#0b6739;
+    }
+    #state2{
+        background-color:#7ac57d;
+    }
+
+    #map_holder {
+        display: flex;
+        justify-content: center;
+    }
+
+    .map-parent {
+        margin-top: 100px;
+    }
+    #map_inner {
+        width: 70%;
+    }
+
+    svg {
+        width: 100%;
+        height: 300px;
+        justify-content: center;
+    }
+
 
 }
-.slider{
-    padding:0;
-    margin:0; 
-    width: 44%; 
-    position: absolute;
-    left: -14.5%;
-    top: 49.5%; 
-    background: black;
-    border: 1px solid black;
-    cursor: pointer; 
-    transform: rotate(90deg);
 
-} 
-
-
-#sliderLabel div {
-    display: flex;
-    justify-content: space-between;
-    flex-direction:column;
-    height: 75%;
-    width: 40px;
-    position: absolute;
-    left: 1%;
-    top: 13%;
-    margin: 0 auto;   
-    font-family: 'Open Sans', sans-serif;
-}
-#category-drop{
-    position: absolute;
-    top:10%;
-    left:37%;
-    height:6%;
-    width:25%;
-    font-size:100%;
-
-}
-.compare{
-    position:absolute;
-    left:15%;
-    top:90%;
-    padding:0;
-    margin:0;
-}
-#state-drop{
-    position:absolute;
-    right:15%;
-    top:90%;
-    padding:0;
-    margin:0;
-}
-#compare-button{
-    position:relative;
-    left:0%;
-    top:0%;
-}
-.chart-parent{
-    position:relative;
-    width:45%;
-    margin:20px;
-}
-.state-info{
-    background-color:white;
-    padding:5px;
-    border-radius:5px;
-    margin:20px;
-}
-#legendLabel{
-    position:absolute;
-    right:-10%;
-    top:85%;
-    padding:0;
-    margin:0;
-}
-.compare-container{
-    display:flex;
-}
-.compare-state-selection{
-    width:280px;
-}
-#state1{
-    background-color:#0b6739;
-}
-#state2{
-    background-color:#7ac57d;
-}
-}
