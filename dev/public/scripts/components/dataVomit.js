@@ -65,11 +65,13 @@ const data = {
                     }    
                 });
             } else {
-                // console.log("Called for a specific state " + vm.stateID);
+                console.log("Called for a specific state " + vm.stateID);
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
+                console.log(censusStateID);
                 CensusDataService.getCountyPopulationForState00(censusStateID).then((response) => {
                     vm.datas = response;
                     vm.legend = ColorService.getColorsForCounties(vm.datas);
+                    console.log(vm.datas);
                 });
 
             }
@@ -454,7 +456,6 @@ const data = {
                 vm.datas = response;
                 vm.datas.stateID = stateID;
                 vm.state1 = CompareService.setState1Data(vm.datas);
-                console.log(vm.state1);
             });
         }
         
@@ -464,7 +465,6 @@ const data = {
                 vm.datas = response;
                 vm.datas.stateID = stateID;
                 vm.state2 = CompareService.setState2Data(vm.datas);
-                console.log(vm.state2);
             });
         }
         
