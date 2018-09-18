@@ -1,24 +1,29 @@
+<header><h1>demoGraphics</h1></header>
 <form class="compare-form">
         <input type="reset" class="" id="back-button" ng-click="$ctrl.changePath();" value="Back">
-    
-        <select class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
-        <section>
-                <p>{{$ctrl.state1.areaName}}</p>
-                <p>{{$ctrl.state1.totalPop}} is the population of {{$ctrl.state1.areaName}}</p>
-                <p>{{$ctrl.state1.landSizeAreaInMiles}} is the area of {{$ctrl.state1.areaName}}</p>
-                <p>{{$ctrl.state1.popPerSM}} is the population density of {{$ctrl.state1.areaName}}</p>
+<section class="compare-container">
+        <select id="state1"class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
+        <section class="state-info">
+                <p> <span id="desc">Population: </span>{{$ctrl.state1.totalPop}}</p>
+                <p> <span id="desc">Area: </span>{{$ctrl.state1.landSizeAreaInMiles}}</p>
+                <p> <span id="desc">Pop. Density: </span>{{$ctrl.state1.popPerSM}}}</p>
         </section>
+   </section>
 
         <!-- <section class="line"></section> -->
         <section class="chart-parent">
                 <canvas id="myChart" width="300" height="200"></canvas>
         </section>
-
-        <section>
-                <p>{{$ctrl.state2.areaName}}</p>
-                <p>{{$ctrl.state2.totalPop}} is the population of {{$ctrl.state2.areaName}}</p>
-                <p>{{$ctrl.state2.landSizeAreaInMiles}} is the area of {{$ctrl.state2.areaName}}</p>
-                <p>{{$ctrl.state2.popPerSM}} is the population density of {{$ctrl.state2.areaName}}</p>
+    <section class="compare-container">
+         <select id="state2"class="drop-down compare-state-selection" ng-init="ID2 = $ctrl.listOfStates[$ctrl.state2index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
+        <section class="state-info">
+                <p> <span id="desc">Population: </span>{{$ctrl.state2.totalPop}}</p>
+                <p> <span id="desc">Area: </span>{{$ctrl.state2.landSizeAreaInMiles}}</p>
+                <p> <span id="desc">Pop. Density: </span>{{$ctrl.state2.popPerSM}}}</p>
         </section>
-        <select class="drop-down compare-state-selection" ng-init="ID2 = $ctrl.listOfStates[$ctrl.state2index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
+        
+    </section>
 </form>
+<footer>
+        <p>demoGraphics</p>
+    </footer>
