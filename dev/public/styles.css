@@ -339,11 +339,9 @@ footer p{
     position: absolute;
     cursor: pointer; 
     transform: rotate(90deg);
-    /* -webkit-appearance: slider-vertical; */
-    /* height:500px; */
-    left:-12%;
-    top: 333px;;
-    width:500px;
+    left:-14.5%;
+    top: 49.5%;
+    width:44%;
     background: black;
     border: 1px solid black;
     padding:0;
@@ -357,11 +355,11 @@ footer p{
     display: flex;
     justify-content: space-between;
     flex-direction:column;
-    height: 73%;
+    height: 60%;
     width: 40px;
     position: absolute;
     left: 1%;
-    top: 13%;
+    top: 20%;
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
