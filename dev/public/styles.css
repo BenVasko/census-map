@@ -24,6 +24,7 @@ h1 {
     text-align: center;
     margin: 5% auto;
     font-family: 'Fredoka One', cursive;
+
 }
 
 .county-search-parent {
@@ -238,4 +239,65 @@ form {
 
 .back {
     background: white;
+}
+/* _______________________________________________________________________________________________ */
+
+@media only screen and (min-width: 480px) {
+   .drop-down{
+       width:30%;
+   }
+   h1{
+    font-size:40px;
+   }
+   #map {
+    max-width: 75%;
+    height: auto;
+    margin: 0 auto;
+}
+.legend {
+    height: 600px;
+    width: 40px;
+    position: absolute;
+    left: 100px;
+    top: 150px;
+    flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
+
+}
+.slider{
+    height:600px;
+    width:20px;
+    position: absolute;
+    left: 70px;
+    top: 95px;
+    background: black;
+    -webkit-appearance: slider-vertical;
+}
+
+#sliderLabel div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction:column;
+    height: 590px;
+    width: 40px;
+    position: absolute;
+    left: 20px;
+    top: 160px;
+    margin: 0 auto;
+}
+#category-drop{
+    position: absolute;
+    top:120px;
+    left:35%;
+}
+.compare{
+    position:absolute;
+    left:10%;
+    top:750px
+}
+#state-drop{
+    position:absolute;
+    right:10%;
+    top:810px
+}
+
 }

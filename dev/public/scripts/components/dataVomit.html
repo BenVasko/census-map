@@ -12,7 +12,7 @@
 </section>
 
     <section class="parent">
-    <select class="drop-down" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
+    <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
 
     <label id="sliderLabel">
         <input class="slider" type="range" min="1990" max="2010" step="10" ng-model="year" ng-change="$ctrl.chooseYear(year);">
@@ -38,7 +38,7 @@
 <form>
     <input type="reset" class="ng-hide" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
 
-    <select class="drop-down" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
+    <select class="drop-down" id="state-drop" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
 </form>
 
 <button class="compare drop-down" ng-click="$ctrl.showCompareModal();">Compare States</button>
