@@ -384,8 +384,11 @@ const data = {
 
 
         vm.listOfCountiesInSearchBar = (function() {
-            
-
+                /*
+                
+                when you hover over the state map, the county name is displayed in the search bar.
+                */ 
+                let selectedClass;
                 $(document).on("mouseenter", "path", function(e){
                        
                     // console.log(this);
@@ -395,6 +398,25 @@ const data = {
                 $("input:eq(0)").val(CountyNameService.state[vm.stateID][stuff]);
                 // console.log(CountyNameService.state[vm.stateID][stuff])
                 })
+
+                $("ul").on("mouseenter", "li", function(e){
+                    selectedClass = $(e.target).attr("class");
+                    // console.log(`.${selectedClass}`);
+                    $(`.${selectedClass}`).toggleClass("bound");
+                    
+                }).on("mouseleave", "li", function(e){
+                    $(`.${selectedClass}`).toggleClass("bound");
+
+                })
+                // $("ul").on("mouseenter", "li", function(e){
+                //     // let stuff = $(e.target).attr("class") ;
+                //     let stuff = $(e.target).attr("class") ;
+                //     // console.log(stuff);
+                //     $(stuff).addClass("bound");
+                //     // $(e.target).toggleClass("bound");
+                //     // $(stuff).toggleClass("bound");
+                // })
+                
             
         })();
         
@@ -402,6 +424,20 @@ const data = {
     }]
 };
 
-angular.module('App').component("data", data);
+angular.module('App').component("data", data).filter('custom', function() {
+  return function(input, search) {
+    if (!input) return input;
+    if (!search) return input;
+    var expected = ('' + search).toLowerCase();
+    var result = {};
+    angular.forEach(input, function(value, key) {
+      var actual = ('' + value).toLowerCase();
+      if (actual.indexOf(expected) !== -1) {
+        result[key] = value;
+      }
+    });
+    return result;
+  }
+});
 
 

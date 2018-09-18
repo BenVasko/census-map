@@ -196,8 +196,14 @@ form {
 }
 .container {
     display: flex;
-    
+
 }
-#countyList li {
-    
+option {
+    font-size: 45px;
 }
+
+.bound {
+    border: 1px solid black;
+    fill: rgb(59, 114, 159);
+    cursor: pointer;
+  }
