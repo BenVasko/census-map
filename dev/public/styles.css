@@ -6,6 +6,11 @@
 path {
     stroke-width: 1px;
 }
+header{
+    background:#6ebbe7;
+}
+
+
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
@@ -111,6 +116,7 @@ form {
     text-align: center;
     margin: 0 auto;
     letter-spacing: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 .legend {
     margin: 0 auto 5% auto;
@@ -139,6 +145,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
 }
 /* .legend div:last-child {
     border-right: none;
@@ -183,12 +190,15 @@ form {
     display: flex;
     flex-direction: column;
     margin-bottom: 5%;
+   
 }
 #sliderLabel div {
     display: flex;
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+ 
 }
 
 .compare-form {
@@ -251,6 +261,26 @@ form {
 .back:hover {
     background: #d6e0e4;
 }
+
+footer{
+    background-color: #6ebbe7;
+    height:60px;
+    padding:0;
+    margin:0;
+}
+.state-info{
+    font-family:'Open Sans', sans-serif;
+}
+#desc{
+    color:#0b6739;
+    font-size:15px;
+    font-weight: bolder;
+}
+footer p{
+    text-align:right;
+    font-family:'Fredoka One', cursive;
+    padding:15px;
+}
 /* _______________________________________________________________________________________________ */
 
 @media only screen and (min-width: 768px) {
@@ -273,7 +303,7 @@ form {
     height: 75%;
     width: 3%;
     position: absolute;
-    left: 8%;
+    left: 10%;
     top: 12%;
     flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
 
@@ -281,7 +311,7 @@ form {
 .slider{
     padding:0;
     margin:0; 
-    width: 41%; 
+    width: 44%; 
     position: absolute;
     left: -14.5%;
     top: 49.5%; 
@@ -333,5 +363,34 @@ form {
     left:0%;
     top:0%;
 }
-
+.chart-parent{
+    position:relative;
+    width:45%;
+    margin:20px;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+}
+#legendLabel{
+    position:absolute;
+    right:-10%;
+    top:85%;
+    padding:0;
+    margin:0;
+}
+.compare-container{
+    display:flex;
+}
+.compare-state-selection{
+    width:280px;
+}
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
 }
