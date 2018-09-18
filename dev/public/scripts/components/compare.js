@@ -30,7 +30,7 @@ const compare = {
         data: {
             labels: ["Pop", "Area", "Density"],
             datasets: [{
-                label: 'state 1',
+                label: `${vm.state1.areaName}`,
                 data: [],
                 backgroundColor: [
                     'rgb(255, 99, 132)',
@@ -44,7 +44,7 @@ const compare = {
                 ],
                 borderWidth: 1
             }, {
-                label: 'state 2',
+                label: `${vm.state2.areaName}`,
                 data: [],
                 backgroundColor: [
                     'rgba(54, 162, 235)',
