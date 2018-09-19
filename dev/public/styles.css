@@ -522,6 +522,7 @@ footer{
     bottom:0;
     position:fixed;
     width:100%;
+    display:none;
 }
 footer p{
     font-Family: 'Cabin', Sans-Serif;
@@ -588,7 +589,7 @@ footer p{
 }
 
 #queries div:hover {
-    background: rgb(248, 246, 246);
+    background: #abdd94;
 
     box-shadow: 0 2px 5px grey;
 }
