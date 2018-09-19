@@ -156,7 +156,8 @@ const data = {
         }
 
         // when you click on the map
-        document.getElementById("map").addEventListener("click", (e) => {
+        // document.getElementById("map").addEventListener("click", (e) => {
+            $(document).on("click", "path", function(e){
             // Check if we're in a state
             if(vm.stateID===null){
                 document.getElementById("map-scripts").innerHTML = "";
@@ -172,6 +173,7 @@ const data = {
                     vm.appendStateScripts();
                 }
             }
+        
         });
 
         vm.hideButton = () => {
