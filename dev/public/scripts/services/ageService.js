@@ -50,9 +50,6 @@ const AgeService = function(){
         let dataArray = [["% Seniors", "Geography"]];
 
         for(let j = 1; j < passedData.length; j++){
-            let geography = null;
-
-
             let totalPop = 0;
             let seniorCount = 0;
             for(let i = 0; i < 46; i++) {
