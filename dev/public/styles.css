@@ -1,6 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
+body {
+    font-Family: 'Roboto Condensed', Sans-Serif;
+    font-Size: 16px;    
 }
 
 path {
@@ -8,37 +8,55 @@ path {
 }
 header{
     background:#6ebbe7;
+    width: 100%;
+    top: 0;
+    /* position: fixed; */
+    z-index: 999;
 }
-
-
+h2{
+    font-family: 'Fredoka One', cursive;
+    display:aboslute;
+    top:10%;
+    left:40%;
+}    
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
     min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 100%;
 }
 
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 h1 {
     text-align: center;
     /* margin: 5% auto; */
-    font-family: 'Fredoka One', cursive;
+    font-Family: 'Cabin', Sans-Serif;
+    font-Size: 16px;
     padding:4px;
+}
+
+h2 {
+    text-align: center;
 }
 
 .county-search-parent {
     display: flex;
     justify-content: center;
+    margin-top: 70px;
+
 }
 
 .county-search {
-    width: 75%;
+    /*width: 75%;*/
 }
 
 .map-parent {
@@ -59,7 +77,7 @@ h1 {
 .parent {
     display: flex;
     flex-direction: column;
-    margin: 10% auto;
+    margin: 10% auto 0 auto;
 }
 
 form {
@@ -181,16 +199,15 @@ form {
     background: white;
     width: 80px;
     height: 40px;
-    position: absolute;
-    top: 8px;
+    /* position: absolute; */
+    top: 95px;
     right: 8px;
 }
 
 #sliderLabel {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5%;
-   
+    margin-bottom: 1%;
 }
 #sliderLabel div {
     display: flex;
@@ -205,12 +222,26 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100%;
     width: 100%;
+    margin-top: 40px;
 }
 
 .compare-state-selection {
     margin: 20px;
+}
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
 }
 
 .line {
@@ -219,9 +250,52 @@ form {
     width: 90%;
     margin: 50px;
 }
+.container {
+    display: flex;
 
+}
+option {
+    font-size: 45px;
+}
+
+.bound {
+    fill: rgb(59, 114, 159);
+    background: rgb(248, 246, 246);
+    cursor: pointer;
+  }
+
+  #countyList {
+      overflow: scroll;
+      height: 200px;
+      list-style-type: none;
+      background: #fff;
+      width: 100%;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      padding-bottom: 7px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      margin-top: 0;
+      
+  }
+  #countyList li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 13px;
+  }
+
+  li i {
+      margin-right: 30px;
+  }
+
+  #countyList li:not(:first-child) {
+      border-top: 1px solid #e6e6e6;
+      border-top-width: 70%;
+  }
 .compare {
     background: #7ac57d;
+    border-radius:10px;
     margin: 5% auto;
 }
 
@@ -231,7 +305,7 @@ form {
 
 #compare-modal {
     flex-direction: column;
-    position: absolute;
+    /* position: absolute; */
     align-items: center;
     justify-content: space-around;
     width: 90%;
@@ -239,7 +313,7 @@ form {
     background: linear-gradient(#fffecd, white);
     border: black;
     left: 4%;
-    top: 5%;
+    top: 8%;
     border-radius: 20px;
     border: 5px solid black;
     box-shadow: black;
@@ -262,12 +336,21 @@ form {
     background: #d6e0e4;
 }
 
+.compare-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 footer{
     background-color: #6ebbe7;
     height:60px;
-    padding:0;
-    margin:0;
+    bottom:0;
+    /* position:fixed; */
+    width:100%;
 }
+
 .state-info{
     font-family:'Open Sans', sans-serif;
 }
@@ -276,20 +359,61 @@ footer{
     font-size:15px;
     font-weight: bolder;
 }
-footer p{
-    text-align:right;
-    font-family:'Fredoka One', cursive;
-    padding:15px;
+
+footer {
+    display: none;
 }
+
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin: 10px auto;
+}
+#state1{
+    background-color:#0b6739;
+    margin-bottom: 0;
+}
+#state2{
+    background-color:#7ac57d;
+    margin-bottom: 0;
+}
+
+.chart-parent{
+    position:relative;
+    width: 100%;
+    margin: 20px auto;
+}
+
 /* _______________________________________________________________________________________________ */
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
+    footer{
+        display: block;
+        background-color: #6ebbe7;
+        height:60px;
+        padding:0;
+        margin:0;
+        width: 100%;
+        bottom: 0;
+    }
+    footer p{
+        text-align:right;
+        font-family:'Fredoka One', cursive;
+        padding:15px;
+    }
+
+    .parent {
+        margin: 0;
+    }
+
    .drop-down{
        width:30%;
    }
    h1{
     font-size:40px;
    }
+
    #map {
     max-width: 65%;
     height: auto;
@@ -300,44 +424,42 @@ footer p{
     padding:0;
     margin:0;
     font-family: 'Open Sans', sans-serif;
-    height: 75%;
-    width: 3%;
-    position: absolute;
+    height: 500px;
+    width: 38px;
+    /* position: absolute; */
     left: 10%;
     top: 12%;
     flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
 
 }
 .slider{
-    padding:0;
-    margin:0; 
-    width: 44%; 
-    position: absolute;
-    left: -14.5%;
-    top: 49.5%; 
+    /* position: absolute; */
+    cursor: pointer; 
+    /* transform: rotate(90deg); */
+    left:-14.5%;
+    top: 49.5%;
+    width:44%;
     background: black;
     border: 1px solid black;
-    cursor: pointer; 
-    transform: rotate(90deg);
-
+    padding:0;
+    margin:0;
 } 
-
 
 #sliderLabel div {
     display: flex;
     justify-content: space-between;
     flex-direction:column;
-    height: 75%;
+    height: 60%;
     width: 40px;
-    position: absolute;
+    /* position: absolute; */
     left: 1%;
-    top: 13%;
+    top: 20%;
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
 #category-drop{
-    position: absolute;
-    top:10%;
+    /* position: absolute; */
+    top:90px;
     left:37%;
     height:6%;
     width:25%;
@@ -345,16 +467,16 @@ footer p{
 
 }
 .compare{
-    position:absolute;
+    /* position:fixed; */
     left:15%;
-    top:90%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
 #state-drop{
-    position:absolute;
+    /* position:fixed; */
     right:15%;
-    top:90%;
+    bottom:70px;
     padding:0;
     margin:0;
 }
@@ -364,33 +486,101 @@ footer p{
     top:0%;
 }
 .chart-parent{
-    position:relative;
     width:45%;
     margin:20px;
 }
-.state-info{
-    background-color:white;
-    padding:5px;
-    border-radius:5px;
-    margin:20px;
-}
 #legendLabel{
-    position:absolute;
-    right:-10%;
-    top:85%;
-    padding:0;
-    margin:0;
+    display:none;
 }
 .compare-container{
-    display:flex;
+    flex-direction: row;
 }
 .compare-state-selection{
     width:280px;
 }
-#state1{
-    background-color:#0b6739;
+
+.state-info{
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+    width:350px;
 }
-#state2{
-    background-color:#7ac57d;
+.parent{
+    margin:0;
+    padding:0;
 }
+
+}
+
+
+#page {
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+}
+
+#demo {
+    margin: 8px 0 8px 8px;
+    background: #ddd;
+    min-width: 200px;
+}
+#search {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #e6e6e6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    
+    
+}
+::placeholder {
+    font-size: 16px;
+    color: #bbb;
+}
+#queries {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#queries div {
+    /*border: 1px solid black;*/
+    /* text-align: center; */
+    padding: 14px;
+    cursor: pointer;
+    color: black;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    font-weight: 600;
+
+}
+
+#queries :last-child {
+    border-bottom-left-radius:  3px;
+    border-bottom-right-radius: 3px;
+}
+
+#queries div:hover {
+    background: rgb(248, 246, 246);
+
+    box-shadow: 0 2px 5px grey;
+}
+
+svg {
+    max-height: 500px;
+}
+
+#queries i {
+    margin-right: 20px;
+}
+
+input {
+    outline: none;
 }

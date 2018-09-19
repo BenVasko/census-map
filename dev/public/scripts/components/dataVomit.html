@@ -1,18 +1,51 @@
-<header>
-    <h1>demoGraphics</h1>
-</header>
-<h2>{{$ctrl.getStateNameFromStateID($ctrl.stateID)}}</h2>
-<section class="county-search-parent">
-        <input type="text" class="county-search">
-</section>
+<div id="page">
+    <section id="demo">
+        <input id="search" type="text" placeholder="search by county" ng-model="countysearch" autocomplete="off">
+        <ul id="countyList">
+            <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID] | custom:countysearch" class="{{class}}"><i class="fas fa-map-marker-alt"></i>{{ county }}</li>
+        </ul>
+        <section id="queries">
+            <div><i class="fas fa-users"></i>Population</div>
+            <div><i class="fas fa-palette"></i>Diversity</div>
+            <div><i class="fas fa-user-clock"></i>Avg Age</div>
+            <div><i class="fas fa-city"></i>Pop Density</div>
+            <div><i class="fab fa-jenkins"></i>% Senior Citizens</div>
+            <div><i class="fas fa-home"></i></i>Home Owners</div>
+            <div><i class="fas fa-balance-scale"></i>Compare</div>
+            <input>
+            <div></div>
+            <input>
+        </section>
+    </section>
+    <section id="graphics">
+        <div id="map"></div>
 
-<ul id="countyList" >
-    <li></li>
-</ul>
+    </section>
+</div>
+<h1>demoGraphics</h1>
+<h2>{{$ctrl.stateID}}</h2>
+<!-- <input>
+<div class="container">
+    
+    <ul id="countyList" >
+        <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID]" class="{{class}}">{{county}}</li>
+    </ul>
+    
+</div> -->
+
+<!-- <form name="some">
+    <label> Search
+        <input type="text" list="dataList">
+    </label>
+    <datalist id="dataList">
+        <option ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID]" class="{{class}}" >{{county}}</option>
+    </datalist>
+</form> -->
+
+
+
 <section class="map-parent">
-    <div id="map"></div>
 </section>
-
     <section class="parent">
     <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
 
@@ -65,4 +98,3 @@
 <section ng-repeat="item in $ctrl.datas track by $index">
     <p>{{item[0]}}  |  {{item[1]}}  |  {{item[2]}}  |  {{item[3]|| ""}}  |  %{{item[0]/$ctrl.total*100 || ""}}</p>
 </section> -->
-
