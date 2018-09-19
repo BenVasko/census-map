@@ -1,3 +1,22 @@
+<div id="page">
+    <section id="demo">
+        <input id="search" type="text" placeholder="search by county" ng-model="countysearch" autocomplete="off">
+        <ul id="countyList">
+            <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID] | custom:countysearch" class="{{class}}"><i class="fas fa-map-marker-alt"></i>{{ county }}</li>
+        </ul>
+        <section id="queries">
+            <div><i class="fas fa-users"></i>Population</div>
+            <div><i class="fas fa-palette"></i>Diversity</div>
+            <div><i class="fas fa-user-clock"></i>Avg Age</div>
+            <div><i class="fas fa-city"></i>Pop Density</div>
+            <div><i class="fas fa-balance-scale"></i>Compare</div>
+        </section>
+    </section>
+    <section id="graphics">
+        <div id="map"></div>
+
+    </section>
+</div>
 <h1>demoGraphics</h1>
 <h2>{{$ctrl.stateID}}</h2>
 <!-- <input>
@@ -18,13 +37,9 @@
     </datalist>
 </form> -->
 
-<ul style="float: left" id="countyList">
-    <input type="text" placeholder="search by county" ng-model="countysearch">
-    <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID] | custom:countysearch" class="{{class}}">{{ county }}</li>
-</ul>
+
 
 <section class="map-parent">
-    <div id="map"></div>
 </section>
     <section class="parent">
     <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>

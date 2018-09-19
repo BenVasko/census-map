@@ -1,6 +1,6 @@
-* {
-    margin: 0;
-    padding: 0;
+body {
+    font-Family: 'Roboto Condensed', Sans-Serif;
+    font-Size: 16px;    
 }
 
 path {
@@ -10,7 +10,7 @@ header{
     background:#6ebbe7;
     width: 100%;
     top: 0;
-    position: fixed;
+    /* position: fixed; */
     z-index: 999;
 }
 h2{
@@ -39,7 +39,8 @@ body {
 h1 {
     text-align: center;
     /* margin: 5% auto; */
-    font-family: 'Fredoka One', cursive;
+    font-Family: 'Cabin', Sans-Serif;
+    font-Size: 16px;
     padding:4px;
 }
 
@@ -51,10 +52,11 @@ h2 {
     display: flex;
     justify-content: center;
     margin-top: 70px;
+
 }
 
 .county-search {
-    width: 75%;
+    /*width: 75%;*/
 }
 
 .map-parent {
@@ -197,7 +199,7 @@ form {
     background: white;
     width: 80px;
     height: 40px;
-    position: absolute;
+    /* position: absolute; */
     top: 95px;
     right: 8px;
 }
@@ -257,17 +259,40 @@ option {
 }
 
 .bound {
-    border: 1px solid black;
     fill: rgb(59, 114, 159);
+    background: rgb(248, 246, 246);
     cursor: pointer;
   }
 
-<<<<<<< HEAD
   #countyList {
       overflow: scroll;
       height: 200px;
+      list-style-type: none;
+      background: #fff;
+      width: 100%;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      padding-bottom: 7px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      margin-top: 0;
+      
   }
-=======
+  #countyList li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 13px;
+  }
+
+  li i {
+      margin-right: 30px;
+  }
+
+  #countyList li:not(:first-child) {
+      border-top: 1px solid #e6e6e6;
+      border-top-width: 70%;
+  }
 .compare {
     background: #7ac57d;
     border-radius:10px;
@@ -280,7 +305,7 @@ option {
 
 #compare-modal {
     flex-direction: column;
-    position: absolute;
+    /* position: absolute; */
     align-items: center;
     justify-content: space-around;
     width: 90%;
@@ -322,7 +347,7 @@ footer{
     background-color: #6ebbe7;
     height:60px;
     bottom:0;
-    position:fixed;
+    /* position:fixed; */
     width:100%;
 }
 
@@ -401,16 +426,16 @@ footer {
     font-family: 'Open Sans', sans-serif;
     height: 500px;
     width: 38px;
-    position: absolute;
+    /* position: absolute; */
     left: 10%;
     top: 12%;
     flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
 
 }
 .slider{
-    position: absolute;
+    /* position: absolute; */
     cursor: pointer; 
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
     left:-14.5%;
     top: 49.5%;
     width:44%;
@@ -426,33 +451,30 @@ footer {
     flex-direction:column;
     height: 60%;
     width: 40px;
-    position: absolute;
+    /* position: absolute; */
     left: 1%;
     top: 20%;
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
-<<<<<<< HEAD
-=======
 #category-drop{
-    position: absolute;
+    /* position: absolute; */
     top:90px;
     left:37%;
     height:6%;
     width:25%;
     font-size:100%;
->>>>>>> 9017e0be4d31f578d63bb2394bfa209408a81f88
 
 }
 .compare{
-    position:fixed;
+    /* position:fixed; */
     left:15%;
     bottom:70px;
     padding:0;
     margin:0;
 }
 #state-drop{
-    position:fixed;
+    /* position:fixed; */
     right:15%;
     bottom:70px;
     padding:0;
@@ -489,4 +511,71 @@ footer {
 }
 
 }
->>>>>>> master
+
+
+#page {
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+}
+
+#demo {
+    margin: 8px 0 8px 8px;
+    background: #ddd;
+}
+#search {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #e6e6e6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    
+    
+}
+::placeholder {
+    font-size: 16px;
+    color: #bbb;
+}
+#queries {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#queries div {
+    /*border: 1px solid black;*/
+    /* text-align: center; */
+    padding: 14px;
+    cursor: pointer;
+    color: black;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    font-weight: 600;
+
+}
+
+#queries :last-child {
+    border-bottom-left-radius:  3px;
+    border-bottom-right-radius: 3px;
+}
+
+#queries div:hover {
+    background: rgb(248, 246, 246);
+
+    box-shadow: 0 2px 5px grey;
+}
+
+svg {
+    max-height: 500px;
+}
+
+#queries i {
+    margin-right: 20px;
+}
