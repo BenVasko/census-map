@@ -136,7 +136,7 @@ form {
 }
 .legend {
     margin: 0 auto 5% auto;
-    width: 90%;
+    width: 95%;
     height: 40px;
     text-align: center;
     color: black;
@@ -186,6 +186,15 @@ form {
 }
 .legend div:nth-child(7) {
     background: #ffffe5;
+}
+
+.legendText {
+    display: flex;
+    flex-direction: column;
+}
+
+.legendText p {
+    margin: 0 auto;
 }
 
 #noData {
@@ -347,7 +356,7 @@ footer {
     footer{
         display: block;
         background-color: #6ebbe7;
-        height:60px;
+        height:40px;
         padding:0;
         margin:0;
         width: 100%;
