@@ -1,6 +1,6 @@
 'use strict';
 
-function CensusDataService(AgeService, $http) {
+function CensusDataService($http, AgeService) {
     const vm = this;
     const dataHeaders = {
         key: 'a8ed8e7175e0f6f1c379233a5f3020105c645e2b',
@@ -757,4 +757,4 @@ vm.getStatePopAge90 = () => {
     
 }
 
-angular.module("App").service("CensusDataService", ['AgeService', CensusDataService]);
+angular.module("App").service("CensusDataService", ["$http", "AgeService", CensusDataService]);
