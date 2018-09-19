@@ -1,6 +1,6 @@
 'use strict';
 
-function CensusDataService($http, AgeServices) {
+function CensusDataService($http, AgeService) {
     const vm = this;
     const dataHeaders = {
         key: 'a8ed8e7175e0f6f1c379233a5f3020105c645e2b',
@@ -377,15 +377,15 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
     });
 }
 vm.getDataForState2010 = (targetState) => {
-    return $http({
-        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace},${dataHeaders.medianAge_10},${dataHeaders.homeOwnedClear10},${dataHeaders.homeOwnedMortgage10},&for=state:${targetState}&key=${dataHeaders.key}`,
+    let data = $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace},${dataHeaders.medianAge_10},${dataHeaders.homeOwnedClear10},${dataHeaders.homeOwnedMortgage10}&for=state:${targetState}&key=${dataHeaders.key}`,
         method: `GET`
     }).then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
         const squareMetersInSquareMiles = 2589988;
         let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]) * 100;
-        let data = {
+        return data = {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
@@ -394,13 +394,14 @@ vm.getDataForState2010 = (targetState) => {
             medianAge: response.data[1][5],
             percentSenior: null,
             homeOwned: percentHomeOwner
-        }
-        vm.getOneStatePopAge(targetState).then((response2) => {
-            let percentSenior = AgeService.calculateSeniorCitizenPercentage(response2)[1][0];
-            data.percentSenior = percentSenior;
-            return data;
-        });
+        };
     });
+    data.percentSenior = vm.getOneStatePopAge(targetState).then((response2) => {
+        let percentSenior = AgeService.calculateSeniorCitizenPercentage(response2)[1][0];
+        return percentSenior;
+    });
+    
+    return data;
 }
 
 vm.getOccupancyForState2010 = () => {
