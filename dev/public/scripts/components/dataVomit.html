@@ -1,9 +1,11 @@
 <div id="page">
     <section id="demo">
+        <section class="ng-hide" id="county-search">
         <input id="search" type="text" placeholder="search by county" ng-model="countysearch" autocomplete="off">
         <ul id="countyList">
             <li ng-repeat="(class, county) in $ctrl.countiesByState[$ctrl.stateID] | custom:countysearch" class="{{class}}"><i class="fas fa-map-marker-alt"></i>{{ county }}</li>
         </ul>
+        </section>
         <section id="queries">
             <div ng-init="pop.value=1" ng-click="$ctrl.getCensusData(pop)"><i class="fas fa-users"></i>Population</div>
             <div ng-init="diversity.value=2" ng-click="$ctrl.getCensusData(diversity)"><i class="fas fa-palette"></i>Diversity</div>
