@@ -521,6 +521,7 @@ footer {
 #demo {
     margin: 8px 0 8px 8px;
     background: #ddd;
+    min-width: 200px;
 }
 #search {
     width: 100%;
@@ -578,4 +579,8 @@ svg {
 
 #queries i {
     margin-right: 20px;
+}
+
+input {
+    outline: none;
 }
