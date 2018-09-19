@@ -10,11 +10,13 @@ header{
     background:#6ebbe7;
     width: 100%;
     top: 0;
-    /* position: fixed; */
+    height:60px;
+    position: fixed;
     z-index: 999;
 }
+
 h2{
-    font-family: 'Fredoka One', cursive;
+    font-Family: 'Cabin', Sans-Serif; 
     display:aboslute;
     top:10%;
     left:40%;
@@ -39,9 +41,7 @@ body {
 h1 {
     text-align: center;
     /* margin: 5% auto; */
-    font-Family: 'Cabin', Sans-Serif;
-    font-Size: 16px;
-    padding:4px;
+    font-Family: 'Cabin', Sans-Serif; 
 }
 
 h2 {
@@ -352,14 +352,6 @@ option {
     align-items: center;
 }
 
-footer{
-    background-color: #6ebbe7;
-    height:60px;
-    bottom:0;
-    /* position:fixed; */
-    width:100%;
-}
-
 .state-info{
     font-family:'Open Sans', sans-serif;
 }
@@ -411,6 +403,7 @@ footer {
         font-family:'Fredoka One', cursive;
         padding:15px;
     }
+ 
 
     .parent {
         margin: 0;
@@ -419,33 +412,35 @@ footer {
    .drop-down{
        width:30%;
    }
-   h1{
-    font-size:40px;
-   }
+
 
    #map {
     max-width: 65%;
     height: auto;
-    margin: 0 auto;
+    position:relative;
+    top:20%;
+    right:11%;
+   
    
 }
+
 .legend {
     padding:0;
     margin:0;
     font-family: 'Open Sans', sans-serif;
     height: 500px;
     width: 38px;
-    /* position: absolute; */
-    left: 10%;
+    position: absolute;
+    right: 10%;
     top: 12%;
     flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
 
 }
 .slider{
-    /* position: absolute; */
+    position: absolute;
     cursor: pointer; 
-    /* transform: rotate(90deg); */
-    left:-14.5%;
+    transform: rotate(90deg);
+    right:-14.5%;
     top: 49.5%;
     width:44%;
     background: black;
@@ -460,34 +455,38 @@ footer {
     flex-direction:column;
     height: 60%;
     width: 40px;
-    /* position: absolute; */
-    left: 1%;
+    position: absolute;
+    right: 1%;
     top: 20%;
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
 #category-drop{
+    display:none;
     /* position: absolute; */
-    top:90px;
+    /* top:90px;
     left:37%;
     height:6%;
     width:25%;
-    font-size:100%;
+    font-size:100%; */
 
 }
 .compare{
-    /* position:fixed; */
+    position:fixed;
+    display:none;
     left:15%;
     bottom:70px;
     padding:0;
     margin:0;
 }
+
 #state-drop{
+    display:none;
     /* position:fixed; */
-    right:15%;
+    /* right:15%;
     bottom:70px;
     padding:0;
-    margin:0;
+    margin:0; */
 }
 #compare-button{
     position:relative;
@@ -504,6 +503,7 @@ footer {
 .compare-container{
     flex-direction: row;
 }
+
 .compare-state-selection{
     width:280px;
 }
@@ -518,6 +518,19 @@ footer {
     margin:0;
     padding:0;
 }
+footer{
+    background-color: #6ebbe7;
+    height:60px;
+    bottom:0;
+    position:fixed;
+    width:100%;
+}
+footer p{
+    font-Family: 'Cabin', Sans-Serif;
+    font-weight:bold;
+}
+
+
 
 }
 
@@ -528,7 +541,7 @@ footer {
 }
 
 #demo {
-    margin: 8px 0 8px 8px;
+    margin: 80px 0 8px 8px;
     background: #ddd;
     min-width: 200px;
 }
