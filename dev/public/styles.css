@@ -10,13 +10,14 @@ header{
     background:#6ebbe7;
     width: 100%;
     top: 0;
+    left:0;
     height:60px;
     position: fixed;
     z-index: 999;
 }
 
 h2{
-    font-Family: 'Cabin', Sans-Serif; 
+    font-family: 'Fredoka One', cursive;
     display:aboslute;
     top:10%;
     left:40%;
@@ -41,7 +42,7 @@ body {
 h1 {
     text-align: center;
     /* margin: 5% auto; */
-    font-Family: 'Cabin', Sans-Serif; 
+    font-family: 'Fredoka One', cursive;
 }
 
 h2 {
@@ -211,7 +212,7 @@ form {
     position: absolute;
     top: 95px;
     right: 8px;
-    font-Family: 'Cabin', Sans-Serif;
+    font-family: 'Fredoka One', cursive;
 }
 
 #sliderLabel {
@@ -387,7 +388,85 @@ footer {
     width: 100%;
     margin: 20px auto;
 }
+#demo{
+    display:none;
+}
 
+#page {
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+}
+
+#demo {
+    margin: 80px 0 100px 8px;
+    background: #ddd;
+    min-width: 200px;
+}
+#search {
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #e6e6e6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
+    
+    
+}
+::placeholder {
+    font-size: 16px;
+    color: #bbb;
+}
+#queries {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#queries div {
+    /*border: 1px solid black;*/
+    /* text-align: center; */
+    padding: 14px;
+    cursor: pointer;
+    color: black;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+    font-weight: 600;
+
+}
+
+#queries :last-child {
+    border-bottom-left-radius:  3px;
+    border-bottom-right-radius: 3px;
+}
+
+#queries div:hover {
+    background: #abdd94;
+    box-shadow: 0 2px 5px grey;
+}
+#queries div:last-child{
+background:#7ac57d;
+}
+#queries div:active{
+    background:blue;
+}
+svg {
+    max-height: 500px;
+}
+
+#queries i {
+    margin-right: 20px;
+}
+
+input {
+    outline: none;
+}
 /* _______________________________________________________________________________________________ */
 
 @media only screen and (min-width: 769px) {
@@ -399,6 +478,7 @@ footer {
         margin:0;
         width: 100%;
         bottom: 0;
+        left:0;
     }
     footer p{
         text-align:left;
@@ -462,6 +542,7 @@ footer {
     margin: 0 auto;   
     font-family: 'Open Sans', sans-serif;
 }
+
 #category-drop{
     display:none;
     /* position: absolute; */
@@ -499,7 +580,10 @@ footer {
     margin:20px;
 }
 #legendLabel{
-    display:none;
+    position:absolute;
+    top:11%;
+    left:50%;
+    transform:translateX(-50%)
 }
 .compare-container{
     flex-direction: row;
@@ -532,11 +616,12 @@ footer{
 }
 .state-title{
     position: absolute;
-    left:50%;
     top:12%;
+    left:50%;
+    transform:translateX(-50%)
 }
 footer p{
-    font-Family: 'Cabin', Sans-Serif;
+    font-family: 'Fredoka One', cursive;
     font-weight:bold;
 
 }
@@ -545,82 +630,13 @@ footer p{
     top:12%;
 
 }
-
-
-
+#demo{
+    display:block;
 }
 
 
-#page {
-    display: grid;
-    grid-template-columns: 1fr 3.5fr;
-}
-
-#demo {
-    margin: 80px 0 100px 8px;
-    background: #ddd;
-    min-width: 200px;
-}
-#search {
-    width: 100%;
-    padding: 14px;
-    box-sizing: border-box;
-    font-size: 15px;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid #e6e6e6;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-
-    
-    
-}
-::placeholder {
-    font-size: 16px;
-    color: #bbb;
-}
-#queries {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-#queries div {
-    /*border: 1px solid black;*/
-    /* text-align: center; */
-    padding: 14px;
-    cursor: pointer;
-    color: black;
-    background: #fff;
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: 20px;
-    font-weight: 600;
 
 }
 
-#queries :last-child {
-    border-bottom-left-radius:  3px;
-    border-bottom-right-radius: 3px;
-}
 
-#queries div:hover {
-    background: #abdd94;
-    box-shadow: 0 2px 5px grey;
-}
-#queries div:last-child{
-background:#7ac57d;
-}
-svg {
-    max-height: 500px;
-}
-
-#queries i {
-    margin-right: 20px;
-}
-
-input {
-    outline: none;
-}
 
