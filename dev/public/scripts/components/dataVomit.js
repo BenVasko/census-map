@@ -12,6 +12,7 @@ const data = {
         vm.stateID = null;
         // selecting the back button
         vm.button = angular.element(document.getElementById("back-button"));
+        vm.countySearch = angular.element(document.getElementById("county-search"));
         vm.dataType = DropdownDataService.dataType;
         vm.listOfStates = DropdownDataService.listOfStates;
         vm.legend;
@@ -160,6 +161,7 @@ const data = {
             if(vm.stateID===null){
                 document.getElementById("map-scripts").innerHTML = "";
                 // remove class of "ng-hide" so button will display
+                vm.countySearch.removeClass("ng-hide");
                 vm.button.removeClass("ng-hide");
                 // checking to see if you clicked on a state object
                 if (angular.element(e.target).attr("class")){
