@@ -306,6 +306,17 @@ vm.getStatePopAge = () => {
         return response.data
     })
 }
+
+vm.getOneStatePopAge = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44},${dataHeaders.male45_49},${dataHeaders.male50_54},${dataHeaders.male55_59},${dataHeaders.male60_61},${dataHeaders.male62_64},${dataHeaders.male65_66},${dataHeaders.male67_69},${dataHeaders.male70_74},${dataHeaders.male75_79},${dataHeaders.male80_84},${dataHeaders.male85_over},${dataHeaders.femaleUnder5},${dataHeaders.female5_9},${dataHeaders.female10_14},${dataHeaders.female15_17},${dataHeaders.female18_19},${dataHeaders.female20},${dataHeaders.female21},${dataHeaders.female22_24},${dataHeaders.female25_29},${dataHeaders.female30_34},${dataHeaders.female35_39},${dataHeaders.female40_44},${dataHeaders.female45_49},${dataHeaders.female50_54},${dataHeaders.female55_59},${dataHeaders.female60_61},${dataHeaders.female62_64},${dataHeaders.female65_66},${dataHeaders.female67_69},${dataHeaders.female70_74},${dataHeaders.female75_79},${dataHeaders.female80_84},${dataHeaders.female85_over},NAME&for=state:${targetState}&key=${dataHeaders.key}`,
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data);
+        return response.data
+    })
+}
+
 //_____________2010 Getting age based on county__________________ 
 vm.getCountyPopAge = (targetState) => {
     return $http({
@@ -367,27 +378,29 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
 }
 vm.getDataForState2010 = (targetState) => {
     return $http({
-        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace},${dataHeaders.medianAge_10},${dataHeaders.homeOwnedClear10},${dataHeaders.homeOwnedMortgage10},${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44},${dataHeaders.male45_49},${dataHeaders.male50_54},${dataHeaders.male55_59},${dataHeaders.male60_61},${dataHeaders.male62_64},${dataHeaders.male65_66},${dataHeaders.male67_69},${dataHeaders.male70_74},${dataHeaders.male75_79},${dataHeaders.male80_84},${dataHeaders.male85_over},${dataHeaders.femaleUnder5},${dataHeaders.female5_9},${dataHeaders.female10_14},${dataHeaders.female15_17},${dataHeaders.female18_19},${dataHeaders.female20},${dataHeaders.female21},${dataHeaders.female22_24},${dataHeaders.female25_29},${dataHeaders.female30_34},${dataHeaders.female35_39},${dataHeaders.female40_44},${dataHeaders.female45_49},${dataHeaders.female50_54},${dataHeaders.female55_59},${dataHeaders.female60_61},${dataHeaders.female62_64},${dataHeaders.female65_66},${dataHeaders.female67_69},${dataHeaders.female70_74},${dataHeaders.female75_79},${dataHeaders.female80_84},${dataHeaders.female85_over}&for=state:${targetState}&key=${dataHeaders.key}`,
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace},${dataHeaders.medianAge_10},${dataHeaders.homeOwnedClear10},${dataHeaders.homeOwnedMortgage10},&for=state:${targetState}&key=${dataHeaders.key}`,
         method: `GET`
     }).then((response) => {
-        // console.log(response.data);
-        let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
-        const squareMetersInSquareMiles = 2589988;
-        let ageArray = ['garbage'];
-        ageArray.push(response.data[1].slice(8));
-        let percentSenior = AgeService.calculateSeniorCitizenPercentage(ageArray)[1][0];
-        let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]) * 100;
-        let data = {
-            areaName: response.data[1][2],
-            totalPop: response.data[1][0],
-            landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
-            popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
-            percentWhite: percentWhite,
-            medianAge: response.data[1][5],
-            percentSenior: percentSenior,
-            homeOwned: percentHomeOwner
-        }
-        return data;
+        vm.getOneStatePopAge(targetState).then((response2) => {
+            // console.log(response.data);
+            let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
+            const squareMetersInSquareMiles = 2589988;
+            let ageArray = ['garbage'];
+            ageArray.push(response.data[1].slice(8));
+            let percentSenior = AgeService.calculateSeniorCitizenPercentage(response2)[1][0];
+            let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]) * 100;
+            let data = {
+                areaName: response.data[1][2],
+                totalPop: response.data[1][0],
+                landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
+                popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
+                percentWhite: percentWhite,
+                medianAge: response.data[1][5],
+                percentSenior: percentSenior,
+                homeOwned: percentHomeOwner
+            }
+            return data;
+        });
     });
 }
 
