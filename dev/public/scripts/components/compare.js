@@ -19,7 +19,7 @@ const compare = {
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Pop", "Avg Age", "Avg Diversity", "Seniors", "Area", "Pop Density"],
+            labels: ["Pop", "Avg Age", "Avg Diversity", "% Seniors", "% Homeowners", "Area", "Pop Density"],
             datasets: [{
                 label: `${vm.state1.areaName}`,
                 data: [],
@@ -29,9 +29,11 @@ const compare = {
                     '#0b6739',
                     '#0b6739',
                     '#0b6739',
+                    '#0b6739',
                     '#0b6739'
                 ],
                 borderColor: [
+                    '#0b6739',
                     '#0b6739',
                     '#0b6739',
                     '#0b6739',
@@ -49,9 +51,11 @@ const compare = {
                     '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
+                    '#7ac57d',
                     '#7ac57d'
                 ],
                 borderColor: [
+                    '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
@@ -81,6 +85,7 @@ const compare = {
             }
         }
         vm.update = () => {
+            // state population
             vm.totalPopOfStates = parseInt(vm.state1.totalPop) + parseInt(vm.state2.totalPop);
             vm.state1ComparePopPercentage = parseInt(vm.state1.totalPop) / vm.totalPopOfStates;
             vm.state2ComparePopPercentage = parseInt(vm.state2.totalPop) / vm.totalPopOfStates;
@@ -88,6 +93,17 @@ const compare = {
                 vm.state1ComparePopPercentage = vm.state1ComparePopPercentage * (-1);
                 vm.state2ComparePopPercentage = vm.state2ComparePopPercentage * (-1);
             }
+            // avg age
+            vm.totalAvgAgeOfStates = vm.state1.medianAge + vm.state2medianAge;
+            vm.state1CompareAgePercentage = vm.state1.medianAge / vm.totalAvgAgeOfStates;
+            vm.state2CompareAgePercentage = vm.state2.medianAge / vm.totalAvgAgeOfStates;
+            // diversity
+            vm.totalAvgDiversityOfStates = 
+            // % seniors
+            vm.totalPercentSeniorsOfStates = 
+            // % homeowners
+            vm.totalPercentHomeownersOfStates = 
+            // area of state
             vm.totalAreaOfStates = vm.state1.landSizeAreaInMiles + vm.state2.landSizeAreaInMiles;
             vm.state1CompareAreaPercentage = vm.state1.landSizeAreaInMiles / vm.totalAreaOfStates;
             vm.state2CompareAreaPercentage = vm.state2.landSizeAreaInMiles / vm.totalAreaOfStates;
@@ -95,6 +111,7 @@ const compare = {
                 vm.state1CompareAreaPercentage = vm.state1CompareAreaPercentage * (-1);
                 vm.state2CompareAreaPercentage = vm.state2CompareAreaPercentage * (-1);
             }
+            // pop density
             vm.totalPopPerSM = vm.state1.popPerSM + vm.state2.popPerSM;
             vm.state1ComparePopPerSMPercentage = vm.state1.popPerSM / vm.totalPopPerSM;
             vm.state2ComparePopPerSMPercentage = vm.state2.popPerSM / vm.totalPopPerSM;
@@ -102,8 +119,8 @@ const compare = {
                 vm.state1ComparePopPerSMPercentage = vm.state1ComparePopPerSMPercentage * (-1);
                 vm.state2ComparePopPerSMPercentage = vm.state2ComparePopPerSMPercentage * (-1);
             }
-            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, , , , vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
-            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, , , , vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
+            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, , , , , vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
+            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, , , , , vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
             myChart.update();
         }
 
