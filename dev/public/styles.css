@@ -138,7 +138,7 @@ form {
 }
 .legend {
     margin: 0 auto 5% auto;
-    width: 90%;
+    width: 95%;
     height: 40px;
     text-align: center;
     color: black;
@@ -188,6 +188,15 @@ form {
 }
 .legend div:nth-child(7) {
     background: #ffffe5;
+}
+
+.legendText {
+    display: flex;
+    flex-direction: column;
+}
+
+.legendText p {
+    margin: 0 auto;
 }
 
 #noData {
@@ -305,7 +314,7 @@ option {
 
 #compare-modal {
     flex-direction: column;
-    /* position: absolute; */
+    position: absolute;
     align-items: center;
     justify-content: space-around;
     width: 90%;
@@ -383,7 +392,7 @@ footer {
     footer{
         display: block;
         background-color: #6ebbe7;
-        height:60px;
+        height:40px;
         padding:0;
         margin:0;
         width: 100%;
@@ -464,7 +473,7 @@ footer {
 }
 .compare{
     position:fixed;
-    display:none;
+    display:initial;
     left:15%;
     bottom:70px;
     padding:0;
@@ -515,6 +524,7 @@ footer{
     bottom:0;
     position:fixed;
     width:100%;
+    display:none;
 }
 footer p{
     font-Family: 'Cabin', Sans-Serif;

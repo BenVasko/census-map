@@ -1,6 +1,6 @@
 'use strict';
 
-function CensusDataService($http) {
+function CensusDataService($http, AgeService) {
     const vm = this;
     const dataHeaders = {
         key: 'a8ed8e7175e0f6f1c379233a5f3020105c645e2b',
@@ -69,6 +69,8 @@ function CensusDataService($http) {
         // Home Ownership
         homeOwnedClear10: 'H0040003',
         homeOwnedMortgage10: 'H0040002',
+        // Median Age
+        medianAge_10: 'P0130001',
 //2000---------------------------------------------------------------------
         //population 2000
         totalPop00: 'P001001',
@@ -134,6 +136,8 @@ function CensusDataService($http) {
         female85_over_00:'P012049',
         // Home Ownership
         homeOwned00: 'H004002',
+        // Median Age
+        medianAge_00: 'P013001',
 //1990--------------------------------------------------
         //population 1990
         totalPop90: 'P0010001',
@@ -302,6 +306,17 @@ vm.getStatePopAge = () => {
         return response.data
     })
 }
+
+vm.getOneStatePopAge = (targetState) => {
+    return $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.maleUnder5},${dataHeaders.male5_9},${dataHeaders.male10_14},${dataHeaders.male15_17},${dataHeaders.male18_19},${dataHeaders.male20},${dataHeaders.male21},${dataHeaders.male22_24},${dataHeaders.male25_29},${dataHeaders.male30_34},${dataHeaders.male35_39},${dataHeaders.male40_44},${dataHeaders.male45_49},${dataHeaders.male50_54},${dataHeaders.male55_59},${dataHeaders.male60_61},${dataHeaders.male62_64},${dataHeaders.male65_66},${dataHeaders.male67_69},${dataHeaders.male70_74},${dataHeaders.male75_79},${dataHeaders.male80_84},${dataHeaders.male85_over},${dataHeaders.femaleUnder5},${dataHeaders.female5_9},${dataHeaders.female10_14},${dataHeaders.female15_17},${dataHeaders.female18_19},${dataHeaders.female20},${dataHeaders.female21},${dataHeaders.female22_24},${dataHeaders.female25_29},${dataHeaders.female30_34},${dataHeaders.female35_39},${dataHeaders.female40_44},${dataHeaders.female45_49},${dataHeaders.female50_54},${dataHeaders.female55_59},${dataHeaders.female60_61},${dataHeaders.female62_64},${dataHeaders.female65_66},${dataHeaders.female67_69},${dataHeaders.female70_74},${dataHeaders.female75_79},${dataHeaders.female80_84},${dataHeaders.female85_over},NAME&for=state:${targetState}&key=${dataHeaders.key}`,
+        method:'GET'
+    }).then((response) => {
+        console.log(response.data);
+        return response.data
+    })
+}
+
 //_____________2010 Getting age based on county__________________ 
 vm.getCountyPopAge = (targetState) => {
     return $http({
@@ -362,22 +377,31 @@ vm.getPopulationPerSquareMileForState2010 = (targetState) => {
     });
 }
 vm.getDataForState2010 = (targetState) => {
-    return $http({
-        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace}&for=state:${targetState}&key=${dataHeaders.key}`,
+    let data = $http({
+        url: `https://api.census.gov/data/2010/sf1?get=${dataHeaders.totalPop},AREALAND,NAME,${dataHeaders.white},${dataHeaders.totalPopRace},${dataHeaders.medianAge_10},${dataHeaders.homeOwnedClear10},${dataHeaders.homeOwnedMortgage10}&for=state:${targetState}&key=${dataHeaders.key}`,
         method: `GET`
     }).then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         let percentWhite = (response.data[1][3] / response.data[1][4] * 100)
         const squareMetersInSquareMiles = 2589988;
-        let data = {
+        let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]) * 100;
+        return data = {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
             popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
-            percentWhite: percentWhite
-        }
-        return data;
+            percentWhite: percentWhite,
+            medianAge: response.data[1][5],
+            percentSenior: null,
+            homeOwned: percentHomeOwner
+        };
     });
+    data.percentSenior = vm.getOneStatePopAge(targetState).then((response2) => {
+        let percentSenior = AgeService.calculateSeniorCitizenPercentage(response2)[1][0];
+        return percentSenior;
+    });
+    
+    return data;
 }
 
 vm.getOccupancyForState2010 = () => {
@@ -461,7 +485,7 @@ vm.getCountyPopRace00 = (targetState) => {
 //_____________2000 Getting age based on state__________________ 
 vm.getStatePopAge00 = () => {
     return $http({
-        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59_00},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00},${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59_00},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00},${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data);
@@ -472,7 +496,7 @@ vm.getStatePopAge00 = () => {
 vm.getCountyPopAge00 = (targetState) => {
     return $http({
         // url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00}${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
-        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male21_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59_00},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00},${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.maleUnder5_00},${dataHeaders.male5_9_00},${dataHeaders.male10_14_00},${dataHeaders.male15_17_00},${dataHeaders.male18_19_00},${dataHeaders.male20_00},${dataHeaders.male21_00},${dataHeaders.male22_24_00},${dataHeaders.male25_29_00},${dataHeaders.male30_34_00},${dataHeaders.male35_39_00},${dataHeaders.male40_44_00},${dataHeaders.male45_49_00},${dataHeaders.male50_54_00},${dataHeaders.male55_59_00},${dataHeaders.male60_61_00},${dataHeaders.male62_64_00},${dataHeaders.male65_66_00},${dataHeaders.male67_69_00},${dataHeaders.male70_74_00},${dataHeaders.male75_79_00},${dataHeaders.male80_84_00},${dataHeaders.male85_over_00},${dataHeaders.femaleUnder5_00},${dataHeaders.female5_9_00},${dataHeaders.female10_14_00},${dataHeaders.female15_17_00},${dataHeaders.female18_19_00},${dataHeaders.female20_00},${dataHeaders.female21_00},${dataHeaders.female22_24_00},${dataHeaders.female25_29_00},${dataHeaders.female30_34_00},${dataHeaders.female35_39_00},${dataHeaders.female40_44_00},${dataHeaders.female45_49_00},${dataHeaders.female50_54_00},${dataHeaders.female55_59_00},${dataHeaders.female60_61_00},${dataHeaders.female62_64_00},${dataHeaders.female65_66_00},${dataHeaders.female67_69_00},${dataHeaders.female70_74_00},${dataHeaders.female75_79_00},${dataHeaders.female80_84_00},${dataHeaders.female85_over_00},NAME&for=county:*&in=state:${targetState}&key=${dataHeaders.key}`,
         method:'GET'
     }).then((response) => {
         // console.log(response.data)
@@ -531,7 +555,7 @@ vm.getPopulationPerSquareMileForState2000 = (targetState) => {
 
 vm.getDataForState2000 = (targetState) => {
     return $http({
-        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME,${dataHeaders.white00},${dataHeaders.totalPopRace00}&for=state:${targetState}&key=${dataHeaders.key}`,
+        url: `https://api.census.gov/data/2000/sf1?get=${dataHeaders.totalPop00},AREALAND,NAME,${dataHeaders.white00},${dataHeaders.totalPopRace00},${dataHeaders.medianAge_00}&for=state:${targetState}&key=${dataHeaders.key}`,
         method: `GET`
     }).then((response) => {
         // console.log(response.data);
@@ -542,7 +566,8 @@ vm.getDataForState2000 = (targetState) => {
             totalPop: response.data[1][0],
             landSizeAreaInMiles: response.data[1][1] / squareMetersInSquareMiles,
             popPerSM: response.data[1][0]*squareMetersInSquareMiles/response.data[1][1],
-            percentWhite: percentWhite
+            percentWhite: percentWhite,
+            medianAge: response.data[1][5]
         }
         return data;
     });
@@ -745,4 +770,4 @@ vm.getStatePopAge90 = () => {
     
 }
 
-angular.module("App").service("CensusDataService", CensusDataService);
+angular.module("App").service("CensusDataService", ["$http", "AgeService", CensusDataService]);

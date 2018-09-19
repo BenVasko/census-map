@@ -12,6 +12,7 @@ const data = {
         vm.stateID = null;
         // selecting the back button
         vm.button = angular.element(document.getElementById("back-button"));
+        vm.countySearch = angular.element(document.getElementById("county-search"));
         vm.dataType = DropdownDataService.dataType;
         vm.listOfStates = DropdownDataService.listOfStates;
         vm.legend;
@@ -123,7 +124,7 @@ const data = {
         }
 
         // taz added functionality for dropdown select to call API
-        vm.getCensusData = function(API){
+        vm.getCensusData = function(API){ console.log(API);
             vm.dataMode = parseInt(API.value);
             vm.chooseDisplay();
         };
@@ -160,6 +161,7 @@ const data = {
             if(vm.stateID===null){
                 document.getElementById("map-scripts").innerHTML = "";
                 // remove class of "ng-hide" so button will display
+                vm.countySearch.removeClass("ng-hide");
                 vm.button.removeClass("ng-hide");
                 // checking to see if you clicked on a state object
                 if (angular.element(e.target).attr("class")){
@@ -176,6 +178,7 @@ const data = {
             document.getElementById("map-scripts").innerHTML = "";
             // add class of "ng-hide" again so button will be hidden
             vm.button.addClass("ng-hide");
+            vm.countySearch.addClass("ng-hide");
             // Since we're going back, clear vm.stateID
             vm.stateID = null;
 
@@ -290,6 +293,7 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getStatePopRace00().then((response) => {
                     let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(diverse);
                     vm.legend = ColorService.getColors(diverse);
                 });
             } else {
@@ -322,7 +326,9 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getStatePopAge00().then((response) => {
                     vm.datas = response;
+                    console.log(vm.datas);
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, true);
+                    console.log(seniorPercent);
                     vm.legend = ColorService.getColors(seniorPercent);
                 });
             } else {
@@ -330,6 +336,7 @@ const data = {
                 CensusDataService.getCountyPopAge00(censusStateID).then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, false);
+                    console.log(seniorPercent);
                     vm.legend = ColorService.getColorsForCounties(seniorPercent);
                 });
             }
@@ -622,7 +629,9 @@ const data = {
         }
         
         vm.changePath = () => {
-            $location.path('/compare');
+            if (vm.state1 && vm.state2) {
+                $location.path('/compare');
+            }
         }
 
     }]
