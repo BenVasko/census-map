@@ -19,7 +19,7 @@ const compare = {
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Pop", "Avg Age", "Avg Diversity", "% Seniors", "% Homeowners", "Area", "Pop Density"],
+            labels: ["Pop", "Avg Age", "Lack of Diversity", "% Seniors", "% Homeowners", "Area", "Pop Density"],
             datasets: [{
                 label: `${vm.state1.areaName}`,
                 data: [],
@@ -67,10 +67,19 @@ const compare = {
             }],
         },
         options: {
+            tooltips: {
+                enabled: false
+           },
             scales: {
+                xAxes: [{
+                    gridLines: {
+                        display:false
+                    }
+                }],
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        display: false
                     }
                 }]
             }
@@ -94,9 +103,10 @@ const compare = {
                 vm.state2ComparePopPercentage = vm.state2ComparePopPercentage * (-1);
             }
             // avg age
-            vm.totalAvgAgeOfStates = vm.state1.medianAge + vm.state2medianAge;
-            vm.state1CompareAgePercentage = vm.state1.medianAge / vm.totalAvgAgeOfStates;
-            vm.state2CompareAgePercentage = vm.state2.medianAge / vm.totalAvgAgeOfStates;
+            vm.totalAvgAgeOfStates = parseInt(vm.state1.medianAge) + parseInt(vm.state2.medianAge);
+            console.log(vm.state1);
+            vm.state1CompareAgePercentage = parseInt(vm.state1.medianAge) / vm.totalAvgAgeOfStates;
+            vm.state2CompareAgePercentage = parseInt(vm.state2.medianAge) / vm.totalAvgAgeOfStates;
             if (vm.state2CompareAgePercentage > vm.state1CompareAgePercentage) {
                 vm.state1CompareAgePercentage = vm.state1CompareAgePercentage * (-1);
                 vm.state2CompareAgePercentage = vm.state2CompareAgePercentage * (-1);
@@ -119,8 +129,8 @@ const compare = {
             }
             // % homeowners
             vm.totalPercentHomeownersOfStates = vm.state1.homeOwned + vm.state2.homeOwned;
-            vm.state1CompareOwnedPercentage = vm.state1.homeOwned / vm.totalPercentOwnedsOfStates;
-            vm.state2CompareOwnedPercentage = vm.state2.homeOwned / vm.totalPercentOwnedsOfStates;
+            vm.state1CompareOwnedPercentage = vm.state1.homeOwned / vm.totalPercentHomeownersOfStates;
+            vm.state2CompareOwnedPercentage = vm.state2.homeOwned / vm.totalPercentHomeownersOfStates;
             if (vm.state2CompareOwnedPercentage > vm.state1CompareOwnedPercentage) {
                 vm.state1CompareOwnedPercentage = vm.state1CompareOwnedPercentage * (-1);
                 vm.state2CompareOwnedPercentage = vm.state2CompareOwnedPercentage * (-1);
