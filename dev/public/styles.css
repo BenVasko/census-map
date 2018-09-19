@@ -581,7 +581,7 @@ footer p{
 }
 
 #queries div:hover {
-    background: rgb(248, 246, 246);
+    background: #abdd94;
 
     box-shadow: 0 2px 5px grey;
 }
