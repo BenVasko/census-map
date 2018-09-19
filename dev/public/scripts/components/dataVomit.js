@@ -182,7 +182,7 @@ const data = {
             vm.button.addClass("ng-hide");
             vm.countySearch.addClass("ng-hide");
             // Since we're going back, clear vm.stateID
-            vm.stateID = null;
+            vm.stateID = null; 
 
             let us1 = document.createElement("script");
                 us1.type = "text/javascript";
@@ -635,6 +635,8 @@ const data = {
                 $location.path('/compare');
             }
         }
+
+        
 
     }]
 };
