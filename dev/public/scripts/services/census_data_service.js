@@ -1,6 +1,6 @@
 'use strict';
 
-function CensusDataService($http, AgeService) {
+function CensusDataService($http, AgeServices) {
     const vm = this;
     const dataHeaders = {
         key: 'a8ed8e7175e0f6f1c379233a5f3020105c645e2b',
@@ -376,7 +376,7 @@ vm.getDataForState2010 = (targetState) => {
         let ageArray = ['garbage'];
         ageArray.push(response.data[1].slice(8));
         let percentSenior = AgeService.calculateSeniorCitizenPercentage(ageArray)[1][0];
-        let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]);
+        let percentHomeOwner = (parseInt(response.data[1][6]) + parseInt(response.data[1][7])) / parseInt(response.data[1][0]) * 100;
         let data = {
             areaName: response.data[1][2],
             totalPop: response.data[1][0],
