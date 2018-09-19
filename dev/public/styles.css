@@ -406,6 +406,9 @@ footer p{
 .compare-state-selection{
     width:350px;
 }
+#compare-modal{
+    top:180px;
+}
 .parent{
     margin:0;
     padding:0;
