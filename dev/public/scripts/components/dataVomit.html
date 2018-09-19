@@ -27,7 +27,7 @@
     <div id="map"></div>
 </section>
     <section class="parent">
-    <select class="drop-down" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
+    <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
 
     <label id="sliderLabel">
         <input class="slider" type="range" min="1990" max="2010" step="10" ng-model="year" ng-change="$ctrl.chooseYear(year);">
@@ -46,19 +46,32 @@
         <div> {{$ctrl.legend.box3}} - {{$ctrl.legend.box4}} </div>
         <div> {{$ctrl.legend.box2}} - {{$ctrl.legend.box3}} </div>
         <div> {{$ctrl.legend.box1}} - {{$ctrl.legend.box2}} </div>
-        <div> < {{$ctrl.legend.box1}} </div>
+        <div> {{$ctrl.legend.box1}} </div>
         <div id="noData"> No Data </div>
     </section>
 
 <form>
-    <input type="reset" class="ng-hide" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
+    <input type="reset" class="ng-hide drop-down" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
 
-    <select class="drop-down" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
+    <select class="drop-down" id="state-drop" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
 </form>
 
-<button ng-click="">Compare?</button>
+<button class="compare drop-down" ng-click="$ctrl.showCompareModal();">Compare States</button>
+
+
+<form id="compare-modal" class="ng-hide">
+        <select class="drop-down" ng-init="ID1 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
+        <p>VS.</p>
+        <select class="drop-down" ng-init="ID2 = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
+        <button class="compare drop-down"  id="compare-button" ng-click="$ctrl.changePath();">Compare!</button>
+        <input type="reset" class="back drop-down" id="" ng-click="$ctrl.hideModal();" value="Back">
+</form>
+
 
 </section>
+<footer>
+    <p>demoGraphics</p>
+</footer>
 <!-- 
 <h1>Data:</h1>
 

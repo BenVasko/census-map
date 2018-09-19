@@ -25,6 +25,32 @@ const AgeService90 = function(){
         return dataArray;
     }
 
+    vm.calculateSeniorCitizenPercentage = (passedData, usMode) => {
+        let dataArray = [["% Seniors", "Geography"]];
+
+        for(let j = 1; j < passedData.length; j++){
+
+            let totalPop = 0;
+            let seniorCount = 0;
+            for(let i = 0; i < 31; i++) {
+                totalPop += parseInt(passedData[j][i]);
+                if((i >= 26 && i <= 30)) {
+                    seniorCount += parseInt(passedData[j][i]);
+                }
+            }
+            let seniorPercentage = seniorCount / totalPop * 100;
+            console.log(seniorPercentage);
+            if(usMode){
+                dataArray.push([seniorPercentage, passedData[j][31]]);
+            } else {
+                dataArray.push([seniorPercentage, passedData[j][31], passedData[j][32], passedData[j][33]]);
+            }
+        }
+        console.log(dataArray);
+        return dataArray;
+    }
+
+
 }
 
 
