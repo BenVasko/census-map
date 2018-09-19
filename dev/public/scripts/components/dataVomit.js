@@ -290,6 +290,7 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getStatePopRace00().then((response) => {
                     let diverse = DiversityService.diversityPercent(response, true);
+                    console.log(diverse);
                     vm.legend = ColorService.getColors(diverse);
                 });
             } else {
@@ -322,7 +323,9 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getStatePopAge00().then((response) => {
                     vm.datas = response;
+                    console.log(vm.datas);
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, true);
+                    console.log(seniorPercent);
                     vm.legend = ColorService.getColors(seniorPercent);
                 });
             } else {
@@ -330,6 +333,7 @@ const data = {
                 CensusDataService.getCountyPopAge00(censusStateID).then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, false);
+                    console.log(seniorPercent);
                     vm.legend = ColorService.getColorsForCounties(seniorPercent);
                 });
             }

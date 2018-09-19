@@ -65,6 +65,7 @@ const AgeService = function(){
                 dataArray.push([seniorPercentage, passedData[j][46], passedData[j][47], passedData[j][48]]);
             }
         }
+        console.log(dataArray);
         return dataArray;
     }
 }
