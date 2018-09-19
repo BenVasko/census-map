@@ -6,31 +6,64 @@
 path {
     stroke-width: 1px;
 }
+header{
+    background:#6ebbe7;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 999;
+}
+h2{
+    font-family: 'Fredoka One', cursive;
+    display:aboslute;
+    top:10%;
+    left:40%;
+}    
 
 html {
     background: linear-gradient(#c4edf5, #d6e0e4);
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
     min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 100%;
 }
 
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 h1 {
     text-align: center;
-    margin: 5% auto;;
+    /* margin: 5% auto; */
+    font-family: 'Fredoka One', cursive;
+    padding:4px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.county-search-parent {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.county-search {
+    width: 75%;
 }
 
 .map-parent {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 #map {
-    max-width: 375px;
+    max-width: 100%;
     height: auto;
     margin: 0 auto;
 }
@@ -42,7 +75,7 @@ h1 {
 .parent {
     display: flex;
     flex-direction: column;
-    margin: 10% auto;
+    margin: 10% auto 0 auto;
 }
 
 form {
@@ -51,14 +84,17 @@ form {
 
 .drop-down {
     margin: 0 auto;
-    width: 60%;
+    width: 73%;
     height: 50px;
     background: #6ebbe7;
     text-align-last: center;
     color: black;
     border: 5px solid black;
     border-radius: 10px;
-    font-size: 24px;
+    font-size: 22.5px;
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .slider {
@@ -96,6 +132,7 @@ form {
     text-align: center;
     margin: 0 auto;
     letter-spacing: 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 .legend {
     margin: 0 auto 5% auto;
@@ -124,6 +161,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
 }
 /* .legend div:last-child {
     border-right: none;
@@ -155,37 +193,53 @@ form {
 }
 
 #back-button {
-    color: white;
-    background: red;
-    width: 60px;
+    color: black;
+    background: white;
+    width: 80px;
     height: 40px;
     position: absolute;
-    top: 8px;
+    top: 95px;
     right: 8px;
 }
 
 #sliderLabel {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
 }
 #sliderLabel div {
     display: flex;
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+ 
 }
 
 .compare-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     min-height: 100%;
     width: 100%;
+    margin-top: 40px;
 }
 
 .compare-state-selection {
     margin: 20px;
+}
+#state1{
+    background-color:#0b6739;
+}
+#state2{
+    background-color:#7ac57d;
+}
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
 }
 
 .line {
@@ -208,7 +262,231 @@ option {
     cursor: pointer;
   }
 
+<<<<<<< HEAD
   #countyList {
       overflow: scroll;
       height: 200px;
   }
+=======
+.compare {
+    background: #7ac57d;
+    border-radius:10px;
+    margin: 5% auto;
+}
+
+.compare:hover {
+    background: #36a258;
+}
+
+#compare-modal {
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    height: 50%;
+    background: linear-gradient(#fffecd, white);
+    border: black;
+    left: 4%;
+    top: 8%;
+    border-radius: 20px;
+    border: 5px solid black;
+    box-shadow: black;
+}
+
+#compare-modal p {
+    color: white;
+    background: #00000063;
+    width: 100%;
+    text-align: center;
+    height: auto;
+    font-size: 40px;
+}
+
+.back {
+    background: white;
+}
+
+.back:hover {
+    background: #d6e0e4;
+}
+
+.compare-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    background-color: #6ebbe7;
+    height:60px;
+    bottom:0;
+    position:fixed;
+    width:100%;
+}
+
+.state-info{
+    font-family:'Open Sans', sans-serif;
+}
+#desc{
+    color:#0b6739;
+    font-size:15px;
+    font-weight: bolder;
+}
+
+footer {
+    display: none;
+}
+
+.state-info{
+    background-color:white;
+    padding:5px;
+    border-radius:5px;
+    margin: 10px auto;
+}
+#state1{
+    background-color:#0b6739;
+    margin-bottom: 0;
+}
+#state2{
+    background-color:#7ac57d;
+    margin-bottom: 0;
+}
+
+.chart-parent{
+    position:relative;
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* _______________________________________________________________________________________________ */
+
+@media only screen and (min-width: 769px) {
+    footer{
+        display: block;
+        background-color: #6ebbe7;
+        height:60px;
+        padding:0;
+        margin:0;
+        width: 100%;
+        bottom: 0;
+    }
+    footer p{
+        text-align:right;
+        font-family:'Fredoka One', cursive;
+        padding:15px;
+    }
+
+    .parent {
+        margin: 0;
+    }
+
+   .drop-down{
+       width:30%;
+   }
+   h1{
+    font-size:40px;
+   }
+
+   #map {
+    max-width: 65%;
+    height: auto;
+    margin: 0 auto;
+   
+}
+.legend {
+    padding:0;
+    margin:0;
+    font-family: 'Open Sans', sans-serif;
+    height: 500px;
+    width: 38px;
+    position: absolute;
+    left: 10%;
+    top: 12%;
+    flex-direction: column; /* can set direction as row on mobile for sort-descending legend */
+
+}
+.slider{
+    position: absolute;
+    cursor: pointer; 
+    transform: rotate(90deg);
+    left:-14.5%;
+    top: 49.5%;
+    width:44%;
+    background: black;
+    border: 1px solid black;
+    padding:0;
+    margin:0;
+} 
+
+#sliderLabel div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction:column;
+    height: 60%;
+    width: 40px;
+    position: absolute;
+    left: 1%;
+    top: 20%;
+    margin: 0 auto;   
+    font-family: 'Open Sans', sans-serif;
+}
+<<<<<<< HEAD
+=======
+#category-drop{
+    position: absolute;
+    top:90px;
+    left:37%;
+    height:6%;
+    width:25%;
+    font-size:100%;
+>>>>>>> 9017e0be4d31f578d63bb2394bfa209408a81f88
+
+}
+.compare{
+    position:fixed;
+    left:15%;
+    bottom:70px;
+    padding:0;
+    margin:0;
+}
+#state-drop{
+    position:fixed;
+    right:15%;
+    bottom:70px;
+    padding:0;
+    margin:0;
+}
+#compare-button{
+    position:relative;
+    left:0%;
+    top:0%;
+}
+.chart-parent{
+    width:45%;
+    margin:20px;
+}
+#legendLabel{
+    display:none;
+}
+.compare-container{
+    flex-direction: row;
+}
+.compare-state-selection{
+    width:280px;
+}
+
+.state-info{
+    padding:5px;
+    border-radius:5px;
+    margin:20px;
+    width:350px;
+}
+.parent{
+    margin:0;
+    padding:0;
+}
+
+}
+>>>>>>> master

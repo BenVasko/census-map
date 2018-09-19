@@ -152,46 +152,49 @@ const ColorService = function(){
         // console.log(geographyKeys);
         // console.log(arrayOfArrays);
         
-        let min = max = arrayOfArrays[0][0];
+        let logArrayOfArrays = [[]];
+        logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
+        let min = max = logArrayOfArrays[0][0];
 
         for(let i = 1; i < arrayOfArrays[0].length; i++) {
-            if(arrayOfArrays[0][i] > max) {
-                max = arrayOfArrays[0][i];
-            } else if (arrayOfArrays[0][i] < min) {
-                min = arrayOfArrays[0][i];
+            logArrayOfArrays[0][i] = Math.log(arrayOfArrays[0][i]);
+            if(logArrayOfArrays[0][i] > max) {
+                max = logArrayOfArrays[0][i];
+            } else if (logArrayOfArrays[0][i] < min) {
+                min = logArrayOfArrays[0][i];
             }
         }
 
         // normalize the range
         max -= min;
 
-        for (let i = 0; i < arrayOfArrays[0].length; i++) {
+        for (let i = 0; i < logArrayOfArrays[0].length; i++) {
             // console.log(arrayOfArrays[0][i])
-            let stateAdjustedByMinPop = arrayOfArrays[0][i] - min;
+            let stateAdjustedByMinPop = logArrayOfArrays[0][i] - min;
             let statePercentage = stateAdjustedByMinPop / max;
             let stateColorPercentage = (1-statePercentage)*(this.lightest - this.darkest)+this.darkest;
             // console.log(geographyKeys[i]);
             //this.setDataForCounty(geographyKeys[i], `hsl(0,100,${stateColorPercentage})`, arrayOfArrays[0][i]);
             if (stateColorPercentage < 30) {
-                this.setDataForCounty(geographyKeys[i], "#0b6739", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#0b6739", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 30) {
-                this.setDataForCounty(geographyKeys[i], "#36a258", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#36a258", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 40) {
-                this.setDataForCounty(geographyKeys[i], "#7ac57d", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#7ac57d", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 50) {
-                this.setDataForCounty(geographyKeys[i], "#abdd94", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#abdd94", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 60) {
-                this.setDataForCounty(geographyKeys[i], "#d9efa6", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#d9efa6", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 70) {
-                this.setDataForCounty(geographyKeys[i], "#fffecd", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#fffecd", logArrayOfArrays[0][i]);
             }
             if (stateColorPercentage >= 80) {
-                this.setDataForCounty(geographyKeys[i], "#ffffe5", arrayOfArrays[0][i]);
+                this.setDataForCounty(geographyKeys[i], "#ffffe5", logArrayOfArrays[0][i]);
             }
         }
         // console.log(arrayOfArrays);// legend groups
