@@ -178,6 +178,7 @@ const data = {
             document.getElementById("map-scripts").innerHTML = "";
             // add class of "ng-hide" again so button will be hidden
             vm.button.addClass("ng-hide");
+            vm.countySearch.addClass("ng-hide");
             // Since we're going back, clear vm.stateID
             vm.stateID = null;
 
