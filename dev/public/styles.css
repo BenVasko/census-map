@@ -64,11 +64,11 @@ h2 {
     margin: 0 auto;
 }
 
-#map {
+/* #map {
     max-width: 100%;
     height: auto;
     margin: 0 auto;
-}
+} */
 
 #map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
     visibility: hidden; /* attribution removal */
@@ -396,7 +396,7 @@ footer {
         padding:0;
         margin:0;
         width: 100%;
-        bottom: 0;
+        /* bottom: 0; */
     }
     footer p{
         text-align:right;
@@ -414,15 +414,13 @@ footer {
    }
 
 
-   #map {
+   /* #map {
     max-width: 65%;
     height: auto;
     position:relative;
     top:20%;
     right:11%;
-   
-   
-}
+    } */
 
 .legend {
     padding:0;
@@ -596,7 +594,8 @@ footer p{
 }
 
 svg {
-    max-height: 500px;
+    height: 80vh;
+    width: 77%;
 }
 
 #queries i {
@@ -605,4 +604,8 @@ svg {
 
 input {
     outline: none;
+}
+
+#graphics {
+    margin-top: 80px;
 }
