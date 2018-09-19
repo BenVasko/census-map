@@ -123,7 +123,7 @@ const data = {
         }
 
         // taz added functionality for dropdown select to call API
-        vm.getCensusData = function(API){
+        vm.getCensusData = function(API){ console.log(API);
             vm.dataMode = parseInt(API.value);
             vm.chooseDisplay();
         };
@@ -622,7 +622,9 @@ const data = {
         }
         
         vm.changePath = () => {
-            $location.path('/compare');
+            if (vm.state1 && vm.state2) {
+                $location.path('/compare');
+            }
         }
 
     }]
