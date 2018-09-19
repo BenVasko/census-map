@@ -602,10 +602,11 @@ footer p{
 
 #queries div:hover {
     background: #abdd94;
-
     box-shadow: 0 2px 5px grey;
 }
-
+#queries div:last-child{
+background:#7ac57d;
+}
 svg {
     max-height: 500px;
 }
@@ -617,3 +618,4 @@ svg {
 input {
     outline: none;
 }
+
