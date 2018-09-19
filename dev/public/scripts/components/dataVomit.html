@@ -14,9 +14,9 @@
             <div ng-init="senior.value=5" ng-click="$ctrl.getCensusData(senior)" ><i class="fab fa-jenkins"></i>% Senior Citizens</div>
             <div ng-init="home.value=6" ng-click="$ctrl.getCensusData(home)" ><i class="fas fa-home"></i></i>Home Owners</div>
             <div ng-click="$ctrl.showCompareModal()"><i class="fas fa-balance-scale"></i>Compare</div>
-            <input>
+            <!-- <input>
             <div></div>
-            <input>
+            <input> -->
         </section>
     </section>
     <section id="graphics">
@@ -27,7 +27,7 @@
 <header>
 <h1>demoGraphics</h1>
 </header>
-<h2>{{$ctrl.getStateNameFromStateID($ctrl.stateID)}}</h2>
+<h2 class="state-title">{{$ctrl.getStateNameFromStateID($ctrl.stateID)}}</h2>
 <!-- <input>
 <div class="container">
     
