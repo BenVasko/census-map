@@ -613,7 +613,7 @@ background:#7ac57d;
 svg {
     height: 80vh;
     width: 77%;
-    margin-top: 80px;
+    /* margin-top: 80px; */
 }
 
 #queries i {
