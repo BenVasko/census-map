@@ -396,11 +396,11 @@ vm.getDataForState2010 = (targetState) => {
             homeOwned: percentHomeOwner
         };
     });
-    data.percentSenior = vm.getOneStatePopAge(targetState).then((response2) => {
+    vm.getOneStatePopAge(targetState).then((response2) => {
         let percentSenior = AgeService.calculateSeniorCitizenPercentage(response2)[1][0];
-        return percentSenior;
+        data.percentSenior = percentSenior;
     });
-    
+    console.dir(data);
     return data;
 }
 

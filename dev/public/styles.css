@@ -208,9 +208,10 @@ form {
     background: white;
     width: 80px;
     height: 40px;
-    /* position: absolute; */
+    position: absolute;
     top: 95px;
     right: 8px;
+    font-Family: 'Cabin', Sans-Serif;
 }
 
 #sliderLabel {
@@ -370,6 +371,7 @@ footer {
     padding:5px;
     border-radius:5px;
     margin: 10px auto;
+    display: flex;
 }
 #state1{
     background-color:#0b6739;
@@ -399,12 +401,11 @@ footer {
         /* bottom: 0; */
     }
     footer p{
-        text-align:right;
+        text-align:left;
         font-family:'Fredoka One', cursive;
         padding:15px;
     }
  
-
     .parent {
         margin: 0;
     }
@@ -471,7 +472,7 @@ footer {
 }
 .compare{
     position:fixed;
-    display:initial;
+    display:none;
     left:15%;
     bottom:70px;
     padding:0;
@@ -510,8 +511,12 @@ footer {
     padding:5px;
     border-radius:5px;
     margin:20px;
-    width:350px;
 }
+
+.state-info:nth-child(1) {
+    margin: 100px;
+}
+
 .parent{
     margin:0;
     padding:0;
@@ -522,11 +527,21 @@ footer{
     bottom:0;
     position:fixed;
     width:100%;
-    display:none;
+}
+.state-title{
+    position: absolute;
+    left:50%;
+    top:12%;
 }
 footer p{
     font-Family: 'Cabin', Sans-Serif;
     font-weight:bold;
+
+}
+#back-button{
+    right:15%;
+    top:12%;
+
 }
 
 
@@ -540,7 +555,7 @@ footer p{
 }
 
 #demo {
-    margin: 80px 0 8px 8px;
+    margin: 80px 0 100px 8px;
     background: #ddd;
     min-width: 200px;
 }
@@ -590,10 +605,11 @@ footer p{
 
 #queries div:hover {
     background: #abdd94;
-
     box-shadow: 0 2px 5px grey;
 }
-
+#queries div:last-child{
+background:#7ac57d;
+}
 svg {
     height: 80vh;
     width: 77%;
@@ -607,6 +623,9 @@ input {
     outline: none;
 }
 
+<<<<<<< HEAD
 #graphics {
     margin-top: 80px;
 }
+=======
+>>>>>>> c06aef4ab94efdc545d3f8f1f6fba0f4eeda371c
