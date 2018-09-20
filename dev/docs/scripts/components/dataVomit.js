@@ -635,9 +635,6 @@ const data = {
                 $location.path('/compare');
             }
         }
-
-        
-
     }]
 };
 
@@ -655,6 +652,7 @@ angular.module('App').component("data", data).filter('custom', function() {
     });
     return result;
   }
+
 });
 
 

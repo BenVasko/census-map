@@ -2,14 +2,14 @@
 <form class="compare-form">
 <section class="compare-container">
         <select id="state1"class="drop-down compare-state-selection" ng-init="ID1 = $ctrl.listOfStates[$ctrl.state1index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID1" ng-change="$ctrl.firstState(ID1.value)"></select>
-        <section class="state-info">
+        <section class="state-info state-info1">
                 <section>
                         <p> <span id="desc">Population: </span>{{$ctrl.state1.totalPop | number}}</p>
                         <p> <span id="desc">Avg. Age: </span>{{$ctrl.state1.medianAge | number}}</p>
                         <p> <span id="desc">Lack of Diversity: </span>{{$ctrl.state1.percentWhite.toFixed(2) | number}}%</p>
-                        <p> <span id="desc">% Over 65: </span>{{$ctrl.state1.percentSenior.toFixed(2) | number}}%</p>
                 </section>
                 <section>
+                        <p> <span id="desc">% Over 65: </span>{{$ctrl.state1.percentSenior.toFixed(2) | number}}%</p>
                         <p> <span id="desc">% Homeowners: </span>{{$ctrl.state1.homeOwned.toFixed(2) | number}}%</p>
                         <p> <span id="desc">Area: </span>{{$ctrl.state1.landSizeAreaInMiles.toFixed(2) | number}} Square Miles</p>
                         <p> <span id="desc">Pop. Density: </span>{{$ctrl.state1.popPerSM.toFixed(0) | number}} Person(s)/Square Mile</p>
@@ -23,7 +23,7 @@
         </section>
     <section class="compare-container">
          <select id="state2"class="drop-down compare-state-selection" ng-init="ID2 = $ctrl.listOfStates[$ctrl.state2index]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID2" ng-change="$ctrl.secondState(ID2.value)"></select>
-        <section class="state-info">
+        <section class="state-info state-info2">
                 <section>
                         <p> <span id="desc">Population: </span>{{$ctrl.state2.totalPop | number}}</p>
                         <p> <span id="desc">Avg. Age: </span>{{$ctrl.state2.medianAge | number}}</p>
@@ -38,7 +38,7 @@
         </section>
         
 </section>
-<input type="reset" class="back drop-down" ng-click="$ctrl.changePath();" value="Back">
+<input type="reset" class="back drop-down compare-back" ng-click="$ctrl.changePath();" value="Back">
 </form>
 <footer>
         <p>demoGraphics</p>

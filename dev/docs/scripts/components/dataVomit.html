@@ -98,7 +98,7 @@
     <select class="drop-down" id="state-drop" ng-init="ID = $ctrl.listOfStates[0]" ng-options="state.name disable when state.disabled for state in $ctrl.listOfStates" ng-model="ID" ng-change="$ctrl.selectStateMap(ID.value)"></select>
 </form>
 
-<button class="compare drop-down" ng-click="$ctrl.showCompareModal();">Compare States</button>
+<button class="compare drop-down hide-desktop" ng-click="$ctrl.showCompareModal();">Compare States</button>
 
 
 <form id="compare-modal" class="ng-hide">

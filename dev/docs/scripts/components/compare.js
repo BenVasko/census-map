@@ -19,7 +19,7 @@ const compare = {
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Pop", "Avg Age", "Lack of Diversity", "% Seniors", "% Homeowners", "Area", "Pop Density"],
+            labels: ["Pop", "Avg Age", "Lack of Diversity", "% Homeowners", "Area", "Pop Density"],
             datasets: [{
                 label: `${vm.state1.areaName}`,
                 data: [],
@@ -29,11 +29,9 @@ const compare = {
                     '#0b6739',
                     '#0b6739',
                     '#0b6739',
-                    '#0b6739',
                     '#0b6739'
                 ],
                 borderColor: [
-                    '#0b6739',
                     '#0b6739',
                     '#0b6739',
                     '#0b6739',
@@ -51,11 +49,9 @@ const compare = {
                     '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
-                    '#7ac57d',
                     '#7ac57d'
                 ],
                 borderColor: [
-                    '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
                     '#7ac57d',
@@ -151,8 +147,8 @@ const compare = {
                 vm.state1ComparePopPerSMPercentage = vm.state1ComparePopPerSMPercentage * (-1);
                 vm.state2ComparePopPerSMPercentage = vm.state2ComparePopPerSMPercentage * (-1);
             }
-            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, vm.state1CompareAgePercentage, vm.state1CompareDiversityPercentage, vm.state1CompareSeniorPercentage, vm.state1CompareOwnedPercentage, vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
-            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, vm.state2CompareAgePercentage, vm.state2CompareDiversityPercentage, vm.state2CompareSeniorPercentage, vm.state2CompareOwnedPercentage, vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
+            myChart.data.datasets[0].data = [vm.state1ComparePopPercentage, vm.state1CompareAgePercentage, vm.state1CompareDiversityPercentage, vm.state1CompareOwnedPercentage, vm.state1CompareAreaPercentage, vm.state1ComparePopPerSMPercentage];
+            myChart.data.datasets[1].data = [vm.state2ComparePopPercentage, vm.state2CompareAgePercentage, vm.state2CompareDiversityPercentage, vm.state2CompareOwnedPercentage, vm.state2CompareAreaPercentage, vm.state2ComparePopPerSMPercentage];
             myChart.update();
         }
 
