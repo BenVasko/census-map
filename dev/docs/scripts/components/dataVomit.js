@@ -165,13 +165,14 @@ const data = {
                 vm.countySearch.removeClass("ng-hide");
                 vm.button.removeClass("ng-hide");
                 // checking to see if you clicked on a state object
-                if (angular.element(e.target).attr("class")){
+
+                // if (angular.element(e.target).attr("class")){
                     vm.stateID = (angular.element(e.target).attr("class").slice(-2));
                     vm.appendStateScripts();
-                } else if (e.target.innerHTML) {
-                    vm.stateID = e.target.innerHTML;
-                    vm.appendStateScripts();
-                }
+                // } else if (e.target.innerHTML) {
+                //     vm.stateID = e.target.innerHTML;
+                //     vm.appendStateScripts();
+                // }
             }
         
         });
