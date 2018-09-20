@@ -195,11 +195,11 @@ const data = {
                 us2.src = `scripts/us-map/us-map-by-state/usmap.js`;
                 us2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us2);
-            setTimeout(function(){
+            // setTimeout(function(){
                 // alert("hey")
                 vm.chooseDisplay();
                 
-            },200);
+            // },200);
             }
 
         vm.getPopulationDataForState = (stateID) => {
@@ -458,92 +458,94 @@ const data = {
             }
         }
 
-        vm.chooseDisplay = () => {
-            if(vm.year===1990) {
-                // 1990 API PULLS
-                if(vm.dataMode === 1){
-                    vm.legendTitle = "POPULATION";
-                    vm.getPop1990();
-                } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY";
-                    vm.getDiversity90();
-                } else if (vm.dataMode === 3) {
-                    vm.legendTitle = "AVERAGE AGE";
-                    vm.getAgeData1990();
-                } else if (vm.dataMode === 4) {
-                    vm.legendTitle = "POPULATION PER SQUARE MILE";
-                    vm.getPopDensity1990();
-                } else if (vm.dataMode === 5) {
-                    vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
-                    vm.getSeniorCitizens1990();
-                } else if (vm.dataMode === 6) {
-                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
-                    vm.getHomeOwnership1990();
-                }
-            } else if (vm.year === 2000) {
-                // 2000 API PULLS
-                if(vm.dataMode === 1){
-                    vm.legendTitle = "POPULATION";
-                    vm.getPopulation2000();
-                    
-                } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY";
-                    vm.getDiversity00();
-                } else if (vm.dataMode === 3) {
-                    vm.legendTitle = "AVERAGE AGE";
-                    vm.getAgeData2000();
+            vm.chooseDisplay = () => {
+                setTimeout(function(){   
+                    if(vm.year===1990) {
+                        // 1990 API PULLS
+                        if(vm.dataMode === 1){
+                            vm.legendTitle = "POPULATION";
+                            vm.getPop1990();
+                        } else if (vm.dataMode === 2) {
+                            vm.legendTitle = "DIVERSITY";
+                            vm.getDiversity90();
+                        } else if (vm.dataMode === 3) {
+                            vm.legendTitle = "AVERAGE AGE";
+                            vm.getAgeData1990();
+                        } else if (vm.dataMode === 4) {
+                            vm.legendTitle = "POPULATION PER SQUARE MILE";
+                            vm.getPopDensity1990();
+                        } else if (vm.dataMode === 5) {
+                            vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
+                            vm.getSeniorCitizens1990();
+                        } else if (vm.dataMode === 6) {
+                            vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                            vm.getHomeOwnership1990();
+                        }
+                    } else if (vm.year === 2000) {
+                        // 2000 API PULLS
+                        if(vm.dataMode === 1){
+                            vm.legendTitle = "POPULATION";
+                            vm.getPopulation2000();
+                            
+                        } else if (vm.dataMode === 2) {
+                            vm.legendTitle = "DIVERSITY";
+                            vm.getDiversity00();
+                        } else if (vm.dataMode === 3) {
+                            vm.legendTitle = "AVERAGE AGE";
+                            vm.getAgeData2000();
 
-                } else if (vm.dataMode === 4) {
-                    vm.legendTitle = "POPULATION PER SQUARE MILE";
-                    if(!vm.stateID) {
-                        vm.getPopPerSM2000();
-                    } else {
-                        vm.getPopPerSMForState(vm.stateID);
-                    }
-                } else if (vm.dataMode === 5) {
-                    vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
-                    vm.getSeniorCitizens2000();
-                } else if (vm.dataMode === 6) {
-                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
-                    vm.getHomeOwnership2000();
-                }
+                        } else if (vm.dataMode === 4) {
+                            vm.legendTitle = "POPULATION PER SQUARE MILE";
+                            if(!vm.stateID) {
+                                vm.getPopPerSM2000();
+                            } else {
+                                vm.getPopPerSMForState(vm.stateID);
+                            }
+                        } else if (vm.dataMode === 5) {
+                            vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
+                            vm.getSeniorCitizens2000();
+                        } else if (vm.dataMode === 6) {
+                            vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                            vm.getHomeOwnership2000();
+                        }
 
-            } else {
-                // 2010 API PULLS
-                if(vm.dataMode === 1){
-                    vm.legendTitle = "POPULATION";
-                    if(!vm.stateID)
-                    {
-                        vm.getData();
                     } else {
-                        vm.getPopulationDataForState(vm.stateID);
-                    }
-                } else if (vm.dataMode === 2) {
-                    vm.legendTitle = "DIVERSITY";
-                    vm.getDiversity10();
-                } else if (vm.dataMode === 3) {
-                    vm.legendTitle = "AVERAGE AGE";
-                    if(!vm.stateID) {
-                        vm.getAgeData2010();
-                    } else {
-                        vm.getAgeDataForState(vm.stateID);
-                    }
-                } else if (vm.dataMode === 4) {
-                    vm.legendTitle = "POPULATION PER SQUARE MILE";
-                    if(!vm.stateID) {
-                        vm.getPopPerSM();
-                    } else {
-                        vm.getPopPerSMForState(vm.stateID);
-                    }
-                } else if (vm.dataMode === 5) {
-                    vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
-                    vm.getSeniorCitizens2010();
-                } else if (vm.dataMode === 6) {
-                    vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
-                    vm.getHomeOwnership2010();
-                }
+                        // 2010 API PULLS
+                        if(vm.dataMode === 1){
+                            vm.legendTitle = "POPULATION";
+                            if(!vm.stateID)
+                            {
+                                vm.getData();
+                            } else {
+                                vm.getPopulationDataForState(vm.stateID);
+                            }
+                        } else if (vm.dataMode === 2) {
+                            vm.legendTitle = "DIVERSITY";
+                            vm.getDiversity10();
+                        } else if (vm.dataMode === 3) {
+                            vm.legendTitle = "AVERAGE AGE";
+                            if(!vm.stateID) {
+                                vm.getAgeData2010();
+                            } else {
+                                vm.getAgeDataForState(vm.stateID);
+                            }
+                        } else if (vm.dataMode === 4) {
+                            vm.legendTitle = "POPULATION PER SQUARE MILE";
+                            if(!vm.stateID) {
+                                vm.getPopPerSM();
+                            } else {
+                                vm.getPopPerSMForState(vm.stateID);
+                            }
+                        } else if (vm.dataMode === 5) {
+                            vm.legendTitle = "PERCENTAGE OF POPULATION 65 OR OLDER";
+                            vm.getSeniorCitizens2010();
+                        } else if (vm.dataMode === 6) {
+                            vm.legendTitle = "PERCENTAGE OF CITIZENS THAT OWN HOMES";
+                            vm.getHomeOwnership2010();
+                        }
 
-            }
+                    }
+                },200)
         }
 
         // Default display when loading
