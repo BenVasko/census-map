@@ -106,7 +106,7 @@ form {
 .slider {
     -webkit-appearance: none;
     background: black;
-    margin: 5% auto 10px auto;
+    margin: 0 auto 20px auto;
     width: 80%;
     height: 5px;
     color: black;
@@ -213,8 +213,9 @@ form {
     width: 80px;
     height: 40px;
     position: absolute;
-    top: 95px;
-    right: 8px;
+    top: 5px;
+    left: 8px;
+    z-index: 999;
     font-Family: 'Cabin', Sans-Serif;
 }
 
@@ -280,37 +281,37 @@ option {
     fill: rgb(59, 114, 159);
     background: rgb(248, 246, 246);
     cursor: pointer;
-  }
+}
 
-  #countyList {
-      overflow: scroll;
-      height: 200px;
-      list-style-type: none;
-      background: #fff;
-      width: 100%;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      padding-bottom: 7px;
-      padding-left: 20px;
-      box-sizing: border-box;
-      margin-top: 0;
-      
-  }
-  #countyList li {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      font-size: 13px;
-  }
+#countyList {
+    overflow: scroll;
+    height: 200px;
+    list-style-type: none;
+    background: #fff;
+    width: 100%;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding-bottom: 7px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    margin-top: 0;
+    
+}
+#countyList li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+}
 
-  li i {
-      margin-right: 30px;
-  }
+li i {
+    margin-right: 30px;
+}
 
-  #countyList li:not(:first-child) {
-      border-top: 1px solid #e6e6e6;
-      border-top-width: 70%;
-  }
+#countyList li:not(:first-child) {
+    border-top: 1px solid #e6e6e6;
+    border-top-width: 70%;
+}
 .compare {
     background: #7ac57d;
     border-radius:10px;
@@ -531,28 +532,33 @@ input {
 
     }
     .slider{
-        position: absolute;
+        /* position: absolute; */
         cursor: pointer; 
-        transform: rotate(90deg);
-        right:-14.5%;
-        top: 49.5%;
-        width:44%;
+        /* transform: rotate(90deg); */
+        /* right:-14.5%; */
+        /* top: 49.5%; */
+        /* width:70%; */
+        width: 100%;
         background: black;
         border: 1px solid black;
         padding:0;
         margin:0;
+        margin-bottom: 10px;
     } 
-
+    #sliderLabel {
+        width: 70%;
+    }
     #sliderLabel div {
     display: flex;
     justify-content: space-between;
-    flex-direction:column;
-    height: 60%;
-    width: 40px;
-    position: absolute;
-    right: 1%;
-    top: 20%;
-    margin: 0 auto;   
+    /* flex-direction:column; */
+    /* height: 60%; */
+    /* width: 70%; */
+    /* position: absolute; */
+    /* right: 1%;
+    top: 20%; */
+    width: 100%;
+    margin: 0;
     font-family: 'Open Sans', sans-serif;
     }
     #category-drop{
@@ -652,22 +658,25 @@ input {
         font-weight:bold;
 
     }
-    #back-button{
+    /* #back-button{
         right:15%;
         top:12%;
 
-    }
+    } */
 
 
     #page {
         display: grid;
         grid-template-columns: 1fr 3.5fr;
+        grid-gap: 55px;
     }
 
     svg {
         height: 80vh;
         width: 77%;
+        max-height: 500px;
         /* margin-top: 80px; */
+        margin-top:15px;
     }
 
     #demo {

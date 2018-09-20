@@ -20,8 +20,16 @@
         </section>
     </section>
     <section id="graphics">
+        
         <div id="map"></div>
-
+        <label id="sliderLabel">
+                <input class="slider" type="range" min="1990" max="2010" step="10" ng-model="year" ng-change="$ctrl.chooseYear(year);">
+                <div>
+                    <span>1990</span>
+                    <span>2000</span>
+                    <span>2010</span>
+                </div>
+            </label>
     </section>
 </div>
 <header>
@@ -47,50 +55,41 @@
 </form> -->
 
 
-
 <section class="map-parent">
+    
 </section>
     <section class="parent">
+        <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
+        <section class="legend">
+            <div class="legendText">
+                <p>{{$ctrl.legend.box6}}-</p>
+                <p>{{$ctrl.legend.box7}}</p>
+            </div>
+            <div class="legendText">
+                <p>{{$ctrl.legend.box5}}-</p>
+                <p>{{$ctrl.legend.box6}}</p>
+            </div>
+            <div class="legendText">
+                <p>{{$ctrl.legend.box4}}-</p>
+                <p>{{$ctrl.legend.box5}}
+            </div>
+            <div class="legendText">
+                <p>{{$ctrl.legend.box3}}-</p>
+                <p>{{$ctrl.legend.box4}}</p>
+            </div>
+            <div class="legendText">
+                <p>{{$ctrl.legend.box2}}-</p>
+                <p>{{$ctrl.legend.box3}}</p>
+            </div>
+            <div class="legendText">
+                <p>{{$ctrl.legend.box1}}-</p>
+                <p>{{$ctrl.legend.box2}}</p>
+            </div>
+            <div> {{$ctrl.legend.box1}} </div>
+            <div id="noData"> No Data </div>
+        </section>
     <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
-
-    <label id="sliderLabel">
-        <input class="slider" type="range" min="1990" max="2010" step="10" ng-model="year" ng-change="$ctrl.chooseYear(year);">
-        <div>
-            <span>1990</span>
-            <span>2000</span>
-            <span>2010</span>
-        </div>
-    </label>
     
-    <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
-    <section class="legend">
-        <div class="legendText">
-            <p>{{$ctrl.legend.box6}}-</p>
-            <p>{{$ctrl.legend.box7}}</p>
-        </div>
-        <div class="legendText">
-            <p>{{$ctrl.legend.box5}}-</p>
-            <p>{{$ctrl.legend.box6}}</p>
-        </div>
-        <div class="legendText">
-            <p>{{$ctrl.legend.box4}}-</p>
-            <p>{{$ctrl.legend.box5}}
-        </div>
-        <div class="legendText">
-            <p>{{$ctrl.legend.box3}}-</p>
-            <p>{{$ctrl.legend.box4}}</p>
-        </div>
-        <div class="legendText">
-            <p>{{$ctrl.legend.box2}}-</p>
-            <p>{{$ctrl.legend.box3}}</p>
-        </div>
-        <div class="legendText">
-            <p>{{$ctrl.legend.box1}}-</p>
-            <p>{{$ctrl.legend.box2}}</p>
-        </div>
-        <div> {{$ctrl.legend.box1}} </div>
-        <div id="noData"> No Data </div>
-    </section>
 
 <form>
     <input type="reset" class="ng-hide drop-down" id="back-button" ng-click="$ctrl.hideButton();" value="Back">
