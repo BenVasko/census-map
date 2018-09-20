@@ -59,8 +59,8 @@ h2 {
 
 }
 
-.county-search {
-    /*width: 75%;*/
+input[type='reset'] {
+    font-size: 12px;
 }
 
 .map-parent {
