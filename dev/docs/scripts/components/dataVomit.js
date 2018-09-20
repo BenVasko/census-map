@@ -195,8 +195,11 @@ const data = {
                 us2.src = `scripts/us-map/us-map-by-state/usmap.js`;
                 us2.innerHTML = null;
                 document.getElementById("map-scripts").appendChild(us2);
-
+            setTimeout(function(){
+                // alert("hey")
                 vm.chooseDisplay();
+                
+            },200);
             }
 
         vm.getPopulationDataForState = (stateID) => {
