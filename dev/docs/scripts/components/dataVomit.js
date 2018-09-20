@@ -168,6 +168,29 @@ const data = {
 
                 // if (angular.element(e.target).attr("class")){
                     vm.stateID = (angular.element(e.target).attr("class").slice(-2));
+                    console.log(vm.stateID);
+                    vm.appendStateScripts();
+                // } else if (e.target.innerHTML) {
+                //     vm.stateID = e.target.innerHTML;
+                //     vm.appendStateScripts();
+                // }
+            }
+        
+        });
+
+        // when you click the tspan of the map also
+        $(document).on("click", "tspan", function(e){
+            // Check if we're in a state
+            if(vm.stateID===null){
+                document.getElementById("map-scripts").innerHTML = "";
+                // remove class of "ng-hide" so button will display
+                vm.countySearch.removeClass("ng-hide");
+                vm.button.removeClass("ng-hide");
+                // checking to see if you clicked on a state object
+
+                // if (angular.element(e.target).attr("class")){
+                    // vm.stateID = (angular.element(e.target).innerHTML);
+                    vm.stateID = (e.target.innerHTML);
                     vm.appendStateScripts();
                 // } else if (e.target.innerHTML) {
                 //     vm.stateID = e.target.innerHTML;
