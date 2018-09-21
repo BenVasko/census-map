@@ -62,30 +62,30 @@
         <h3 id="legendLabel">{{$ctrl.legendTitle}}</h3>
         <section class="legend">
             <div class="legendText">
-                <p>{{$ctrl.legend.box6}}-</p>
-                <p>{{$ctrl.legend.box7}}</p>
+                <p>{{$ctrl.colorData.legend.box6}}-</p>
+                <p>{{$ctrl.colorData.legend.box7}}</p>
             </div>
             <div class="legendText">
-                <p>{{$ctrl.legend.box5}}-</p>
-                <p>{{$ctrl.legend.box6}}</p>
+                <p>{{$ctrl.colorData.legend.box5}}-</p>
+                <p>{{$ctrl.colorData.legend.box6}}</p>
             </div>
             <div class="legendText">
-                <p>{{$ctrl.legend.box4}}-</p>
-                <p>{{$ctrl.legend.box5}}
+                <p>{{$ctrl.colorData.legend.box4}}-</p>
+                <p>{{$ctrl.colorData.legend.box5}}
             </div>
             <div class="legendText">
-                <p>{{$ctrl.legend.box3}}-</p>
-                <p>{{$ctrl.legend.box4}}</p>
+                <p>{{$ctrl.colorData.legend.box3}}-</p>
+                <p>{{$ctrl.colorData.legend.box4}}</p>
             </div>
             <div class="legendText">
-                <p>{{$ctrl.legend.box2}}-</p>
-                <p>{{$ctrl.legend.box3}}</p>
+                <p>{{$ctrl.colorData.legend.box2}}-</p>
+                <p>{{$ctrl.colorData.legend.box3}}</p>
             </div>
             <div class="legendText">
-                <p>{{$ctrl.legend.box1}}-</p>
-                <p>{{$ctrl.legend.box2}}</p>
+                <p>{{$ctrl.colorData.legend.box1}}-</p>
+                <p>{{$ctrl.colorData.legend.box2}}</p>
             </div>
-            <div> {{$ctrl.legend.box1}} </div>
+            <div> {{$ctrl.colorData.legend.box1}} </div>
             <div id="noData"> No Data </div>
         </section>
     <select class="drop-down" id="category-drop" ng-init="API = $ctrl.dataType[0]" ng-options="option.name for option in $ctrl.dataType" ng-model="API" ng-change="$ctrl.getCensusData(API)"></select>
@@ -152,7 +152,7 @@
         }
         </style>
         <h3>{{total}}</h3>
-        <div ng-repeat="location in $ctrl.geographyKeys"> 
+        <div ng-repeat="location in $ctrl.colorData.geographyKeys"> 
             <h4>{{location}}</h4> <!-- {{location}} -->
 
             <div class="outerz">
