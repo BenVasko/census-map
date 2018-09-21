@@ -74,7 +74,7 @@ h2 {
     margin: 0 auto;
 } */
 
-#map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4) {
+#map_inner > div:nth-child(2), #map_inner > div:nth-child(3), #map_inner > div:nth-child(4), #map_inner > div:nth-child(5) > svg > text > tspan {
     visibility: hidden; /* attribution removal */
 }
 
