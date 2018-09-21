@@ -116,53 +116,62 @@
     
 </article> -->
 
-<style>
-        .outerz {
-          max-width: 740px;
-          background: #ccc;
-          height: 40px;
-          position: relative;
-          border-radius: 0 25px 25px 0;
-          margin-bottom: 3px;
-        }
-        
-        .innerz {
-          height: 40px;
-          background: #d44727; /*sativa */
-          background: #2592CB; /* indica */
-          background: #76bd1d; /*hybrid*/  
-          border-radius: 0 25px 25px 0;
-          animation: slidez 2s forwards;
-        
-        }
-        
-        .innerz span {
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          color: white;
-          font-family: "Helvetica";
-        }
-        
-        @keyframes slidez {
-          0%{
-            width: 0;
-          }
-          
-        }
-        </style>
-        <h3>{{total}}</h3>
+
+        <h2>Data:</h2>
+        <hr>
+        <h3>Max: {{$ctrl.colorData.legend.max}}</h3>
         <div ng-repeat="location in $ctrl.colorData.geographyKeys track by $index"> 
             <h4>{{location}}</h4> <!-- {{location}} -->
 
-            <div class="outerz">
-              <div class="innerz" >
+            <div class="outerz" ng-init="rock=$ctrl.colorData.arrayOfArrays[$index]">
+            <div class="innerz" ng-style="{'width': (rock/$ctrl.colorData.legend.max * 100).toFixed(0)+'%'}"> <!--{{(rock/$ctrl.colorData.legend.max * 100).toFixed(0)+'%'}}-->
                 
-                <span>{{$ctrl.colorData.arrayOfArrays[$index] | number}}</span> 
+                <span>{{$ctrl.colorData.arrayOfArrays[$index] | number}} </span> 
               </div>
             </div>
 
         </div>
+        <script>
+        
+        </script>
+
+        <style>
+            .outerz {
+              max-width: 740px;
+              background: #ccc;
+              height: 40px;
+              position: relative;
+              border-radius: 0 25px 25px 0;
+              margin-bottom: 3px;
+            }
+            
+            .innerz {
+              height: 40px;
+              background: #d44727; /*sativa */
+              background: #2592CB; /* indica */
+              background: #76bd1d; /*hybrid*/ 
+              background:  #0b6739; 
+              border-radius: 0 25px 25px 0;
+              animation: slidez 3s forwards;
+              transition: 2000ms;
+            
+            }
+            
+            .innerz span {
+              position: absolute;
+              bottom: 10px;
+              left: 10px;
+              color: white;
+              font-family: "Helvetica";
+            }
+            
+            @keyframes slidez {
+              0%{
+                width: 0;
+              }
+              
+            }
+            </style>
         
 <footer>
     <p>demoGraphics</p>

@@ -121,7 +121,9 @@ const ColorService = function(){
             legend.box7 = Math.round(legend.box7 / 1000000) + "M";
         }
         // console.log(legend);
+        
         simplemaps_usmap.load();
+        
         
         return {
             "legend": legend, 

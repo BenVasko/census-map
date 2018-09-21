@@ -20,6 +20,8 @@ const data = {
         vm.arrayOfArrays;
         vm.colorData;
 
+        
+
         // the function that will append script tags for state maps to index
         vm.appendStateScripts = () => {
             if(vm.stateID !== null && vm.stateID.length === 2) {
