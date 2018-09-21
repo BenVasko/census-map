@@ -25,7 +25,7 @@ const ColorService = function(){
             }
             geographyKeys.push(myArray[i][arrayOfArrays.length]);
         }
-        console.log(`geographyKeys: ${geographyKeys}, arrayOfArrays: ${arrayOfArrays}`);
+        // console.log(`geographyKeys: ${geographyKeys}, arrayOfArrays: ${arrayOfArrays}`);
 
         let logArrayOfArrays = [[]];
         logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
@@ -123,7 +123,7 @@ const ColorService = function(){
         // console.log(legend);
         simplemaps_usmap.load();
         
-        return [legend, geographyKeys, arrayOfArrays];
+        return [legend, geographyKeys, arrayOfArrays[0]];
     }
 
     this.getColorsForCounties = (myArray) => {
@@ -271,7 +271,7 @@ const ColorService = function(){
         // simplemaps_usmap.load();
         simplemaps_statemap.load();
        
-        return [legend, geographyKeys, arrayOfArrays];
+        return [legend, geographyKeys, arrayOfArrays[0]];
     }
 
 
