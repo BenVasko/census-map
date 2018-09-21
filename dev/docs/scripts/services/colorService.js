@@ -123,7 +123,11 @@ const ColorService = function(){
         // console.log(legend);
         simplemaps_usmap.load();
         
-        return [legend, geographyKeys, arrayOfArrays[0]];
+        return {
+            "legend": legend, 
+            "geographyKeys": geographyKeys, 
+            "arrayOfArrays": arrayOfArrays[0]
+        };
     }
 
     this.getColorsForCounties = (myArray) => {
@@ -271,7 +275,11 @@ const ColorService = function(){
         // simplemaps_usmap.load();
         simplemaps_statemap.load();
        
-        return [legend, geographyKeys, arrayOfArrays[0]];
+        return {
+            "legend":legend, 
+            "geographyKeys": geographyKeys, 
+            "arrayOfArrays": arrayOfArrays[0]
+        };
     }
 
 

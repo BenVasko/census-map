@@ -42,9 +42,9 @@ const data = {
         vm.getData = () => {
             CensusDataService.getStatePopulation().then((response)=> {
                 vm.datas = response;
-                vm.legend = ColorService.getColors(vm.datas)[0]; 
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColors(vm.datas);
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 vm.total = 0;
                 // vm.legendTitle = "POPULATION IN MILLIONS";
@@ -59,12 +59,12 @@ const data = {
                 // Get population for US
                 CensusDataService.getStatePopulation00().then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(vm.datas)[0]; // ColorService.getColors returns the numbers to go in the legend.
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
-                    let arrayOfArrays = [];
-                    let geographyKeys = [];
-                    console.dir(vm.arrayOfArrays);
+                    vm.legend = ColorService.getColors(vm.datas).legend; // ColorService.getColors returns the numbers to go in the legend.
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
+                    // let arrayOfArrays = [];
+                    // let geographyKeys = [];
+
                     vm.total = 0;
                     // vm.legendTitle = "POPULATION IN MILLIONS";
                     for(let i = 1; i < vm.datas.length; i++) {
@@ -75,9 +75,9 @@ const data = {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopulationForState00(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2]; 
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays; 
                 });
 
             }
@@ -90,9 +90,9 @@ const data = {
 
                 vm.datas=AgeService.calculateAvgAge(vm.datas);
 
-                vm.legend = ColorService.getColors(vm.datas)[0];
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColors(vm.datas).legend;
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
             });
         
         };
@@ -104,18 +104,18 @@ const data = {
 
                     vm.datas=AgeService.calculateAvgAge(vm.datas);
 
-                    vm.legend = ColorService.getColors(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopAge00(censusStateID).then((response)=> {
                     vm.datas = response;
                     vm.datas = AgeService.calculateAvgAge(vm.datas, false);
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             }
         };
@@ -125,18 +125,18 @@ const data = {
                 CensusDataService.getStatePopAge90().then((response)=>{
                     vm.datas=response;
                     vm.datas=AgeService90.calculateAvgAge(vm.datas, true);
-                    vm.legend = ColorService.getColors(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getCountyPopAge90(censusStateID).then((response) => {
                     vm.datas = response;
                     vm.datas = AgeService90.calculateAvgAge(vm.datas, false);
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             }
 
@@ -250,9 +250,9 @@ const data = {
             CensusDataService.getCountyPopulationForState(censusStateID).then((response) => {
                 // console.log(response)
                 vm.datas = response;
-                vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
             });
         };
 
@@ -261,27 +261,27 @@ const data = {
             CensusDataService.getCountyPopAge(censusStateID).then((response) => {
                 vm.datas = response;
                 vm.datas = AgeService.calculateAvgAge(vm.datas, false);
-                vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
             });
         }
 
         vm.getPopPerSM = (year) => {
             CensusDataService.getPopulationPerSquareMileForUS().then((response) => {
                 vm.datas = response;
-                vm.legend = ColorService.getColors(response)[0];
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColors(response).legend;
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
             });
         };
 
         vm.getPopPerSM2000 = (year) => {
             CensusDataService.getPopulationPerSquareMileForUS2000().then((response) => {
                 vm.datas = response;
-                vm.legend = ColorService.getColors(response)[0];
-                vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                vm.legend = ColorService.getColors(response).legend;
+                vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
             });
         };
 
@@ -290,9 +290,9 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getStatePopulation90().then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             }
             // Get for state
@@ -301,9 +301,9 @@ const data = {
                 // console.log("Get pop for state");
                 CensusDataService.getCountyPopulationForState90(stateCode).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                 });
             }
         };
@@ -312,9 +312,9 @@ const data = {
             if(vm.stateID === null) {
                 CensusDataService.getPopulationPerSquareMileForUS1990().then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -322,9 +322,9 @@ const data = {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getPopulationPerSquareMileForState1990(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -335,9 +335,9 @@ const data = {
             if(vm.year===2010){
                 CensusDataService.getPopulationPerSquareMileForState2010(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -345,9 +345,9 @@ const data = {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getPopulationPerSquareMileForState2000(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(response)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(response).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
 
@@ -359,9 +359,9 @@ const data = {
                 CensusDataService.getStatePopRace90().then((response) => {
                     let diverse = DiversityService.diversityPercent(response, true);
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(diverse)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(diverse).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -369,9 +369,9 @@ const data = {
                 CensusDataService.getCountyPopRace90(censusStateID).then((response) => {
                     let diverse = DiversityService.diversityPercent(response, false);
                     vm.datas = response;    
-                    vm.legend = ColorService.getColorsForCounties(diverse)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(diverse).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -383,9 +383,9 @@ const data = {
                     let diverse = DiversityService.diversityPercent(response, true);
                     // console.log(diverse);
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(diverse)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(diverse).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -395,9 +395,9 @@ const data = {
                         // console.log(response);
                         // console.log(diverse);
                         vm.datas = response;
-                        vm.legend = ColorService.getColorsForCounties(diverse)[0];
-                        vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                        vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                        vm.legend = ColorService.getColorsForCounties(diverse).legend;
+                        vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                        vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -408,9 +408,9 @@ const data = {
                 CensusDataService.getStatePopRace().then((response) => {
                     let diverse = DiversityService.diversityPercent(response, true);
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(diverse)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(diverse).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -418,9 +418,9 @@ const data = {
                 CensusDataService.getCountyPopRace(censusStateID).then((response) => {
                     let diverse = DiversityService.diversityPercent(response, false);
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(diverse)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(diverse).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -434,9 +434,9 @@ const data = {
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, true);
                     // console.log(seniorPercent);
                     vm.datas = response;
-                    vm.legend = ColorService.getColors(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -445,9 +445,9 @@ const data = {
                     vm.datas = response;
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, false);
                     // console.log(seniorPercent);
-                    vm.legend = ColorService.getColorsForCounties(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -458,9 +458,9 @@ const data = {
                 CensusDataService.getStatePopAge().then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, true);
-                    vm.legend = ColorService.getColors(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -468,9 +468,9 @@ const data = {
                 CensusDataService.getCountyPopAge(censusStateID).then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService.calculateSeniorCitizenPercentage(vm.datas, false);
-                    vm.legend = ColorService.getColorsForCounties(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -482,9 +482,9 @@ const data = {
                 CensusDataService.getStatePopAge90().then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService90.calculateSeniorCitizenPercentage(vm.datas, true);
-                    vm.legend = ColorService.getColors(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
@@ -492,9 +492,9 @@ const data = {
                 CensusDataService.getCountyPopAge90(censusStateID).then((response) => {
                     vm.datas = response;
                     let seniorPercent = AgeService90.calculateSeniorCitizenPercentage(vm.datas, false);
-                    vm.legend = ColorService.getColorsForCounties(seniorPercent)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(seniorPercent).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -506,18 +506,18 @@ const data = {
                     vm.datas = response;
 
                     // console.log(vm.datas);
-                    vm.legend = ColorService.getColors(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getOccupancyForCounty2000(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -528,18 +528,18 @@ const data = {
                 CensusDataService.getOccupancyForState2010().then((response) => {
                     vm.datas = response;
                     // console.log(vm.datas);
-                    vm.legend = ColorService.getColors(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getOccupancyForCounty2010(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }
@@ -551,18 +551,18 @@ const data = {
                     vm.datas = response;
 
                     // console.log(vm.datas);
-                    vm.legend = ColorService.getColors(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColors(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             } else {
                 let censusStateID = vm.convertStateIDtoCode(vm.stateID);
                 CensusDataService.getOccupancyForCounty1990(censusStateID).then((response) => {
                     vm.datas = response;
-                    vm.legend = ColorService.getColorsForCounties(vm.datas)[0];
-                    vm.geographyKeys = ColorService.getColors(vm.datas)[1];
-                    vm.arrayOfArrays = ColorService.getColors(vm.datas)[2];
+                    vm.legend = ColorService.getColorsForCounties(vm.datas).legend;
+                    vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
+                    vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
 
                 });
             }

@@ -152,13 +152,13 @@
         }
         </style>
         <h3>{{total}}</h3>
-        <div ng-repeat="location in $ctrl.geographyKeys">
-            <h4>{{location}}</h4>
+        <div ng-repeat="location in $ctrl.geographyKeys"> 
+            <h4>{{location}}</h4> <!-- {{location}} -->
 
-            <div class="outerz" ng-repeat="data in $ctrl.arrayOfArrays[0][0]">
+            <div class="outerz">
               <div class="innerz" >
                 
-                <span> {{data | number}} </span>
+                <span>  </span>
               </div>
             </div>
 
