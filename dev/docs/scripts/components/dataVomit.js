@@ -64,7 +64,7 @@ const data = {
                     // vm.geographyKeys = ColorService.getColors(vm.datas).geographyKeys;
                     // vm.arrayOfArrays = ColorService.getColors(vm.datas).arrayOfArrays;
                     vm.colorData = ColorService.getColors(vm.datas);
-                    console.log(vm.colorData);
+                    // console.log(vm.colorData);
                     // let arrayOfArrays = [];
                     // let geographyKeys = [];
 

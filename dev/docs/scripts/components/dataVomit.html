@@ -152,13 +152,13 @@
         }
         </style>
         <h3>{{total}}</h3>
-        <div ng-repeat="location in $ctrl.colorData.geographyKeys"> 
+        <div ng-repeat="location in $ctrl.colorData.geographyKeys track by $index"> 
             <h4>{{location}}</h4> <!-- {{location}} -->
 
             <div class="outerz">
               <div class="innerz" >
                 
-                <span>  </span>
+                <span>{{$ctrl.colorData.arrayOfArrays[$index] | number}}</span> 
               </div>
             </div>
 
