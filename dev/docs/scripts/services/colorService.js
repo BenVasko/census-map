@@ -1,11 +1,12 @@
 const ColorService = function(){
     this.lightest = 90; // the L value (lightness) in HSL. 90 is near white.
     this.darkest = 20; // the L value (lightness) in HSL. 20 is near black.
-    
+
+
     this.getColors = function(myArray){
         // will hold arrays for all the data
         let arrayOfArrays = [];
-        let geographyKeys = []
+        let geographyKeys = [];
         // parse the passed data into arrays that group the data up by variable
         // instead of by geography (ie, all total population in one array)
         for(let i = 0; i < myArray[1].length; i++) {
@@ -18,14 +19,13 @@ const ColorService = function(){
             }
         }
         
-
         for(let i = 2; i < myArray.length; i++){
             for(let j = 0; j < arrayOfArrays.length; j++) {
                 arrayOfArrays[j].push(parseInt(myArray[i][j]));
             }
             geographyKeys.push(myArray[i][arrayOfArrays.length]);
         }
-        // console.log(arrayOfArrays);
+        console.log(`geographyKeys: ${geographyKeys}, arrayOfArrays: ${arrayOfArrays}`);
 
         let logArrayOfArrays = [[]];
         logArrayOfArrays[0][0] = Math.log(arrayOfArrays[0][0])
@@ -122,7 +122,8 @@ const ColorService = function(){
         }
         // console.log(legend);
         simplemaps_usmap.load();
-        return legend;
+        
+        return [legend, geographyKeys, arrayOfArrays];
     }
 
     this.getColorsForCounties = (myArray) => {
@@ -269,7 +270,8 @@ const ColorService = function(){
         console.log(legend);
         // simplemaps_usmap.load();
         simplemaps_statemap.load();
-        return legend;
+       
+        return [legend, geographyKeys, arrayOfArrays];
     }
 
 

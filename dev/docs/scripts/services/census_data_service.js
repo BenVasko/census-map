@@ -467,7 +467,7 @@ vm.getStatePopRace00 = () => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.totalPopRace00},NAME&for=state:${state.all}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
     })
 }
@@ -478,7 +478,7 @@ vm.getCountyPopRace00 = (targetState) => {
         url:`https://api.census.gov/data/2000/sf1?get=${dataHeaders.white00},${dataHeaders.totalPopRace00},NAME&for=county:*&in=state:${targetState}&key=a8ed8e7175e0f6f1c379233a5f3020105c645e2b`,
         method:'GET'
     }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         return response.data
     })
 }

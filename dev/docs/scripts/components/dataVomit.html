@@ -112,8 +112,58 @@
 </section>
 
 <!-- <article>
-    {{$ctrl.datas}}
+    <p ng-repeat="row in $ctrl.datas">{{row}}</p>
+    
 </article> -->
+
+<style>
+        .outerz {
+          max-width: 740px;
+          background: #ccc;
+          height: 40px;
+          position: relative;
+          border-radius: 0 25px 25px 0;
+          margin-bottom: 3px;
+        }
+        
+        .innerz {
+          height: 40px;
+          background: #d44727; /*sativa */
+          background: #2592CB; /* indica */
+          background: #76bd1d; /*hybrid*/  
+          border-radius: 0 25px 25px 0;
+          animation: slidez 2s forwards;
+        
+        }
+        
+        .innerz span {
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          color: white;
+          font-family: "Helvetica";
+        }
+        
+        @keyframes slidez {
+          0%{
+            width: 0;
+          }
+          
+        }
+        </style>
+        <h3>{{total}}</h3>
+        <div ng-repeat="state in $ctrl.geographyKeys">
+            <h4>{{state}}</h4>
+
+            <div class="outerz" >
+              <div class="innerz" >
+                
+                <span>  </span>
+              </div>
+            </div>
+
+        </div>
+        
 <footer>
     <p>demoGraphics</p>
 </footer>

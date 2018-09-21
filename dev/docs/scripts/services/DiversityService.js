@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 const DiversityService = function() {
     const vm = this;
     vm.diversityPercent = (passedData, usMode) => {
@@ -12,7 +12,7 @@ const DiversityService = function() {
             }
            
         }
-        console.log(passedData);
+        // console.log(passedData);
         return dataArray;
        
     }
